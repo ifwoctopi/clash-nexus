@@ -41,19 +41,16 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Assets\Knight_player_1.4\Knight_player\Read_me.txt" />
-    <None Include="Assets\Licens.txt" />
-    <None Include="Assets\Patreon.txt" />
+    <None Include="Assets\Sprites\Knight_player_1.4\Knight_player\Read_me.txt" />
     <None Include="Assets\Font.txt" />
-    <None Include="Assets\free-wizard-sprite-sheets-pixel-art\Font.txt" />
-    <None Include="Assets\free-robot-pixel-art-sprite-sheets\Licens.txt" />
-    <None Include="Assets\craftpix-net-123681-free-samurai-pixel-art-sprite-sheets\Font.txt" />
-    <None Include="Assets\free-robot-pixel-art-sprite-sheets\Font.txt" />
-    <None Include="Assets\License.txt" />
-    <None Include="Assets\free-wizard-sprite-sheets-pixel-art\Licens.txt" />
-    <None Include="Assets\Knight 2D Pixel Art\License.txt" />
-    <None Include="Assets\craftpix-net-123681-free-samurai-pixel-art-sprite-sheets\Licens.txt" />
-    <None Include="Assets\FREE_Samurai 2D Pixel Art v1.2\License.txt" />
+    <None Include="Assets\Sprites\free-wizard-sprite-sheets-pixel-art\Font.txt" />
+    <None Include="Assets\Sprites\free-robot-pixel-art-sprite-sheets\Licens.txt" />
+    <None Include="Assets\Sprites\craftpix-net-123681-free-samurai-pixel-art-sprite-sheets\Font.txt" />
+    <None Include="Assets\Sprites\free-robot-pixel-art-sprite-sheets\Font.txt" />
+    <None Include="Assets\Sprites\free-wizard-sprite-sheets-pixel-art\Licens.txt" />
+    <None Include="Assets\Sprites\Knight 2D Pixel Art\License.txt" />
+    <None Include="Assets\Sprites\craftpix-net-123681-free-samurai-pixel-art-sprite-sheets\Licens.txt" />
+    <None Include="Assets\Sprites\FREE_Samurai 2D Pixel Art v1.2\License.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

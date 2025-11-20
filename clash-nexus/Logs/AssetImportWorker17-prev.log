@@ -1,0 +1,327 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.46f1 (8e9b8558c41a) revision 9345925'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26100) 64bit Core' Language: 'en' Physical Memory: 32475 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker17
+-projectPath
+C:/Users/40sst/clash-nexus/clash-nexus
+-logFile
+Logs/AssetImportWorker17.log
+-srvPort
+59975
+Successfully changed project path to: C:/Users/40sst/clash-nexus/clash-nexus
+C:/Users/40sst/clash-nexus/clash-nexus
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [30456]  Target information:
+
+Player connection [30456]  * "[IP] 10.201.54.14 [Port] 0 [Flags] 2 [Guid] 3650551945 [EditorId] 3650551945 [Version] 1048832 [Id] WindowsEditor(7,ifwoctopi) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [30456] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [30456] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+Refreshing native plugins compatible for Editor in 14.38 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.46f1 (8e9b8558c41a)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/40sst/clash-nexus/clash-nexus/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4070 Laptop GPU (ID=0x2860)
+    Vendor:   NVIDIA
+    VRAM:     7948 MB
+    Driver:   32.0.15.6624
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56340
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004572 seconds.
+- Loaded All Assemblies, in  0.213 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.159 seconds
+Domain Reload Profiling: 372ms
+	BeginReloadAssembly (68ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (0ms)
+	RebuildCommonClasses (20ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (81ms)
+		LoadAssemblies (67ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (79ms)
+			TypeCache.Refresh (78ms)
+				TypeCache.ScanAssembly (70ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (160ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (132ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (90ms)
+			ProcessInitializeOnLoadMethodAttributes (30ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.365 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.448 seconds
+Domain Reload Profiling: 811ms
+	BeginReloadAssembly (86ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (12ms)
+	RebuildCommonClasses (20ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (226ms)
+		LoadAssemblies (175ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (103ms)
+			TypeCache.Refresh (91ms)
+				TypeCache.ScanAssembly (83ms)
+			ScanForSourceGeneratedMonoScriptInfo (8ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (448ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (371ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (36ms)
+			ProcessInitializeOnLoadAttributes (313ms)
+			ProcessInitializeOnLoadMethodAttributes (12ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 1.94 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3280 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 19 unused Assets / (54.9 KB). Loaded Objects now: 3747.
+Memory consumption went from 122.4 MB to 122.4 MB.
+Total: 2.486700 ms (FindLiveObjects: 0.178200 ms CreateObjectMapping: 0.040000 ms MarkObjects: 2.188700 ms  DeleteObjects: 0.077600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.314 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.663 seconds
+Domain Reload Profiling: 975ms
+	BeginReloadAssembly (112ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (21ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (19ms)
+	LoadAllAssembliesAndSetupDomain (154ms)
+		LoadAssemblies (197ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (17ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (2ms)
+			ScanForSourceGeneratedMonoScriptInfo (4ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (664ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (346ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (40ms)
+			ProcessInitializeOnLoadAttributes (277ms)
+			ProcessInitializeOnLoadMethodAttributes (17ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
+Refreshing native plugins compatible for Editor in 2.91 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3359 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 14 unused Assets / (28.5 KB). Loaded Objects now: 3841.
+Memory consumption went from 123.2 MB to 123.2 MB.
+Total: 2.423800 ms (FindLiveObjects: 0.137100 ms CreateObjectMapping: 0.042600 ms MarkObjects: 2.217200 ms  DeleteObjects: 0.026300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/GridSelectionEditor.cs: b0830b2bf3f4ec3f6b4728180aba6475 -> 
+  custom:scripting/monoscript/fileName/GridSelectionMoveTool.cs: 045959d7a1acd1d565cd175dc65f7851 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushesDropdownMenu.cs: 83cccb1cc3875d5c0f94901c5a82ccab -> 
+  custom:scripting/monoscript/fileName/TilePaletteDragHandler.cs: 33cd7bc1b72f7f8ce9b6c5eb96821cb4 -> 
+  custom:scripting/monoscript/fileName/CreateTileFromPaletteAttribute.cs: 49ba01e4cbae8c43831d8f68d552a9ea -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:scripting/monoscript/fileName/EraseTool.cs: b2930b433d7a76d09c5103fd6fa9815b -> 
+  custom:scripting/monoscript/fileName/GridPaletteBrushes.cs: f682962b899ca3732c6892c2e8583713 -> 
+  custom:scripting/monoscript/fileName/GameObjectCreation.cs: 51d13e20836ef3a10ad0ebed59bdbde4 -> 
+  custom:scripting/monoscript/fileName/BoxTool.cs: 99a18cad4f2fa1ae8d04c0625e0f7a94 -> 
+  custom:scripting/monoscript/fileName/GridBrushesDropdown.cs: c2b0d8f0bca0a3921a0149a2aaafe361 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:scripting/monoscript/fileName/TilemapPrefabStageHelper.cs: 44f1fd774e027e09010c4cea43a89765 -> 
+  custom:scripting/monoscript/fileName/GridEditorUtility.cs: 79caab27569f1aaf1370483b77a0eed6 -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushesPopup.cs: b117489b8fd3a726762a29aaae057971 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:scripting/monoscript/fileName/GridSelectionScaleTool.cs: ab389a9feae3d29ad2e9ca76435ec24d -> 
+  custom:scripting/monoscript/fileName/TilemapEditorTool.cs: 4a91b937c12531cdbbbbc26ac425cbca -> 
+  custom:scripting/monoscript/fileName/TilePaletteOverlayUtility.cs: dc8cc580b44070af00f5c1a8a3e30146 -> 
+  custom:scripting/monoscript/fileName/GridPalettes.cs: 05ebfa19bce5556c38d8243821b95e4f -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushesButton.cs: f63fefeba5246c46efe3054fe7e8ff1e -> 
+  custom:scripting/monoscript/fileName/SceneViewGridManager.cs: 95fee1927d423310ba7aac18e1743e68 -> 
+  custom:scripting/monoscript/fileName/TilePaletteActiveTargetsProperties.cs: 3c61ac15c80e0acfb6b6f6a93b9c2f7c -> 
+  custom:scripting/monoscript/fileName/GridSelectionToolEditor.cs: cf616a74bb2f9276d21997cd9c2c33e2 -> 
+  custom:scripting/monoscript/fileName/TilemapFocusModeUtility.cs: 56848ecd8aaf6704fc633228e67df6a2 -> 
+  custom:scripting/monoscript/fileName/TilePaletteActiveTargetsButton.cs: e78565d1f8fb504d1e27cd33aee954a6 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:scripting/monoscript/fileName/SceneViewOpenTilePaletteHelper.cs: 3fa016a943052bc6aa2e17496be83d99 -> 
+  custom:scripting/monoscript/fileName/GridPalettesDropdown.cs: c3eee8db1c244df7a8abb5dd90d1cd39 -> 
+  custom:scripting/monoscript/fileName/BrushToolsAttribute.cs: 07c3ce23d7664c866d082c14955fc570 -> 
+  custom:scripting/monoscript/fileName/TilePaletteClipboardButton.cs: 12e65d1181e6c35cbf046b81b301a908 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/TilemapEditorToolbarStrip.cs: 3b09bb7c9508f28705fc70ed3a82a917 -> 
+  custom:scripting/monoscript/fileName/GridBrushEditor.cs: afd10d6c25e4dee28d1dd55bdbbf1155 -> 
+  custom:scripting/monoscript/fileName/GridPaintPaletteWindowSplitView.cs: 3055e63c32343a994785f777fb8a04eb -> 
+  custom:scripting/monoscript/fileName/GridPaletteAddPopup.cs: 4117721b3ecbb12bd0cf4e10caeebdad -> 
+  custom:scripting/monoscript/fileName/TileDragAndDrop.cs: b35ab1f4232799adb75b33a260fe44f2 -> 
+  custom:scripting/monoscript/fileName/TileUtility.cs: f1465daed90b124a361d1b7354e9b99a -> 
+  custom:scripting/precompiled-assembly-types:Unity.2D.Tilemap.Editor: c63f35b4be2093bcf46770a8fbd6e1fe -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushInspectorElement.cs: a9e9b82fa2a5bb9267ca4498f3dd157f -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:scripting/monoscript/fileName/GridPaintPaletteClipboard.cs: 7cd44e8a0b877591749257e5bc06900b -> 
+  custom:scripting/monoscript/fileName/TilePaletteClipboardElement.cs: 9f42d126d3040ca37a531f760f418560 -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushInspector.cs: dabf99b6cb469f7e1a014ed2d8b57854 -> 
+  custom:scripting/monoscript/fileName/GridSelection.cs: d0dea8ce5af83014aa5391e8d6adf81c -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:scripting/monoscript/fileName/GridPaintSortingAttribute.cs: 682e3d84c0bb9409c8038dde6cc6eaaa -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushesLabel.cs: 50d6652b738f203c7a782d3c9e81384d -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:scripting/monoscript/fileName/FillTool.cs: 31d1f393d06835eb58df2ad8c9b0407d -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:scripting/monoscript/fileName/SceneViewOpenTilePaletteOverlay.cs: 9e154d415d7ab024c8551aae194f4532 -> 
+  custom:scripting/monoscript/fileName/SceneViewTilemapFocusOverlay.cs: 409b7579c9eddabad834478b2a2731cf -> 
+  custom:scripting/monoscript/fileName/GridBrush.cs: 0271bb4294dfd9c52b85d2ef18c21adf -> 
+  custom:scripting/monoscript/fileName/TilePaletteContextMenuHandler.cs: 11689ac7a1e231b785fe9ee59440e8df -> 
+  custom:scripting/monoscript/fileName/GridBrushEditorBase.cs: 8dc6b8dd5b5c3920622a5c826cdb9a3e -> 
+  custom:scripting/monoscript/fileName/TilemapEditorToolPreferences.cs: d34ae7afe7e42324c1a8dc1ee5c53101 -> 
+  custom:scripting/monoscript/fileName/PaintableGrid.cs: c538d5369d23cf604300c6f8a077b5d0 -> 
+  custom:scripting/monoscript/fileName/DefaultAssetCreation.cs: c2d4009190ffa48d1a68c12ac7902a37 -> 
+  custom:scripting/monoscript/fileName/TilemapEditorToolButton.cs: 452256babee1fc6246907201b775c9ca -> 
+  custom:scripting/monoscript/fileName/GridPaintPaletteWindowPreferences.cs: 506574d5ebc55d1c3ac5809521be171c -> 
+  custom:scripting/monoscript/fileName/RotateTool.cs: a45c53b4cde318c91ea55e570037bddd -> 
+  custom:scripting/monoscript/fileName/GridSelectionTransformTool.cs: 0102964ac3ceb594b7800c6267f18cf7 -> 
+  custom:scripting/monoscript/fileName/TilePaletteActivePalettePopup.cs: d8ea341556e28c44f8ce8bb6cb513430 -> 
+  custom:scripting/monoscript/fileName/PaintTool.cs: b088555e5c7bac451566d0ed1b585c0f -> 
+  custom:scripting/monoscript/fileName/GridPaintingState.cs: 5b65b03e1c11595f69bba16eea8cd664 -> 
+  custom:scripting/monoscript/fileName/GridPaintPaletteWindowActiveTargets.cs: a9f6bc687e35dc605b0de621410da416 -> 
+  custom:scripting/monoscript/fileName/TilePaletteClipboardPanelPopup.cs: 481659589c6d2cf5d49bb3c51e9e2785 -> 
+  custom:scripting/monoscript/fileName/GridPaletteUtility.cs: a64eece78a61bcc19caeb2b2a114ba40 -> 
+  custom:scripting/monoscript/fileName/PaintableSceneViewGrid.cs: 668faf831cc940b1ebbed80737459bca -> 
+  custom:scripting/monoscript/fileName/TilemapEditorToolPreferencesAsset.cs: 42733c664a418dc96e6676ab6a569041 -> 
+  custom:scripting/monoscript/fileName/TileDragAndDropHoverData.cs: 7ec3eb6fae482fe5e6eca733189b11c1 -> 
+  custom:scripting/monoscript/fileName/PickingTool.cs: ad2b06cfab7c0bf6799fc818866d02f2 -> 
+  custom:scripting/monoscript/fileName/TilePaletteSaveUtility.cs: 99a98ca4128eb1b36fa13076970c6958 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:scripting/monoscript/fileName/GridSelectionRotationTool.cs: 034710c503c59a634a73a03fd24dd739 -> 
+  custom:scripting/monoscript/fileName/BoolFieldOverlayPopupWindow.cs: 25281e84d45ea134dccf87aa853796bf -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/GridPaintPaletteWindow.cs: 1d497ecc185c46bb1043a6ede8ff1c0f -> 
+  custom:scripting/monoscript/fileName/TilePaletteElement.cs: 821f71de4b61685d39463a4a06a9c842 -> 
+  custom:scripting/monoscript/fileName/TileDragAndDropManager.cs: a1e23a7638297e1dda515dc0e84bf55a -> 
+  custom:scripting/monoscript/fileName/MoveTool.cs: 3e41e228f8fb535351f8fd508c5d7aa6 -> 
+  custom:scripting/monoscript/fileName/SelectTool.cs: 51558befbff43680f5a337c7469e3a7b -> 
+  custom:scripting/monoscript/fileName/TilePalettePrefabUtility.cs: 81c112f431eead6c17358b4dc7196dd1 -> 
+  custom:scripting/monoscript/fileName/TilePaletteActivePaletteDropdownMenu.cs: a47d79fd3aaf47be319da9214e3a9bb3 -> 
+  custom:scripting/monoscript/fileName/TilePaletteActiveTargetsPopup.cs: c19a5ac974961902d5fcecf1d440b17a -> 
+  custom:scripting/monoscript/fileName/GridPaletteEditor.cs: 9ca70426b6bdbb830263d2f1b512a658 -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushPanelButton.cs: 2a4d4194710daaf7059f8f324842178b -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushInspectorPopup.cs: bae9f2c04afcee02fd74cc185afc7936 -> 
+  custom:scripting/monoscript/fileName/TilePaletteBrushesDropdownToggle.cs: c496745875bd2dedf400d11fa8d2a39c -> 
+  custom:scripting/monoscript/fileName/FlipTool.cs: 57a6cd18545afdc27969bc68fde89cb1 -> 
+  custom:scripting/monoscript/fileName/TilePaletteMouseCursorUtility.cs: 684f600f1129c3cb4df290f4bc53b930 -> 
+  custom:scripting/monoscript/fileName/GridPaintingToolbar.cs: 71eec3aa936c54c332bdeff43f265da8 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/GridSelectionTool.cs: e3b447b578d18e550e3fd09eb4616407 -> 
+  custom:scripting/monoscript/fileName/TilePaletteActiveTargetsDropdownMenu.cs: 4c73999c1bc87ae86dc4336104c225a9 -> 
+  custom:scripting/monoscript/fileName/GridPaintTargetsDropdown.cs: 1a02fee05143bec519533f49a8d1bebc -> 
