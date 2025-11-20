@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTwoInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     [Header("Player Configuration")]
     public int playerNumber = 1; // Used to identify the player (e.g., P1 or P2)
     public bool canBlock = false; // Toggle for characters that can block
+    public bool canDash = false;
 
     [Header("Input Key Codes")]
     // Movement
-    public KeyCode moveLeftKey = KeyCode.LeftArrow;
-    public KeyCode moveRightKey = KeyCode.RightArrow;
+    public KeyCode moveLeftKey = KeyCode.A;
+    public KeyCode moveRightKey = KeyCode.D;
 
     // Attacks
-    public KeyCode lightAttackKey = KeyCode.LeftControl;
-    public KeyCode heavyAttackKey = KeyCode.LeftShift;
-    public KeyCode specialAttackKey = KeyCode.Keypad0;
+    public KeyCode lightAttackKey = KeyCode.Q;
+    public KeyCode heavyAttackKey = KeyCode.E;
+    public KeyCode specialAttackKey = KeyCode.R;
 
     // Defense
-    public KeyCode blockKey = KeyCode.DownArrow; 
+    public KeyCode blockKey = KeyCode.S; 
+    public KeyCode dashKey = KeyCode.S; 
 
     // Public properties to check the state of inputs
     public float HorizontalInput { get; private set; }
@@ -27,6 +29,7 @@ public class PlayerTwoInput : MonoBehaviour
     public bool IsHeavyAttackPressed { get; private set; }
     public bool IsSpecialAttackPressed { get; private set; }
     public bool IsBlocking { get; private set; }
+    public bool IsDashing { get; private set; }
 
     void Update()
     {
@@ -53,6 +56,10 @@ public class PlayerTwoInput : MonoBehaviour
         if (canBlock)
         {
             IsBlocking = Input.GetKey(blockKey);
+        }
+        else if (canDash)
+        {
+            IsDashing = Input.GetKey(dashKey);
         }
         else
         {
