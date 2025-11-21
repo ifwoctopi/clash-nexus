@@ -13,17 +13,26 @@ public class Knight1Controller : MonoBehaviour
     public float checkRadius = 0.2f;
     public LayerMask groundLayer;
     private bool isGrounded;
+    private bool wasGrounded;
 
     [Header("Combat")]
     private bool isDefending;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+
+    public int attackDamage = 20;
 
     private Rigidbody2D rb;
     private Player1Controls controls;
     private Vector2 moveInput;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer sr;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         controls = new Player1Controls();
@@ -58,8 +67,42 @@ public class Knight1Controller : MonoBehaviour
     private void Update()
     {
         CheckGround();
-    }
+        if(isDefending)
+        {
+            animator.SetBool("isDefending", true);
+        }
+        else
+        {
+            animator.SetBool("isDefending", false);
+        }
 
+        // Trigger Jump ONCE on takeoff
+        if (wasGrounded && !isGrounded)
+        {
+            animator.SetTrigger("Jump");
+        }
+
+        // Landing trigger (optional)
+        if (!wasGrounded && isGrounded)
+        {
+            animator.SetTrigger("Land");
+        }
+
+        // Run animation
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("yVelocity", rb.velocity.y);
+        animator.SetBool("isFalling", rb.velocity.y < -.1);
+        wasGrounded = isGrounded;
+
+        // Run animation
+        animator.SetBool("isRunning", moveInput.x != 0);
+
+        // Flip sprite
+        if (moveInput.x > 0)
+            sr.flipX = false;
+        else if (moveInput.x < 0)
+            sr.flipX = true;
+    }
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
@@ -78,9 +121,50 @@ public class Knight1Controller : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
-    private void Attack1() { Debug.Log("Attack1"); }
-    private void Attack2() { Debug.Log("Attack2"); }
-    private void Attack3() { Debug.Log("Attack3"); }
+    private void Attack1()
+    {
+        Debug.Log("Attack1");
+        animator.SetTrigger("Attack1");
+        Attack();
+    }
+
+    private void Attack2()
+    {
+        Debug.Log("Attack2");
+        animator.SetTrigger("Attack2");
+        Attack();
+    }
+
+    private void Attack3()
+    {
+        Debug.Log("Attack3");
+        animator.SetTrigger("Attack3");
+        Attack();
+    }
+    
+    public void Attack()
+    {
+        // Detect enemies in range
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            attackPoint.position,
+            attackRange,
+            enemyLayers
+        );
+
+        // Damage each enemy hit
+        foreach (Collider2D enemy in hits)
+        {
+           // enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+        }
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 }
 
 
