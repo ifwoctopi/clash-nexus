@@ -1,0 +1,1179 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.46f1 (8e9b8558c41a) revision 9345925'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26100) 64bit Core' Language: 'en' Physical Memory: 32475 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker11
+-projectPath
+C:/Users/40sst/clash-nexus/clash-nexus
+-logFile
+Logs/AssetImportWorker11.log
+-srvPort
+54803
+Successfully changed project path to: C:/Users/40sst/clash-nexus/clash-nexus
+C:/Users/40sst/clash-nexus/clash-nexus
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [19576]  Target information:
+
+Player connection [19576]  * "[IP] 10.40.65.118 [Port] 0 [Flags] 2 [Guid] 171295634 [EditorId] 171295634 [Version] 1048832 [Id] WindowsEditor(7,ifwoctopi) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [19576] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [19576] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+Refreshing native plugins compatible for Editor in 4.48 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.46f1 (8e9b8558c41a)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/40sst/clash-nexus/clash-nexus/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4070 Laptop GPU (ID=0x2860)
+    Vendor:   NVIDIA
+    VRAM:     7948 MB
+    Driver:   32.0.15.6624
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56668
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004719 seconds.
+- Loaded All Assemblies, in  0.215 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.159 seconds
+Domain Reload Profiling: 373ms
+	BeginReloadAssembly (69ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (0ms)
+	RebuildCommonClasses (21ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (82ms)
+		LoadAssemblies (68ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (80ms)
+			TypeCache.Refresh (79ms)
+				TypeCache.ScanAssembly (71ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (159ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (130ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (1ms)
+			ProcessInitializeOnLoadAttributes (89ms)
+			ProcessInitializeOnLoadMethodAttributes (28ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.402 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.480 seconds
+Domain Reload Profiling: 880ms
+	BeginReloadAssembly (91ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (13ms)
+	RebuildCommonClasses (19ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (259ms)
+		LoadAssemblies (193ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (120ms)
+			TypeCache.Refresh (105ms)
+				TypeCache.ScanAssembly (96ms)
+			ScanForSourceGeneratedMonoScriptInfo (11ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (480ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (400ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (38ms)
+			ProcessInitializeOnLoadAttributes (335ms)
+			ProcessInitializeOnLoadMethodAttributes (17ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 3.44 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3747 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 25 unused Assets / (54.6 KB). Loaded Objects now: 4220.
+Memory consumption went from 134.1 MB to 134.0 MB.
+Total: 3.028800 ms (FindLiveObjects: 0.198900 ms CreateObjectMapping: 0.078800 ms MarkObjects: 2.682500 ms  DeleteObjects: 0.067900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/SchoolGirlController.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 25374.863028 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/roll/roll_1.png
+  artifactKey: Guid(1ac6d1ef9bf6ad245b9d03f1a8b31cd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/roll/roll_1.png using Guid(1ac6d1ef9bf6ad245b9d03f1a8b31cd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '4b26d9422ec7acbc107fdb26b39c26c6') in 0.030610 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.470529 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/j_up/j_up_1.png
+  artifactKey: Guid(215b768371dba1c4d9c1fba04512c6a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/j_up/j_up_1.png using Guid(215b768371dba1c4d9c1fba04512c6a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '04055b18eabfb47dcce51c54d1a47df5') in 0.022317 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 44.865851 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_3.png
+  artifactKey: Guid(b3a855c3a29ce874995cc0cf953eaff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_3.png using Guid(b3a855c3a29ce874995cc0cf953eaff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '01a355b289f7ca07779fa5bd25d100a8') in 0.004516 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.010036 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_1.png
+  artifactKey: Guid(7f75b6cc795924a44a6e14b617f62509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_1.png using Guid(7f75b6cc795924a44a6e14b617f62509) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '3e8249ed43551ae55600cd67a172ddaa') in 0.004146 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 4.125043 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_3.png
+  artifactKey: Guid(b3a855c3a29ce874995cc0cf953eaff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_3.png using Guid(b3a855c3a29ce874995cc0cf953eaff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '04d24022a3b4bc2ba5b76c1bd408ce81') in 0.035588 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 16.232659 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_1.png
+  artifactKey: Guid(7f75b6cc795924a44a6e14b617f62509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_1.png using Guid(7f75b6cc795924a44a6e14b617f62509) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'bb444f7d6f55cc5840f5e226161fa61a') in 0.004220 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 3.623252 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_1.png
+  artifactKey: Guid(7f75b6cc795924a44a6e14b617f62509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_1.png using Guid(7f75b6cc795924a44a6e14b617f62509) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '516279397ad7696d674da3b836ef97ad') in 0.019675 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 27.413249 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_2.png
+  artifactKey: Guid(27aacf6bdbcfa5248ad05e8c45210c01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_2.png using Guid(27aacf6bdbcfa5248ad05e8c45210c01) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '6740358392675b1c33831987d268c24b') in 0.003564 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 3.325959 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_2.png
+  artifactKey: Guid(27aacf6bdbcfa5248ad05e8c45210c01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_2.png using Guid(27aacf6bdbcfa5248ad05e8c45210c01) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '43cb6973acbd0850b9b55ff3ec5fb14f') in 0.012171 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 9.299804 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_3.png
+  artifactKey: Guid(b3a855c3a29ce874995cc0cf953eaff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_3.png using Guid(b3a855c3a29ce874995cc0cf953eaff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'f126f6869fdc34beab33d9e5f2937c03') in 0.003930 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 7.041593 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_3.png
+  artifactKey: Guid(b3a855c3a29ce874995cc0cf953eaff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_3.png using Guid(b3a855c3a29ce874995cc0cf953eaff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'ad812c242aa168d0b4f1e4b157627583') in 0.019514 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 13.926069 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_4.png
+  artifactKey: Guid(746a4017dfdbd8a4fba43cc38351bea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_4.png using Guid(746a4017dfdbd8a4fba43cc38351bea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '5b5f3d3110809069eb8a1c3782680fd9') in 0.004141 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 3.135928 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_4.png
+  artifactKey: Guid(746a4017dfdbd8a4fba43cc38351bea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_4.png using Guid(746a4017dfdbd8a4fba43cc38351bea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '7e9963086206808b93addd7e54c9de43') in 0.009095 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 7.389273 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_5.png
+  artifactKey: Guid(45f33f0d8927ddd409326ea693aee4ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_5.png using Guid(45f33f0d8927ddd409326ea693aee4ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '9ed857075486ef1f89ed601ee57c8afd') in 0.007885 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 5.398995 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_5.png
+  artifactKey: Guid(45f33f0d8927ddd409326ea693aee4ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_5.png using Guid(45f33f0d8927ddd409326ea693aee4ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'c5b06b8c0c4be902a024896c4ba98541') in 0.015553 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 6.702951 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_6.png
+  artifactKey: Guid(6a1f9844f185e7c47b87c8eac66a537e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_6.png using Guid(6a1f9844f185e7c47b87c8eac66a537e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'f86b613f1bcbacd85536016be7ff07dc') in 0.003904 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 5.607972 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_6.png
+  artifactKey: Guid(6a1f9844f185e7c47b87c8eac66a537e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/idle/idle_6.png using Guid(6a1f9844f185e7c47b87c8eac66a537e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '552dc3660dd5067f37a9b09e8090e9f8') in 0.010777 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 136.368269 seconds.
+  path: Assets/Animations/Monk
+  artifactKey: Guid(22896092ee9ad9147b6debf294e584d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Monk using Guid(22896092ee9ad9147b6debf294e584d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '7156a9602f89c4c69e10a9017868ad78') in 0.000887 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 8.054951 seconds.
+  path: Assets/Animations/Monk/MonkIdle.anim
+  artifactKey: Guid(4cea1f02eeee2f24e97d9a69baf41b19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Monk/MonkIdle.anim using Guid(4cea1f02eeee2f24e97d9a69baf41b19) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '957a8ebe9d5eb50a9044ffa9bb8a4835') in 0.001324 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 23.048715 seconds.
+  path: Assets/Animations/Monk/MonkRun.anim
+  artifactKey: Guid(9cae471acf266214f8535e9a61326ac6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Monk/MonkRun.anim using Guid(9cae471acf266214f8535e9a61326ac6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '6d467dce0aa430abbbc2df21e22a59b5') in 0.001066 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 8.216107 seconds.
+  path: Assets/Animations/Monk/MonkJump.anim
+  artifactKey: Guid(4dda07c3c9a3b034f840e254de8d059a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Monk/MonkJump.anim using Guid(4dda07c3c9a3b034f840e254de8d059a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'a5d06955a62f8e6940c3e3088127f3b2') in 0.001092 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 9.269051 seconds.
+  path: Assets/Animations/Monk/MonkFall.anim
+  artifactKey: Guid(27c6a1be26d80ec459b921f7cdbad533) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Monk/MonkFall.anim using Guid(27c6a1be26d80ec459b921f7cdbad533) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '9a561ab631bddb6cf325fade8a255f07') in 0.001114 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 17.287282 seconds.
+  path: Assets/Animations/Monk/MonkLand.anim
+  artifactKey: Guid(06a9e25401623a0429c2ad445d2c9057) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Monk/MonkLand.anim using Guid(06a9e25401623a0429c2ad445d2c9057) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '95553273f44cc6d5e05421f5eb8cd548') in 0.001889 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 15.812554 seconds.
+  path: Assets/Scripts/MonkController.cs
+  artifactKey: Guid(bc7a314d473b2a34c986343367aa7cb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MonkController.cs using Guid(bc7a314d473b2a34c986343367aa7cb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '73095a5acbd35e7765288f99dc01e94e') in 0.000408 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.322 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.727 seconds
+Domain Reload Profiling: 1047ms
+	BeginReloadAssembly (115ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (28ms)
+	RebuildCommonClasses (21ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (19ms)
+	LoadAllAssembliesAndSetupDomain (158ms)
+		LoadAssemblies (197ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (18ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (727ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (395ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (44ms)
+			ProcessInitializeOnLoadAttributes (323ms)
+			ProcessInitializeOnLoadMethodAttributes (17ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Refreshing native plugins compatible for Editor in 3.12 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3739 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 14 unused Assets / (28.4 KB). Loaded Objects now: 4239.
+Memory consumption went from 137.0 MB to 137.0 MB.
+Total: 2.696600 ms (FindLiveObjects: 0.161100 ms CreateObjectMapping: 0.051000 ms MarkObjects: 2.453900 ms  DeleteObjects: 0.029800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/SchoolGirlController.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/MonkController.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 6406671db4c21c2c3a59931ddc279932 -> 7e3fe8dcbd6c7b45e96d260e3a025c67
+========================================================================
+Received Import Request.
+  Time since last request: 5.249620 seconds.
+  path: Assets/Scripts/MonkController.cs
+  artifactKey: Guid(bc7a314d473b2a34c986343367aa7cb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MonkController.cs using Guid(bc7a314d473b2a34c986343367aa7cb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '76810c94fb8abf5caeae0987c7fedb35') in 0.001578 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.358 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.786 seconds
+Domain Reload Profiling: 1142ms
+	BeginReloadAssembly (147ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (19ms)
+	LoadAllAssembliesAndSetupDomain (153ms)
+		LoadAssemblies (219ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (17ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (787ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (418ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (41ms)
+			ProcessInitializeOnLoadAttributes (351ms)
+			ProcessInitializeOnLoadMethodAttributes (16ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
+Refreshing native plugins compatible for Editor in 2.99 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3739 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 14 unused Assets / (28.5 KB). Loaded Objects now: 4243.
+Memory consumption went from 137.0 MB to 137.0 MB.
+Total: 4.993100 ms (FindLiveObjects: 0.167900 ms CreateObjectMapping: 0.047200 ms MarkObjects: 4.744100 ms  DeleteObjects: 0.033300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/SchoolGirlController.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/MonkController.cs: 62190f1204d83df6caae27c2ffc49b89 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 4591c1abbcfacf57acb2f44615b65fe3 -> 7e3fe8dcbd6c7b45e96d260e3a025c67
+========================================================================
+Received Import Request.
+  Time since last request: 672.064805 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3
+  artifactKey: Guid(651c304c9fc52c742b8c478cbb181497) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3 using Guid(651c304c9fc52c742b8c478cbb181497) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'cfcd4c5105bfb69c2b22344c3875648f') in 0.002550 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 5.250001 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png
+  artifactKey: Guid(aa06c4d9776088949ab616f42bc5418c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png using Guid(aa06c4d9776088949ab616f42bc5418c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '33a645e18c0eaee8c95f5d42f3492a2f') in 0.000461 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 2.388000 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/1_atk
+  artifactKey: Guid(c662342a85033a748ba7238d5bfc5673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/1_atk using Guid(c662342a85033a748ba7238d5bfc5673) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '07a107e597f79a2bb98a05d1843daf31') in 0.000505 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 90.548325 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_1.png
+  artifactKey: Guid(e76254fad0f70704188ebfe16fce77d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_1.png using Guid(e76254fad0f70704188ebfe16fce77d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '63ac4cd807a5d906637cf88d64d7f35a') in 0.055595 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_6.png
+  artifactKey: Guid(fbd86025e42643141b2c56e36e35dc06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_6.png using Guid(fbd86025e42643141b2c56e36e35dc06) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '0a1a6234f795b37742642929d7e4f1ba') in 0.014577 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000200 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_4.png
+  artifactKey: Guid(68547e4772aa10f468028ac57c1d65a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_4.png using Guid(68547e4772aa10f468028ac57c1d65a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '918c4593915d2898478aa0e73ae53779') in 0.006500 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000248 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_3.png
+  artifactKey: Guid(3201e61817582df4182aecd92c7ef6cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_3.png using Guid(3201e61817582df4182aecd92c7ef6cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'cc66536c86b74ca91e3747c8f74c12e9') in 0.017222 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 12.895297 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_4.png
+  artifactKey: Guid(68547e4772aa10f468028ac57c1d65a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_4.png using Guid(68547e4772aa10f468028ac57c1d65a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'c5f22723887acf1602e19b57a90612fd') in 0.004535 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.010516 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_1.png
+  artifactKey: Guid(e76254fad0f70704188ebfe16fce77d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_1.png using Guid(e76254fad0f70704188ebfe16fce77d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '6eb0a9d205b23e018d7ff40933bd068d') in 0.014559 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_7.png
+  artifactKey: Guid(2a283d1b2f35d5d49aed6d5d8671b7b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_7.png using Guid(2a283d1b2f35d5d49aed6d5d8671b7b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'a8bfce94969d4a8d5e4066638eb92538') in 0.006108 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 7.000449 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_1.png
+  artifactKey: Guid(e76254fad0f70704188ebfe16fce77d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_1.png using Guid(e76254fad0f70704188ebfe16fce77d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '37e6a0e5e52364eb61b7da879f8a7490') in 0.035315 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 5.604912 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_2.png
+  artifactKey: Guid(9a89872d5c53a16448cb756328e40a99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_2.png using Guid(9a89872d5c53a16448cb756328e40a99) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '6de9a296a1690f4b4847aa13188e593e') in 0.027427 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 7.951777 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_3.png
+  artifactKey: Guid(3201e61817582df4182aecd92c7ef6cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_3.png using Guid(3201e61817582df4182aecd92c7ef6cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '070326c03b15f9781d4142a0a310de36') in 0.010610 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 11.005730 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_4.png
+  artifactKey: Guid(68547e4772aa10f468028ac57c1d65a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_4.png using Guid(68547e4772aa10f468028ac57c1d65a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '6995d395543f91e3a72d3e108fc319ca') in 0.013573 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 8.219550 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_5.png
+  artifactKey: Guid(4f11b0e382b4c0e47bd78e666a85b78b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_5.png using Guid(4f11b0e382b4c0e47bd78e666a85b78b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'd9ef0c6070a95a113ba647615b3bc462') in 0.031962 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 9.273263 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_6.png
+  artifactKey: Guid(fbd86025e42643141b2c56e36e35dc06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_6.png using Guid(fbd86025e42643141b2c56e36e35dc06) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'd10b110d7bc71d959dabab6292eb1777') in 0.030478 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 7.925383 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_7.png
+  artifactKey: Guid(2a283d1b2f35d5d49aed6d5d8671b7b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_7.png using Guid(2a283d1b2f35d5d49aed6d5d8671b7b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '36205cee89b8414f749ea37f44dff024') in 0.025936 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 8.794984 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_8.png
+  artifactKey: Guid(836d9bfac66cfa543afa30dbbefc397e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/run/run_8.png using Guid(836d9bfac66cfa543afa30dbbefc397e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '939ae6f2a969ea303fbafe51d24c4daf') in 0.024077 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 117.171459 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_1.png
+  artifactKey: Guid(2379a3a432de4e742b97c7a2fae9be54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_1.png using Guid(2379a3a432de4e742b97c7a2fae9be54) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '5e8995f9dc48a8e43e897974b4ce5485') in 0.006727 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.001234 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_4.png
+  artifactKey: Guid(38b826eac2c897d4b98abf9997b7cd29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_4.png using Guid(38b826eac2c897d4b98abf9997b7cd29) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'f833ffc235ed064ad09f8ea2b35b256a') in 0.009847 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000861 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_3.png
+  artifactKey: Guid(64e19fb9d671f284c8fde41a157f2dad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_3.png using Guid(64e19fb9d671f284c8fde41a157f2dad) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '6215414e52f8a26994f1fa2613b03e78') in 0.006301 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.003439 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_12.png
+  artifactKey: Guid(c61f4646fbac8804e81df3282af80c62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_12.png using Guid(c61f4646fbac8804e81df3282af80c62) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'b74fb9d3bcbd2c55a59d7c8ff34d960b') in 0.026627 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_11.png
+  artifactKey: Guid(538be47ef5dba6c49afb3eb0a02368e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_11.png using Guid(538be47ef5dba6c49afb3eb0a02368e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'e743204e7d94b0e092a69aab1ae96517') in 0.009265 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_6.png
+  artifactKey: Guid(b376b59c0da4708429156166a80c6e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_6.png using Guid(b376b59c0da4708429156166a80c6e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '0b43ca92b557f71c08659cebe0c4181d') in 0.003840 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_8.png
+  artifactKey: Guid(851650a90f7d96c409080c3578bf116b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_8.png using Guid(851650a90f7d96c409080c3578bf116b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '5eb1643ae80dc3c5cde82df1de0f10a5') in 0.003639 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.836547 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/take_hit/take_hit_2.png
+  artifactKey: Guid(f5eb340ddf7df24439b3cde65dbee439) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/take_hit/take_hit_2.png using Guid(f5eb340ddf7df24439b3cde65dbee439) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '5060605da5f7eb4695647d34b081ed99') in 0.004842 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000187 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/take_hit/take_hit_6.png
+  artifactKey: Guid(79cc0cd460f1cd740a511f2e23ce130c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/take_hit/take_hit_6.png using Guid(79cc0cd460f1cd740a511f2e23ce130c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'd514fc35939fd6f9c1c26a4579b5f54a') in 0.004109 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.720697 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_2.png
+  artifactKey: Guid(5484120a68de9b9468ba9dcf33c017dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_2.png using Guid(5484120a68de9b9468ba9dcf33c017dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'baa967010c907337782943ee073d96e9') in 0.032576 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000093 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_7.png
+  artifactKey: Guid(e7bd571115aa5874aa797362a57c512a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_7.png using Guid(e7bd571115aa5874aa797362a57c512a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'd88857fbced621c94ebfcc5fc5fbf97c') in 0.047221 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 35.755249 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/j_up/j_up_3.png
+  artifactKey: Guid(4fd8cb4d3d96f484ebd8bc0e21b8a089) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/j_up/j_up_3.png using Guid(4fd8cb4d3d96f484ebd8bc0e21b8a089) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '2effc10d65e86ab0165e3526e09f9aa9') in 0.003920 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 55.282013 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_15.png
+  artifactKey: Guid(0d25a37b78d7c874b9a4381bd1477957) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/sp_atk/sp_atk_15.png using Guid(0d25a37b78d7c874b9a4381bd1477957) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'cf83c5f25ead7cd08fa36deaf3d09810') in 0.014820 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 8.116023 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_4.png
+  artifactKey: Guid(f5c7e80512c253c44912b3a7eb90f5e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_4.png using Guid(f5c7e80512c253c44912b3a7eb90f5e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'b3f5c6604ff11f9c81cb62afa3dfac39') in 0.004313 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.002440 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_5.png
+  artifactKey: Guid(1bff9051187690d41941fe10ae8da875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_5.png using Guid(1bff9051187690d41941fe10ae8da875) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '4e626d67498d79928b52a1a1839d0e6b') in 0.004303 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.003735 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_8.png
+  artifactKey: Guid(cb49617d13f780346ae7058d0ccea508) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_8.png using Guid(cb49617d13f780346ae7058d0ccea508) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '8fc27705f94065771c433a0500c76dd4') in 0.004206 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_13.png
+  artifactKey: Guid(2783e0d68aa06044694815a7740f45e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_13.png using Guid(2783e0d68aa06044694815a7740f45e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '1af1e3f88974736de14cd5c024de3c79') in 0.003864 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_6.png
+  artifactKey: Guid(5444544c6b5bbd44fb05d55b412e3d56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_6.png using Guid(5444544c6b5bbd44fb05d55b412e3d56) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'b290744e30ccd964e6e4b87d33d86162') in 0.003459 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_11.png
+  artifactKey: Guid(8d032154fc980154db560fe191969970) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_11.png using Guid(8d032154fc980154db560fe191969970) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'f1fdc9891174ebaa4b9eeef3633406c9') in 0.004011 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 39.500856 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/air_atk/air_atk_2.png
+  artifactKey: Guid(cbadea20e5bdf1142bf176e0496a7fa1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/air_atk/air_atk_2.png using Guid(cbadea20e5bdf1142bf176e0496a7fa1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '89fb3a4cb16e2bd386bc744bf8b88a0d') in 0.026755 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000231 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/air_atk/air_atk_7.png
+  artifactKey: Guid(5ab54a9e6c7932445a2a127f7269de17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/air_atk/air_atk_7.png using Guid(5ab54a9e6c7932445a2a127f7269de17) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: 'dfefc7e44f94a0a1e7016c7c2e7455db') in 0.040900 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 4.274072 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/defend/defend_2.png
+  artifactKey: Guid(ac3227efa1dc6104b8fe89cc5e14b44c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/defend/defend_2.png using Guid(ac3227efa1dc6104b8fe89cc5e14b44c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '7453833ec9ed669ef989d55261d1a131') in 0.013551 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 52.800447 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_2.png
+  artifactKey: Guid(93897aa1e110dfd4b9549a994a7aabcb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/meditate/meditate_2.png using Guid(93897aa1e110dfd4b9549a994a7aabcb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '5cddf16a4937fda86c23420a68c732f2') in 0.040974 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 17.357662 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/j_down/j_down_3.png
+  artifactKey: Guid(c4db4146c0509b144a2eff92c7dd8d89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/j_down/j_down_3.png using Guid(c4db4146c0509b144a2eff92c7dd8d89) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '3ae34d7ec373ebdecf917b986d9acae6') in 0.014743 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 202.069853 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/roll/roll_6.png
+  artifactKey: Guid(b4fd9d3fe04ecf74c87f06eb31138554) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/roll/roll_6.png using Guid(b4fd9d3fe04ecf74c87f06eb31138554) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '423a7a3a93adb58362319f47e894d6e1') in 0.011994 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.320 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.760 seconds
+Domain Reload Profiling: 1078ms
+	BeginReloadAssembly (115ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (29ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (19ms)
+	LoadAllAssembliesAndSetupDomain (149ms)
+		LoadAssemblies (197ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (9ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (761ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (413ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (42ms)
+			ProcessInitializeOnLoadAttributes (342ms)
+			ProcessInitializeOnLoadMethodAttributes (18ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 3.51 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3739 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 14 unused Assets / (28.5 KB). Loaded Objects now: 4261.
+Memory consumption went from 137.0 MB to 137.0 MB.
+Total: 2.640900 ms (FindLiveObjects: 0.202700 ms CreateObjectMapping: 0.059800 ms MarkObjects: 2.348100 ms  DeleteObjects: 0.029500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/SchoolGirlController.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/MonkController.cs: 62190f1204d83df6caae27c2ffc49b89 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 4591c1abbcfacf57acb2f44615b65fe3 -> 7e3fe8dcbd6c7b45e96d260e3a025c67
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.299 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.792 seconds
+Domain Reload Profiling: 1089ms
+	BeginReloadAssembly (102ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (19ms)
+	RebuildCommonClasses (20ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (20ms)
+	LoadAllAssembliesAndSetupDomain (148ms)
+		LoadAssemblies (194ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (9ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (792ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (448ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (47ms)
+			ProcessInitializeOnLoadAttributes (368ms)
+			ProcessInitializeOnLoadMethodAttributes (20ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 3.26 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3740 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 14 unused Assets / (28.5 KB). Loaded Objects now: 4265.
+Memory consumption went from 137.3 MB to 137.3 MB.
+Total: 2.559000 ms (FindLiveObjects: 0.171300 ms CreateObjectMapping: 0.061500 ms MarkObjects: 2.288300 ms  DeleteObjects: 0.031700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/SchoolGirlController.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/MonkController.cs: 62190f1204d83df6caae27c2ffc49b89 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 4591c1abbcfacf57acb2f44615b65fe3 -> 7e3fe8dcbd6c7b45e96d260e3a025c67
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.308 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.763 seconds
+Domain Reload Profiling: 1068ms
+	BeginReloadAssembly (115ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (20ms)
+	RebuildCommonClasses (21ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (20ms)
+	LoadAllAssembliesAndSetupDomain (142ms)
+		LoadAssemblies (199ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (9ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (764ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (426ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (2ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (43ms)
+			ProcessInitializeOnLoadAttributes (353ms)
+			ProcessInitializeOnLoadMethodAttributes (17ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 4.43 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3740 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 14 unused Assets / (28.5 KB). Loaded Objects now: 4269.
+Memory consumption went from 137.3 MB to 137.3 MB.
+Total: 2.662900 ms (FindLiveObjects: 0.172400 ms CreateObjectMapping: 0.053300 ms MarkObjects: 2.407100 ms  DeleteObjects: 0.029500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/SchoolGirlController.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/MonkController.cs: 62190f1204d83df6caae27c2ffc49b89 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 4591c1abbcfacf57acb2f44615b65fe3 -> 7e3fe8dcbd6c7b45e96d260e3a025c67
