@@ -23,6 +23,13 @@ public class Knight1Controller : MonoBehaviour
 
     public int attackDamage = 20;
 
+    [Header("Health")]
+    public int maxHealth = 3;
+    private int currentHealth;
+    private bool isDead = false;
+
+    private CapsuleCollider2D playerCollider; // reference to your main collider
+    
     private Rigidbody2D rb;
     private Player1Controls controls;
     private Vector2 moveInput;
@@ -34,6 +41,9 @@ public class Knight1Controller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerCollider = GetComponent<CapsuleCollider2D>();
+
+        currentHealth = maxHealth;
 
         controls = new Player1Controls();
 
@@ -54,6 +64,7 @@ public class Knight1Controller : MonoBehaviour
         controls.Player1.Defend.canceled += ctx => isDefending = false;
     }
 
+
     private void OnEnable()
     {
         controls.Player1.Enable();
@@ -66,6 +77,7 @@ public class Knight1Controller : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
         CheckGround();
         if(isDefending)
         {
@@ -105,6 +117,7 @@ public class Knight1Controller : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (isDead) return;
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
     }
 
@@ -154,9 +167,51 @@ public class Knight1Controller : MonoBehaviour
         // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
-           // enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+           //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
         }
     }
+    
+    public void TakeDamage(int damage)
+    {
+        if (isDead) return; // ignore damage if already dead
+
+        currentHealth -= damage;
+        Debug.Log($"Knight 1 took {damage} damage! Current health: {currentHealth}");
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            animator.SetTrigger("Hurt");
+        }
+    }
+    private void Die()
+    {
+        isDead = true;
+        Debug.Log("Knight 1 Died!");
+
+        // Stop movement
+        moveInput = Vector2.zero;
+        rb.velocity = Vector2.zero;
+
+        // Disable collider so sprite doesn't float
+        playerCollider.enabled = false;
+
+        // Optional: disable Rigidbody gravity if desired
+        rb.simulated = false;
+
+        // Trigger death animation
+        animator.SetTrigger("Dead");
+
+        // Disable input
+        controls.Disable();
+
+        // Optional: destroy object after animation ends
+        // Destroy(gameObject, 2f);
+    }
+
     
     private void OnDrawGizmosSelected()
     {
