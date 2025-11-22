@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\MonkController.cs" />
     <Compile Include="Assets\Scripts\HuntressController.cs" />
+    <Compile Include="Assets\WaterPriestController.cs" />
     <Compile Include="Assets\Scripts\Knight1Controller.cs" />
     <Compile Include="Assets\Player1Controls.cs" />
     <None Include="Assets\Sprites\Knight_player_1.4\Knight_player\Read_me.txt" />

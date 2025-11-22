@@ -361,6 +361,7 @@
 "Assets/Scripts/HuntressController.cs"
 "Assets/Scripts/Knight1Controller.cs"
 "Assets/Scripts/MonkController.cs"
+"Assets/WaterPriestController.cs"
 -langversion:9.0
 /deterministic
 /optimize+
