@@ -15,7 +15,7 @@ C:/Users/40sst/clash-nexus/clash-nexus
 -logFile
 Logs/AssetImportWorker16.log
 -srvPort
-54803
+63402
 Successfully changed project path to: C:/Users/40sst/clash-nexus/clash-nexus
 C:/Users/40sst/clash-nexus/clash-nexus
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,14 +49,14 @@ C:/Users/40sst/clash-nexus/clash-nexus
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [31776]  Target information:
+Player connection [29708]  Target information:
 
-Player connection [31776]  * "[IP] 10.40.65.118 [Port] 0 [Flags] 2 [Guid] 3188827761 [EditorId] 3188827761 [Version] 1048832 [Id] WindowsEditor(7,ifwoctopi) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [29708]  * "[IP] 10.20.73.189 [Port] 0 [Flags] 2 [Guid] 2583302303 [EditorId] 2583302303 [Version] 1048832 [Id] WindowsEditor(7,ifwoctopi) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [31776] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [31776] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [29708] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [29708] Host joined alternative multi-casting on [225.0.0.222:34997]...
 [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
-Refreshing native plugins compatible for Editor in 5.34 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 5.97 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.46f1 (8e9b8558c41a)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Resources/UnitySubsystems
@@ -72,44 +72,44 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56216
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56088
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.004944 seconds.
-- Loaded All Assemblies, in  0.223 seconds
+Registered in 0.004973 seconds.
+- Loaded All Assemblies, in  0.226 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.161 seconds
-Domain Reload Profiling: 383ms
+- Finished resetting the current domain, in  0.172 seconds
+Domain Reload Profiling: 397ms
 	BeginReloadAssembly (71ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (0ms)
-	RebuildCommonClasses (21ms)
+	RebuildCommonClasses (23ms)
 	RebuildNativeTypeToScriptingClass (6ms)
-	initialDomainReloadingComplete (39ms)
-	LoadAllAssembliesAndSetupDomain (85ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (88ms)
 		LoadAssemblies (69ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (84ms)
-			TypeCache.Refresh (83ms)
-				TypeCache.ScanAssembly (74ms)
+		AnalyzeDomain (87ms)
+			TypeCache.Refresh (86ms)
+				TypeCache.ScanAssembly (77ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (161ms)
+	FinalizeReload (172ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (130ms)
+		SetupLoadedEditorAssemblies (141ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
-			SetLoadedEditorAssemblies (5ms)
+			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (1ms)
-			ProcessInitializeOnLoadAttributes (88ms)
-			ProcessInitializeOnLoadMethodAttributes (29ms)
+			ProcessInitializeOnLoadAttributes (95ms)
+			ProcessInitializeOnLoadMethodAttributes (32ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -118,53 +118,52 @@ Domain Reload Profiling: 383ms
 Worker process is ready to serve import requests
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.436 seconds
+- Loaded All Assemblies, in  0.409 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.498 seconds
-Domain Reload Profiling: 932ms
-	BeginReloadAssembly (101ms)
+- Finished resetting the current domain, in  0.514 seconds
+Domain Reload Profiling: 921ms
+	BeginReloadAssembly (96ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (3ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (12ms)
-	RebuildCommonClasses (22ms)
+		CreateAndSetChildDomain (13ms)
+	RebuildCommonClasses (21ms)
 	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (31ms)
-	LoadAllAssembliesAndSetupDomain (273ms)
-		LoadAssemblies (219ms)
+	initialDomainReloadingComplete (28ms)
+	LoadAllAssembliesAndSetupDomain (257ms)
+		LoadAssemblies (194ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (116ms)
-			TypeCache.Refresh (101ms)
-				TypeCache.ScanAssembly (93ms)
+		AnalyzeDomain (118ms)
+			TypeCache.Refresh (103ms)
+				TypeCache.ScanAssembly (95ms)
 			ScanForSourceGeneratedMonoScriptInfo (11ms)
 			ResolveRequiredComponents (3ms)
-	FinalizeReload (498ms)
+	FinalizeReload (514ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (413ms)
+		SetupLoadedEditorAssemblies (426ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (4ms)
 			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (39ms)
-			ProcessInitializeOnLoadAttributes (346ms)
-			ProcessInitializeOnLoadMethodAttributes (17ms)
+			ProcessInitializeOnLoadAttributes (358ms)
+			ProcessInitializeOnLoadMethodAttributes (18ms)
 			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (5ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 2.55 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.08 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3747 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 25 unused Assets / (54.4 KB). Loaded Objects now: 4220.
-Memory consumption went from 134.1 MB to 134.0 MB.
-Total: 2.669200 ms (FindLiveObjects: 0.157500 ms CreateObjectMapping: 0.050700 ms MarkObjects: 2.392900 ms  DeleteObjects: 0.067000 ms)
+Unloading 25 unused Assets / (54.5 KB). Loaded Objects now: 4220.
+Memory consumption went from 134.0 MB to 134.0 MB.
+Total: 2.527200 ms (FindLiveObjects: 0.149900 ms CreateObjectMapping: 0.048700 ms MarkObjects: 2.265900 ms  DeleteObjects: 0.061100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
-  custom:scripting/monoscript/fileName/SchoolGirlController.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -173,7 +172,6 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:scripting/monoscript/fileName/SchoolGirl1Controller.cs: 9c569802fab5f6adfb3930d909a861a3 -> 
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
   custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
@@ -181,42 +179,52 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 26727.326348 seconds.
-  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/take_hit/take_hit_4.png
-  artifactKey: Guid(63080636b9a00e841b0ae1bc326f3067) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/take_hit/take_hit_4.png using Guid(63080636b9a00e841b0ae1bc326f3067) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+  Time since last request: 37929.178347 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_14.png
+  artifactKey: Guid(6c71cebc241de594489268d21488da79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_14.png using Guid(6c71cebc241de594489268d21488da79) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
 [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
- -> (artifact id: '297a548ffcaabde8b24ce1d7226325a7') in 0.032774 seconds
+ -> (artifact id: '86895a7ce54ec2da6807dbe99f2453e3') in 0.034557 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 2.696574 seconds.
-  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_4.png
-  artifactKey: Guid(e825e31f608d6b94fae0cb2da2a723bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_4.png using Guid(e825e31f608d6b94fae0cb2da2a723bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
- -> (artifact id: '5231ff3f4d01a7d83bbb044fe52e1511') in 0.031409 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000236 seconds.
+  Time since last request: 23.242266 seconds.
   path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_11.png
   artifactKey: Guid(3e3786f5600eb2e47acc1680a6dfc496) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_11.png using Guid(3e3786f5600eb2e47acc1680a6dfc496) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
 [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
- -> (artifact id: '9a60c5df2295598442c3f5cc686fb081') in 0.030595 seconds
+ -> (artifact id: 'fa447b62a3642f9f90de7781d0878b71') in 0.004564 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000108 seconds.
-  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_9.png
-  artifactKey: Guid(b1924a2742887ff4c9aaa73363615545) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_9.png using Guid(b1924a2742887ff4c9aaa73363615545) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+  Time since last request: 0.002127 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_13.png
+  artifactKey: Guid(7e46f9563aebea24b8b4a372cee515d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_13.png using Guid(7e46f9563aebea24b8b4a372cee515d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
 [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
- -> (artifact id: '750b51d3dacab7ec26fd58884ad6ed46') in 0.020247 seconds
+ -> (artifact id: '067b9e725454d212e8f37e7870c0ca55') in 0.004323 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_17.png
+  artifactKey: Guid(5121fe05297e6c2488fcb8f01c1c9bb1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_17.png using Guid(5121fe05297e6c2488fcb8f01c1c9bb1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '244762079aa6077d9cd48d53087b2e23') in 0.003900 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_15.png
+  artifactKey: Guid(47bcda85890876b44a09705f8e29d32e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Monk/Elementals_ground_monk_FREE_v1.3/png/death/death_15.png using Guid(47bcda85890876b44a09705f8e29d32e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.
+ -> (artifact id: '422fee30c1d03a46d575220dc62a1fff') in 0.003635 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
