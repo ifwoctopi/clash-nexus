@@ -955,6 +955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: ModeChooser
   targetSceneIndex: -1
+  loadDelay: 0.4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -213,7 +213,6 @@ GameObject:
   - component: {fileID: 71379271}
   - component: {fileID: 71379270}
   - component: {fileID: 71379269}
-  - component: {fileID: 71379268}
   m_Layer: 5
   m_Name: button1
   m_TagString: Untagged
@@ -241,20 +240,6 @@ RectTransform:
   m_AnchoredPosition: {x: -269, y: 0}
   m_SizeDelta: {x: 250, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &71379268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71379266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e869276e9713983409022e7295c5ff90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetSceneName: 
-  targetSceneIndex: -1
 --- !u!114 &71379269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +766,7 @@ GameObject:
   - component: {fileID: 1521206607}
   - component: {fileID: 1521206606}
   - component: {fileID: 1521206605}
+  - component: {fileID: 1521206609}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -819,8 +805,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e869276e9713983409022e7295c5ff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: 
+  targetSceneName: CharacterSelect
   targetSceneIndex: -1
+  loadDelay: 0.4
 --- !u!114 &1521206606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,6 +894,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521206603}
   m_CullTransparentMesh: 1
+--- !u!114 &1521206609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521206603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11414f31517e99443a91822722e4bfce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: ca28ddf9fd38cb047b6bef71cc0d0daa, type: 3}
+  volume: 1
 --- !u!1 &1658319096
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +919,9 @@ GameObject:
   - component: {fileID: 1658319097}
   - component: {fileID: 1658319099}
   - component: {fileID: 1658319098}
+  - component: {fileID: 1658319102}
+  - component: {fileID: 1658319101}
+  - component: {fileID: 1658319100}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -986,6 +990,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658319096}
   m_CullTransparentMesh: 1
+--- !u!114 &1658319100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658319096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11414f31517e99443a91822722e4bfce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: ca28ddf9fd38cb047b6bef71cc0d0daa, type: 3}
+  volume: 1
+--- !u!114 &1658319101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658319096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1658319098}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1658319102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658319096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e869276e9713983409022e7295c5ff90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneName: CharacterSelect
+  targetSceneIndex: -1
+  loadDelay: 0.4
 --- !u!1 &2067489798
 GameObject:
   m_ObjectHideFlags: 0
