@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4766354587121204564}
   - component: {fileID: 4495503515767760116}
   - component: {fileID: 8927594479888845726}
-  - component: {fileID: 2232331221236213906}
+  - component: {fileID: -4464327078699216354}
   m_Layer: 3
   m_Name: Huntress
   m_TagString: Huntress
@@ -100,7 +100,7 @@ Animator:
   m_GameObject: {fileID: 110596663189382487}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5bcab5cb07c87bb479cebc2cc0d729a2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 55943a6836888cb43b474f0de1cd7427, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -173,7 +173,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009391783, y: 0.000000034507554}
   m_Size: {x: 0.13030288, y: 0.35197437}
   m_Direction: 0
---- !u!114 &2232331221236213906
+--- !u!114 &-4464327078699216354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,7 +196,7 @@ MonoBehaviour:
   attackRange: 2
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
   attackDamage: 20
   maxHealth: 3
   animator: {fileID: 4766354587121204564}

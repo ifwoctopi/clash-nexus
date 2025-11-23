@@ -27,6 +27,10 @@ public class MonkController : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
     private bool isDead = false;
+    
+    [Header("Layers")]
+    public int player1; // e.g., Layer number for Player
+    public int cpu;    // e.g., Layer number for CPU
 
     private CapsuleCollider2D playerCollider; // reference to your main collider
     
@@ -40,6 +44,7 @@ public class MonkController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        Physics2D.IgnoreLayerCollision(player1, cpu, true); // prevents physics push
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerCollider = GetComponent<CapsuleCollider2D>();
 
@@ -220,4 +225,6 @@ public class MonkController : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+    
+    
 }

@@ -100,7 +100,7 @@ Animator:
   m_GameObject: {fileID: 110596663189382487}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7997b506d8ade9147a115b1dcb688088, type: 2}
+  m_Controller: {fileID: 9100000, guid: 560e5e832308cee4a883c972072cb1c3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   attackRange: 2
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
   attackDamage: 20
   maxHealth: 3
   animator: {fileID: 4766354587121204564}

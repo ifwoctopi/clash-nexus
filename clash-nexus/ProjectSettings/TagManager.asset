@@ -12,16 +12,21 @@ TagManager:
   - Priest
   - Desert Map
   - Apocalypse Map
+  - Samurai
+  - MonkCPU
+  - Knight1CPU
+  - PriestCPU
+  - HuntressCPU
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Players
+  - Player1
   - Water
   - UI
   - Background
   - Ground
-  - 
+  - CPU/Player2
   - 
   - 
   - 

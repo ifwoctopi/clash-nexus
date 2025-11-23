@@ -196,7 +196,7 @@ MonoBehaviour:
   attackRange: 2
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
   attackDamage: 20
   maxHealth: 3
   animator: {fileID: 4766354587121204564}
