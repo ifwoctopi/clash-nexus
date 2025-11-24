@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4766354587121204564}
   - component: {fileID: 4495503515767760116}
   - component: {fileID: 8927594479888845726}
-  - component: {fileID: 1673778146794755317}
+  - component: {fileID: 6613103154744153120}
   m_Layer: 8
   m_Name: HuntressCPU
   m_TagString: HuntressCPU
@@ -36,6 +36,7 @@ Transform:
   m_Children:
   - {fileID: 1388728459908106807}
   - {fileID: 919442435591560718}
+  - {fileID: 1073878213451328548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6964469948740321370
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -47960152, guid: dd0ba120d555b3640aad4c363eb0335e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.43, y: 0.64}
@@ -100,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 110596663189382487}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 15c0f15be7a2b6949be12b0d75404744, type: 2}
+  m_Controller: {fileID: 9100000, guid: 23ffd9cfc12dd5b4e8d17165526a0e64, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -173,7 +174,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009391783, y: 0.000000034507554}
   m_Size: {x: 0.13030288, y: 0.35197437}
   m_Direction: 0
---- !u!114 &1673778146794755317
+--- !u!114 &6613103154744153120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 110596663189382487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba900c6093130b141a0b09f7583093b3, type: 3}
+  m_Script: {fileID: 11500000, guid: ea6136273a9300541af89d40b337b71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
@@ -200,9 +201,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   attackDamage: 20
+  projectilePrefab: {fileID: 1139610908247666567, guid: 53b571dcd2c443e4081956974a9cbd4e, type: 3}
+  firePoint: {fileID: 1073878213451328548}
+  projectileSpeed: 10
+  dashSpeed: 12
+  dashDuration: 0.15
+  dashCooldown: 1
   maxHealth: 3
   player: {fileID: 0}
-  decisionRate: 0.1
+  decisionRate: 0.5
   attackDistance: 1.5
   retreatChance: 0.25
   retreatDurationRange: {x: 0.5, y: 1.2}
@@ -236,6 +243,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.033, y: -0.213, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8700023213707512589}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4238188849141794832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073878213451328548}
+  m_Layer: 8
+  m_Name: Projectile Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1073878213451328548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4238188849141794832}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.04, y: 0.176, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -51,11 +51,13 @@
     <Compile Include="Assets\Scripts\MonkController.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\ButtonSceneTransition.cs" />
+    <Compile Include="Assets\ProjectileCPUController.cs" />
     <Compile Include="Assets\Scripts\HuntressController.cs" />
     <Compile Include="Assets\SamuraiController.cs" />
     <Compile Include="Assets\Scripts\CharacterInputController.cs" />
     <Compile Include="Assets\Scripts\SceneTransitionManager.cs" />
     <Compile Include="Assets\WaterPriestController.cs" />
+    <Compile Include="Assets\ProjectileScript.cs" />
     <Compile Include="Assets\Scripts\Knight1Controller.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectManager.cs" />
     <Compile Include="Assets\Scripts\DraggableCircle.cs" />

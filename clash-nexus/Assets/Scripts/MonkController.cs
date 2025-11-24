@@ -176,6 +176,8 @@ public class MonkController : MonoBehaviour
         }
     }
     
+    
+    
     public void TakeDamage(int damage)
     {
         if (isDead) return; // ignore damage if already dead

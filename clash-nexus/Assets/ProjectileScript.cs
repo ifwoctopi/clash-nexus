@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ProjectileScript : MonoBehaviour
+{
+    public float speed = 10f;
+    public float lifetime = 2f;
+    public int damage = 5;
+    public Vector2 direction;
+    public string targetTag = "Player";
+
+    void Start()
+    {
+        // Flip sprite based on movement direction
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            if (direction.x < 0)
+                sr.flipX = true;
+            else
+                sr.flipX = false;
+        }
+
+        Destroy(gameObject, lifetime);
+    }
+    void Update()
+    {
+        transform.Translate(direction * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(targetTag))
+        {
+            // Apply damage to enemy
+            // collision.GetComponent<EnemyHealth>()?.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+    }
+}

@@ -359,6 +359,8 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/CPUController.cs"
 "Assets/Player1Controls.cs"
+"Assets/ProjectileCPUController.cs"
+"Assets/ProjectileScript.cs"
 "Assets/SamuraiController.cs"
 "Assets/Scripts/BackgroundMusicManager.cs"
 "Assets/Scripts/ButtonSceneTransition.cs"

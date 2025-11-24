@@ -8,6 +8,11 @@ public class CPUController : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
+    
+    [Header("Blocking")]
+    public float blockChance = 0.25f;       // % chance to block when threatened
+    public float blockDuration = 0.5f;      // how long CPU blocks
+    private float blockEndTime;
 
     [Header("Layers")]
     public int player1; // e.g., Layer number for Player
@@ -70,6 +75,14 @@ public class CPUController : MonoBehaviour
         if (isDead) return;
 
         CheckGround();
+        
+        // If blocking, check expiration
+        if (isDefending && Time.time >= blockEndTime)
+        {
+            isDefending = false;
+            animator.SetBool("isDefending", false);
+        }
+        
         AIUpdate();
 
         // Animations
@@ -124,12 +137,31 @@ public class CPUController : MonoBehaviour
         float distance = player.position.x - transform.position.x;
         float absDistance = Mathf.Abs(distance);
         float dir = Mathf.Sign(distance);
+        
+        
 
         // Periodic decisions
         if (Time.time > nextDecisionTime)
         {
             nextDecisionTime = Time.time + decisionRate;
-
+            
+            // If blocking, CPU stops moving and does nothing
+            if (isDefending)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                return;
+            }
+            
+            // CPU BLOCK DECISION
+            // If the player is close, block randomly
+            if (!isDefending && !isAttacking && absDistance < attackDistance)
+            {
+                if (Random.value < blockChance)
+                {
+                    StartBlock();
+                    return;
+                }
+            }
             // Attack / Retreat
             if (absDistance < attackDistance)
             {
@@ -175,6 +207,16 @@ public class CPUController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = true;
         }
+    }
+    
+    private void StartBlock()
+    {
+        if (isDefending || isAttacking || isRetreating) return;
+
+        isDefending = true;
+        blockEndTime = Time.time + blockDuration;
+
+        animator.SetBool("isDefending", true);
     }
 
     private void TriggerAttack(int id)

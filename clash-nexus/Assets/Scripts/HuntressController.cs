@@ -4,19 +4,36 @@ using UnityEngine;
 
 public class HuntressController : MonoBehaviour
 {
-     [Header("Movement")]
+    [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
-
+    
     [Header("Ground Check")]
     public Transform groundCheck;
     public float checkRadius = 0.2f;
     public LayerMask groundLayer;
     private bool isGrounded;
     private bool wasGrounded;
+    
+    [Header("Dash")]
+    public float dashSpeed = 12f;
+    public float dashDuration = 0.15f;
+    public float dashCooldown = 0.5f;
+
+    private bool isDashing = false;
+    private float dashEndTime;
+    private float nextDashTime;
+    
+    [Header("Layers")]
+    public int player1; // e.g., Layer number for Player
+    public int cpu;    // e.g., Layer number for CPU
+    
+    [Header("Projectiles")]
+    public GameObject projectilePrefab; // assign your projectile prefab
+    public Transform firePoint;         // position from which projectiles spawn
+    public float projectileSpeed = 10f; // optional override
 
     [Header("Combat")]
-    private bool isDefending;
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
@@ -40,6 +57,7 @@ public class HuntressController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        Physics2D.IgnoreLayerCollision(player1, cpu, true); // prevents physics push
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerCollider = GetComponent<CapsuleCollider2D>();
 
@@ -60,8 +78,7 @@ public class HuntressController : MonoBehaviour
         controls.Player1.Attack3.performed += ctx => Attack3();
 
         // Defense
-        controls.Player1.Defend.performed += ctx => isDefending = true;
-        controls.Player1.Defend.canceled += ctx => isDefending = false;
+        controls.Player1.Defend.performed += ctx => TryDash();
     }
 
 
@@ -79,14 +96,6 @@ public class HuntressController : MonoBehaviour
     {
         if (isDead) return;
         CheckGround();
-        if(isDefending)
-        {
-            animator.SetBool("isDefending", true);
-        }
-        else
-        {
-            animator.SetBool("isDefending", false);
-        }
 
         // Trigger Jump ONCE on takeoff
         if (wasGrounded && !isGrounded)
@@ -118,8 +127,24 @@ public class HuntressController : MonoBehaviour
     private void FixedUpdate()
     {
         if (isDead) return;
+
+        // DASH OVERRIDES NORMAL MOVEMENT
+        if (isDashing)
+        {
+            float dir = sr.flipX ? -1f : 1f; // dash in facing direction
+            rb.velocity = new Vector2(dir * dashSpeed, rb.velocity.y);
+
+            // End dash when duration is over
+            if (Time.time >= dashEndTime)
+                isDashing = false;
+
+            return; // skip normal movement while dashing
+        }
+
+        // Normal movement
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
     }
+
 
     private void Jump()
     {
@@ -128,6 +153,24 @@ public class HuntressController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
+    
+    private void TryDash()
+    {
+        // must be running to dash
+        if (!animator.GetBool("isRunning")) return;
+
+        // prevent dash spamming
+        if (Time.time < nextDashTime) return;
+
+        // trigger dash
+        isDashing = true;
+        dashEndTime = Time.time + dashDuration;
+        nextDashTime = Time.time + dashCooldown;
+
+        // play dash animation if you have one
+        animator.SetTrigger("Dash");
+    }
+
 
     private void CheckGround()
     {
@@ -152,7 +195,6 @@ public class HuntressController : MonoBehaviour
     {
         Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
-        Attack();
     }
     
     public void Attack()
@@ -169,6 +211,18 @@ public class HuntressController : MonoBehaviour
         {
            //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
         }
+    }
+    
+    public void FireProjectile()
+    {
+        if (projectilePrefab == null || firePoint == null) return;
+
+        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        ProjectileScript projectileScript = proj.GetComponent<ProjectileScript>();
+
+        // Set the direction based on the player's facing
+        projectileScript.direction = sr.flipX ? Vector2.left : Vector2.right;
+        projectileScript.speed = projectileSpeed;
     }
     
     public void TakeDamage(int damage)
@@ -199,7 +253,7 @@ public class HuntressController : MonoBehaviour
         // Disable collider so sprite doesn't float
         playerCollider.enabled = false;
 
-        // Optional: disable Rigidbody gravity if desired
+        //disable Rigidbody gravity if desired
         rb.simulated = false;
 
         // Trigger death animation
@@ -207,6 +261,7 @@ public class HuntressController : MonoBehaviour
 
         // Disable input
         controls.Disable();
+        
 
         // Optional: destroy object after animation ends
         // Destroy(gameObject, 2f);
