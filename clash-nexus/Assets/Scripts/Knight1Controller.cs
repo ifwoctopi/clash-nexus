@@ -26,6 +26,8 @@ public class Knight1Controller : MonoBehaviour
      [Header("Sequential Combo")]
     public float comboTimeWindow = 1.0f;     // Max time (in seconds) between attacks
     public float generalChainBonus = 1.15f;  // 15% base bonus for any quick chain (NEW FIELD)
+    // A list to track the sequence of attacks entered
+    private List<string> inputSequence = new List<string>();
     
     // Define your sequential combos and their *higher* bonus damage multipliers
     private readonly Dictionary<string, float> comboDefinitions = new Dictionary<string, float>()
