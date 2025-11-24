@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd14c75f0590d34394165494e138474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterId: 
+  characterId: WaterPriest
   selectionIndicator: {fileID: 0}
 --- !u!114 &804062459
 MonoBehaviour:
@@ -604,7 +604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1089103573
 RectTransform:
   m_ObjectHideFlags: 0
@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e869276e9713983409022e7295c5ff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: SampleScene
+  targetSceneName: ChallengeSystem
   targetSceneIndex: -1
   loadDelay: 0.4
 --- !u!114 &1557022290
@@ -928,8 +928,8 @@ RectTransform:
   - {fileID: 2106820912}
   - {fileID: 604207598}
   - {fileID: 804062457}
-  - {fileID: 1089103573}
   - {fileID: 1877399024}
+  - {fileID: 1089103573}
   - {fileID: 287238863}
   - {fileID: 1826987375}
   - {fileID: 491607048}
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd14c75f0590d34394165494e138474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterId: 
+  characterId: Knight1
   selectionIndicator: {fileID: 0}
 --- !u!114 &1877399026
 MonoBehaviour:

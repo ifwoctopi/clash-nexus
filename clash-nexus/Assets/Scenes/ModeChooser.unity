@@ -156,8 +156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: 250}
-  m_SizeDelta: {x: 1000, y: 200}
+  m_AnchoredPosition: {x: 242.8, y: 416.7}
+  m_SizeDelta: {x: 1500, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &12854558
 MonoBehaviour:
@@ -181,11 +181,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 812ecef1803365746874dc138417a86c, type: 3}
-    m_FontSize: 150
+    m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 150
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -767,6 +767,7 @@ GameObject:
   - component: {fileID: 1521206606}
   - component: {fileID: 1521206605}
   - component: {fileID: 1521206609}
+  - component: {fileID: 1521206610}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -908,6 +909,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: ca28ddf9fd38cb047b6bef71cc0d0daa, type: 3}
   volume: 1
+--- !u!114 &1521206610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521206603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0faf57c7bab73e4e81daace16816d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTwoPlayerMode: 1
 --- !u!1 &1658319096
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +936,7 @@ GameObject:
   - component: {fileID: 1658319102}
   - component: {fileID: 1658319101}
   - component: {fileID: 1658319100}
+  - component: {fileID: 1658319103}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -1063,6 +1078,19 @@ MonoBehaviour:
   targetSceneName: CharacterSelect
   targetSceneIndex: -1
   loadDelay: 0.4
+--- !u!114 &1658319103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658319096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0faf57c7bab73e4e81daace16816d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTwoPlayerMode: 0
 --- !u!1 &2067489798
 GameObject:
   m_ObjectHideFlags: 0
