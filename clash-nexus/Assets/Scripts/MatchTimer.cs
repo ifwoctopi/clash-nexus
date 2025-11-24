@@ -11,6 +11,9 @@ public class MatchTimer : MonoBehaviour
     [Header("UI Display")]
     [Tooltip("Text component to display the timer (optional - will search if not assigned)")]
     [SerializeField] private Text timerText;
+    
+    [Tooltip("Button to show when match ends (e.g., Continue/Return button)")]
+    [SerializeField] private Button endMatchButton;
 
     [Header("Timer Settings")]
     [Tooltip("What happens when timer reaches 0")]
@@ -28,9 +31,25 @@ public class MatchTimer : MonoBehaviour
         
         isUnlimited = dataManager.IsTimerUnlimited();
 
+        // Find timer text if not assigned (needed for both unlimited and timed modes)
+        if (timerText == null)
+        {
+            GameObject timerObj = GameObject.Find("TimerText");
+            if (timerObj != null)
+            {
+                timerText = timerObj.GetComponent<Text>();
+            }
+        }
+
+        // Hide end match button at start
+        if (endMatchButton != null)
+        {
+            endMatchButton.gameObject.SetActive(false);
+        }
+
         if (isUnlimited)
         {
-            // Unlimited time - don't show timer or hide it
+            // Unlimited time - hide timer text but keep reference for winner display
             if (timerText != null)
             {
                 timerText.gameObject.SetActive(false);
@@ -43,16 +62,6 @@ public class MatchTimer : MonoBehaviour
             // Set up countdown timer
             currentTime = timerDuration;
             isTimerActive = true;
-            
-            // Find timer text if not assigned
-            if (timerText == null)
-            {
-                GameObject timerObj = GameObject.Find("TimerText");
-                if (timerObj != null)
-                {
-                    timerText = timerObj.GetComponent<Text>();
-                }
-            }
 
             if (timerText != null)
             {
@@ -107,18 +116,25 @@ public class MatchTimer : MonoBehaviour
     {
         isTimerActive = false;
         
+        // Determine winner and update timer text
+        string winnerText = DetermineWinner();
+        
         if (timerText != null)
         {
-            timerText.text = "0s";
+            timerText.text = winnerText;
             timerText.color = Color.white;
         }
+        
+        // Show end match button
+        if (endMatchButton != null)
+        {
+            endMatchButton.gameObject.SetActive(true);
+        }
 
-        Debug.Log("MatchTimer: Time expired!");
+        Debug.Log($"MatchTimer: Time expired! {winnerText}");
 
         if (endMatchOnTimeout)
         {
-            // You can add match end logic here
-            // For example: determine winner, show end screen, etc.
             EndMatch();
         }
     }
@@ -153,6 +169,95 @@ public class MatchTimer : MonoBehaviour
     public bool IsUnlimited()
     {
         return isUnlimited;
+    }
+
+    /// <summary>
+    /// Called when a player dies
+    /// </summary>
+    public void OnPlayerDied(int playerNumber)
+    {
+        isTimerActive = false; // Stop the timer
+        
+        // Ensure timer text is found if it wasn't already
+        if (timerText == null)
+        {
+            GameObject timerObj = GameObject.Find("TimerText");
+            if (timerObj != null)
+            {
+                timerText = timerObj.GetComponent<Text>();
+            }
+        }
+        
+        // Determine winner and update timer text
+        string winnerText = DetermineWinner();
+        
+        if (timerText != null)
+        {
+            // Make sure timer text is visible (even in unlimited time mode)
+            timerText.gameObject.SetActive(true);
+            timerText.text = winnerText;
+            timerText.color = Color.white;
+        }
+        
+        // Show end match button
+        if (endMatchButton != null)
+        {
+            endMatchButton.gameObject.SetActive(true);
+        }
+        
+        Debug.Log($"MatchTimer: Player {playerNumber} has died! {winnerText}");
+        EndMatch();
+    }
+    
+    /// <summary>
+    /// Determines which player has more health and returns the winner text
+    /// </summary>
+    private string DetermineWinner()
+    {
+        PlayerSpawner spawner = FindObjectOfType<PlayerSpawner>();
+        if (spawner == null)
+        {
+            return "Match Over";
+        }
+        
+        GameObject player1 = spawner.GetSpawnedPlayer(1);
+        GameObject player2 = spawner.GetSpawnedPlayer(2);
+        
+        float player1Health = 0f;
+        float player2Health = 0f;
+        
+        if (player1 != null)
+        {
+            PlayerHealth p1Health = player1.GetComponent<PlayerHealth>();
+            if (p1Health != null)
+            {
+                player1Health = p1Health.currentHealth;
+            }
+        }
+        
+        if (player2 != null)
+        {
+            PlayerHealth p2Health = player2.GetComponent<PlayerHealth>();
+            if (p2Health != null)
+            {
+                player2Health = p2Health.currentHealth;
+            }
+        }
+        
+        // Determine winner based on health
+        if (player1Health > player2Health)
+        {
+            return "Player 1 Wins!";
+        }
+        else if (player2Health > player1Health)
+        {
+            return "Player 2 Wins!";
+        }
+        else
+        {
+            // Tie - both have same health (or both dead)
+            return "Draw!";
+        }
     }
 }
 

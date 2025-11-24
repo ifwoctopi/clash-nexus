@@ -21,10 +21,13 @@ public class Knight1Controller : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
-    public int attackDamage = 20;
+    [Header("Attack Damage")]
+    public int attack1Damage = 7;  // E key
+    public int attack2Damage = 10; // R key
+    public int attack3Damage = 13; // T key
 
     [Header("Health")]
-    public int maxHealth = 3;
+    public int maxHealth = 100;
     private int currentHealth;
     private bool isDead = false;
 
@@ -42,6 +45,13 @@ public class Knight1Controller : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerCollider = GetComponent<CapsuleCollider2D>();
+
+        // Ensure maxHealth is at least 100 (safeguard against Inspector misconfiguration)
+        if (maxHealth < 100)
+        {
+            maxHealth = 100;
+            Debug.LogWarning($"Knight1Controller: maxHealth was less than 100, setting to 100");
+        }
 
         currentHealth = maxHealth;
 
@@ -64,6 +74,41 @@ public class Knight1Controller : MonoBehaviour
         controls.Player1.Defend.canceled += ctx => isDefending = false;
     }
 
+    private void Start()
+    {
+        // Use coroutine to ensure health is set after all Start() methods have run
+        StartCoroutine(InitializeHealthDelayed());
+    }
+
+    private System.Collections.IEnumerator InitializeHealthDelayed()
+    {
+        // Wait one frame to ensure PlayerHealth.Start() has run
+        yield return null;
+        
+        // Ensure PlayerHealth component exists and is synced
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth == null)
+        {
+            playerHealth = gameObject.AddComponent<PlayerHealth>();
+            Debug.Log($"Knight1Controller: Added PlayerHealth component to {gameObject.name}");
+        }
+        
+        // Always sync maxHealth with PlayerHealth component (override any default values)
+        playerHealth.maxHealth = maxHealth;
+        // Force set currentHealth to maxHealth to ensure it's correct
+        playerHealth.currentHealth = maxHealth;
+        
+        Debug.Log($"Knight1Controller: Initialized health for {gameObject.name} - maxHealth: {maxHealth}, currentHealth: {playerHealth.currentHealth}");
+        
+        // Double-check after another frame to ensure it wasn't reset
+        yield return null;
+        if (playerHealth.currentHealth != maxHealth)
+        {
+            Debug.LogWarning($"Knight1Controller: Health was reset! Fixing from {playerHealth.currentHealth} to {maxHealth}");
+            playerHealth.maxHealth = maxHealth;
+            playerHealth.currentHealth = maxHealth;
+        }
+    }
 
     private void OnEnable()
     {
@@ -72,11 +117,22 @@ public class Knight1Controller : MonoBehaviour
 
     private void OnDisable()
     {
-        controls.Player1.Disable();
+        if (controls != null)
+        {
+            controls.Player1.Disable();
+        }
     }
 
     private void Update()
     {
+        // Check if dead from PlayerHealth component
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth != null && playerHealth.IsDead() && !isDead)
+        {
+            Die();
+            return;
+        }
+        
         if (isDead) return;
         CheckGround();
         if(isDefending)
@@ -138,53 +194,123 @@ public class Knight1Controller : MonoBehaviour
     {
         Debug.Log("Attack1");
         animator.SetTrigger("Attack1");
-        Attack();
+        Attack(attack1Damage);
     }
 
     private void Attack2()
     {
         Debug.Log("Attack2");
         animator.SetTrigger("Attack2");
-        Attack();
+        Attack(attack2Damage);
     }
 
     private void Attack3()
     {
         Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
-        Attack();
+        Attack(attack3Damage);
     }
     
-    public void Attack()
+    public void Attack(int damage)
     {
-        // Detect enemies in range
+        // Detect enemies in range (CPU and other players)
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position,
             attackRange,
             enemyLayers
         );
 
+        Debug.Log($"Player Attack: Found {hits.Length} colliders in range");
+
         // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
-           //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+            PlayerHealth enemyHealth = enemy.GetComponent<PlayerHealth>();
+            if (enemyHealth != null)
+            {
+                Debug.Log($"Player Attack: Dealing {damage} damage to {enemy.name}");
+                enemyHealth.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning($"Player Attack: Hit {enemy.name} but no PlayerHealth component found");
+            }
+        }
+
+        // Also check for the other player in 2-player mode (they might be on the same layer)
+        if (GameDataManager.Instance != null && GameDataManager.Instance.IsTwoPlayerMode())
+        {
+            PlayerSpawner spawner = FindObjectOfType<PlayerSpawner>();
+            if (spawner != null)
+            {
+                // Determine which player we are
+                bool isPlayer1 = gameObject.name.StartsWith("Player1");
+                GameObject otherPlayer = isPlayer1 ? spawner.GetSpawnedPlayer(2) : spawner.GetSpawnedPlayer(1);
+                
+                if (otherPlayer != null && otherPlayer != gameObject)
+                {
+                    // Check if other player's collider is in attack range
+                    Collider2D otherPlayerCollider = otherPlayer.GetComponent<Collider2D>();
+                    if (otherPlayerCollider != null)
+                    {
+                        // Check distance from attack point to the other player's collider bounds
+                        Vector2 closestPoint = otherPlayerCollider.bounds.ClosestPoint(attackPoint.position);
+                        float distance = Vector2.Distance(attackPoint.position, closestPoint);
+                        
+                        if (distance <= attackRange)
+                        {
+                            PlayerHealth otherPlayerHealth = otherPlayer.GetComponent<PlayerHealth>();
+                            if (otherPlayerHealth != null)
+                            {
+                                Debug.Log($"Player Attack: Dealing {damage} damage to other player {otherPlayer.name} (distance: {distance})");
+                                otherPlayerHealth.TakeDamage(damage);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Fallback: use transform position if no collider found
+                        float distance = Vector2.Distance(attackPoint.position, otherPlayer.transform.position);
+                        if (distance <= attackRange)
+                        {
+                            PlayerHealth otherPlayerHealth = otherPlayer.GetComponent<PlayerHealth>();
+                            if (otherPlayerHealth != null)
+                            {
+                                Debug.Log($"Player Attack: Dealing {damage} damage to other player {otherPlayer.name} (distance: {distance}, no collider)");
+                                otherPlayerHealth.TakeDamage(damage);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
     public void TakeDamage(int damage)
     {
-        if (isDead) return; // ignore damage if already dead
+        if (isDead) return;
 
-        currentHealth -= damage;
-        Debug.Log($"Knight 1 took {damage} damage! Current health: {currentHealth}");
-
-        if (currentHealth <= 0)
+        // Forward damage to PlayerHealth component (this is the primary health system)
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth != null)
         {
-            Die();
+            playerHealth.TakeDamage(damage);
+            // Sync internal health with PlayerHealth for backwards compatibility
+            currentHealth = Mathf.RoundToInt(playerHealth.currentHealth);
+            
+            // Only trigger hurt animation if not dead
+            if (!playerHealth.IsDead())
+            {
+                animator.SetTrigger("Hurt");
+            }
         }
         else
         {
+            // Fallback: use internal health if PlayerHealth doesn't exist
+            currentHealth -= damage;
             animator.SetTrigger("Hurt");
+            if (currentHealth <= 0)
+                Die();
         }
     }
     private void Die()

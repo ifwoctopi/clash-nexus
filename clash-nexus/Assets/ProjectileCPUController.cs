@@ -40,7 +40,7 @@ public class ProjectileCPUController: MonoBehaviour
 
 
     [Header("Health")]
-    public int maxHealth = 3;
+    public int maxHealth = 100;
     private int currentHealth;
     private bool isDead = false;
 
@@ -73,12 +73,41 @@ public class ProjectileCPUController: MonoBehaviour
         
         Physics2D.IgnoreLayerCollision(player1, cpu, true); // prevents physics push
 
+        // Ensure maxHealth is at least 100 (safeguard against Inspector misconfiguration)
+        if (maxHealth < 100)
+        {
+            maxHealth = 100;
+            Debug.LogWarning($"ProjectileCPUController: maxHealth was less than 100, setting to 100");
+        }
 
         currentHealth = maxHealth;
     }
 
+    private void Start()
+    {
+        // Ensure PlayerHealth component exists for damage system and health bars
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth == null)
+        {
+            playerHealth = gameObject.AddComponent<PlayerHealth>();
+            Debug.Log($"ProjectileCPUController: Added PlayerHealth component to {gameObject.name}");
+        }
+        // Always sync maxHealth with PlayerHealth component (do this in Start() after PlayerHealth.Start() may have run)
+        playerHealth.maxHealth = maxHealth;
+        playerHealth.currentHealth = maxHealth;
+        Debug.Log($"ProjectileCPUController: Initialized health - maxHealth: {maxHealth}, currentHealth: {playerHealth.currentHealth}");
+    }
+
     private void Update()
     {
+        // Check if dead from PlayerHealth component
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth != null && playerHealth.IsDead() && !isDead)
+        {
+            Die();
+            return;
+        }
+        
         if (isDead) return;
 
         CheckGround();
@@ -245,7 +274,11 @@ public class ProjectileCPUController: MonoBehaviour
             Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
             foreach (Collider2D hit in hits)
             {
-                // hit.GetComponent<PlayerHealth>()?.TakeDamage(attackDamage);
+                PlayerHealth enemyHealth = hit.GetComponent<PlayerHealth>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(attackDamage);
+                }
             }
         }
 
@@ -279,11 +312,28 @@ public class ProjectileCPUController: MonoBehaviour
     {
         if (isDead) return;
 
-        currentHealth -= damage;
-        animator.SetTrigger("Hurt");
-
-        if (currentHealth <= 0)
-            Die();
+        // Forward damage to PlayerHealth component (this is the primary health system)
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(damage);
+            // Sync internal health with PlayerHealth for backwards compatibility
+            currentHealth = Mathf.RoundToInt(playerHealth.currentHealth);
+            
+            // Only trigger hurt animation if not dead
+            if (!playerHealth.IsDead())
+            {
+                animator.SetTrigger("Hurt");
+            }
+        }
+        else
+        {
+            // Fallback: use internal health if PlayerHealth doesn't exist
+            currentHealth -= damage;
+            animator.SetTrigger("Hurt");
+            if (currentHealth <= 0)
+                Die();
+        }
     }
 
     private void Die()

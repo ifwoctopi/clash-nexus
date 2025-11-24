@@ -1,0 +1,262 @@
+warning: in the working copy of 'clash-nexus/Assets/Scenes/SampleScene.unity', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'clash-nexus/UserSettings/EditorUserSettings.asset', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'clash-nexus/UserSettings/Layouts/default-2022.dwlt', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/clash-nexus/Assets/Scenes/SampleScene.unity b/clash-nexus/Assets/Scenes/SampleScene.unity[m
+[1mindex 1730fcff..a55b6211 100644[m
+[1m--- a/clash-nexus/Assets/Scenes/SampleScene.unity[m
+[1m+++ b/clash-nexus/Assets/Scenes/SampleScene.unity[m
+[36m@@ -326,7 +326,7 @@[m [mMonoBehaviour:[m
+   player2SpawnPoint: {fileID: 1968155477}[m
+   characterPrefabs:[m
+   - characterId: Huntress[m
+[31m-    characterPrefab: {fileID: 0}[m
+[32m+[m[32m    characterPrefab: {fileID: 110596663189382487, guid: 6d83a99c6ed8ef54a924fb919fdb891d, type: 3}[m
+   - characterId: Monk[m
+     characterPrefab: {fileID: 110596663189382487, guid: 5edb20cad4419544d9717a0e4e26179f, type: 3}[m
+   - characterId: WaterPriest[m
+[1mdiff --git a/clash-nexus/Assets/Scripts/MatchTimer.cs b/clash-nexus/Assets/Scripts/MatchTimer.cs[m
+[1mindex b81a896f..69994d75 100644[m
+[1m--- a/clash-nexus/Assets/Scripts/MatchTimer.cs[m
+[1m+++ b/clash-nexus/Assets/Scripts/MatchTimer.cs[m
+[36m@@ -154,5 +154,16 @@[m [mpublic class MatchTimer : MonoBehaviour[m
+     {[m
+         return isUnlimited;[m
+     }[m
+[32m+[m
+[32m+[m[32m    /// <summary>[m
+[32m+[m[32m    /// Called when a player dies[m
+[32m+[m[32m    /// </summary>[m
+[32m+[m[32m    public void OnPlayerDied(int playerNumber)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        Debug.Log($"MatchTimer: Player {playerNumber} has died!");[m
+[32m+[m[32m        // You can add match end logic here when a player dies[m
+[32m+[m[32m        // For example: determine winner, show end screen, etc.[m
+[32m+[m[32m        EndMatch();[m
+[32m+[m[32m    }[m
+ }[m
+ [m
+[1mdiff --git a/clash-nexus/Logs/AssetImportWorker0.log b/clash-nexus/Logs/AssetImportWorker0.log[m
+[1mindex 12ce206d..27f78c16 100644[m
+[1m--- a/clash-nexus/Logs/AssetImportWorker0.log[m
+[1m+++ b/clash-nexus/Logs/AssetImportWorker0.log[m
+[36m@@ -4,20 +4,20 @@[m [mOS: 'Windows 11  (10.0.26100) 64bit Core' Language: 'en' Physical Memory: 32475[m
+ BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1[m
+ [m
+ COMMAND LINE ARGUMENTS:[m
+[31m-C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Unity.exe[m
+[32m+[m[32mC:\Program Files\Unity 2022.3.46f1\Editor\Unity.exe[m[41m[m
+ -adb2[m
+ -batchMode[m
+ -noUpm[m
+ -name[m
+ AssetImportWorker0[m
+ -projectPath[m
+[31m-C:/Users/40sst/clash-nexus/clash-nexus[m
+[32m+[m[32mC:/clash-nexus/clash-nexus[m[41m[m
+ -logFile[m
+ Logs/AssetImportWorker0.log[m
+ -srvPort[m
+[31m-54155[m
+[31m-Successfully changed project path to: C:/Users/40sst/clash-nexus/clash-nexus[m
+[31m-C:/Users/40sst/clash-nexus/clash-nexus[m
+[32m+[m[32m64970[m[41m[m
+[32m+[m[32mSuccessfully changed project path to: C:/clash-nexus/clash-nexus[m[41m[m
+[32m+[m[32mC:/clash-nexus/clash-nexus[m[41m[m
+ [UnityMemory] Configuration Parameters - Can be set up in boot.config[m
+     "memorysetup-bucket-allocator-granularity=16"[m
+     "memorysetup-bucket-allocator-bucket-count=8"[m
+[36m@@ -49,4811 +49,127 @@[m [mC:/Users/40sst/clash-nexus/clash-nexus[m
+     "memorysetup-temp-allocator-size-cloud-worker=32768"[m
+     "memorysetup-temp-allocator-size-gi-baking-worker=262144"[m
+     "memorysetup-temp-allocator-size-gfx=262144"[m
+[31m-Player connection [15372]  Target information:[m
+[32m+[m[32mPlayer connection [47168]  Target information:[m[41m[m
+ [m
+[31m-Player connection [15372]  * "[IP] 10.40.64.110 [Port] 0 [Flags] 2 [Guid] 1518447778 [EditorId] 1518447778 [Version] 1048832 [Id] WindowsEditor(7,ifwoctopi) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" [m
+[32m+[m[32mPlayer connection [47168]  * "[IP] 10.201.61.56 [Port] 0 [Flags] 2 [Guid] 199160602 [EditorId] 199160602 [Version] 1048832 [Id] WindowsEditor(7,Ambrose_Laptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor"[m[41m [m
+ [m
+[31m-Player connection [15372] Host joined multi-casting on [225.0.0.222:54997]...[m
+[31m-Player connection [15372] Host joined alternative multi-casting on [225.0.0.222:34997]...[m
+[32m+[m[32mPlayer connection [47168] Host joined multi-casting on [225.0.0.222:54997]...[m[41m[m
+[32m+[m[32mPlayer connection [47168] Host joined alternative multi-casting on [225.0.0.222:34997]...[m[41m[m
+ [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m-Refreshing native plugins compatible for Editor in 4.91 ms, found 3 plugins.[m
+[32m+[m[32mRefreshing native plugins compatible for Editor in 6.91 ms, found 3 plugins.[m[41m[m
+ Preloading 0 native plugins for Editor in 0.00 ms.[m
+ Initialize engine version: 2022.3.46f1 (8e9b8558c41a)[m
+[31m-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Resources/UnitySubsystems[m
+[31m-[Subsystems] Discovering subsystems at path C:/Users/40sst/clash-nexus/clash-nexus/Assets[m
+[32m+[m[32m[Subsystems] Discovering subsystems at path C:/Program Files/Unity 2022.3.46f1/Editor/Data/Resources/UnitySubsystems[m[41m[m
+[32m+[m[32m[Subsystems] Discovering subsystems at path C:/clash-nexus/clash-nexus/Assets[m[41m[m
+ GfxDevice: creating device client; threaded=0; jobified=0[m
+ Direct3D:[m
+     Version:  Direct3D 11.0 [level 11.1][m
+     Renderer: NVIDIA GeForce RTX 4070 Laptop GPU (ID=0x2860)[m
+     Vendor:   NVIDIA[m
+     VRAM:     7948 MB[m
+[31m-    Driver:   32.0.15.6624[m
+[32m+[m[32m    Driver:   32.0.15.7688[m[41m[m
+ Initialize mono[m
+[31m-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Managed'[m
+[31m-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'[m
+[31m-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/etc'[m
+[31m-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56256[m
+[32m+[m[32mMono path[0] = 'C:/Program Files/Unity 2022.3.46f1/Editor/Data/Managed'[m[41m[m
+[32m+[m[32mMono path[1] = 'C:/Program Files/Unity 2022.3.46f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'[m[41m[m
+[32m+[m[32mMono config path = 'C:/Program Files/Unity 2022.3.46f1/Editor/Data/MonoBleedingEdge/etc'[m[41m[m
+[32m+[m[32mUsing monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56940[m[41m[m
+ Begin MonoManager ReloadAssembly[m
+ Registering precompiled unity dll's ...[m
+[31m-Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll[m
+[31m-Registered in 0.007864 seconds.[m
+[31m-- Loaded All Assemblies, in  0.255 seconds[m
+[32m+[m[32mRegister platform support module: C:/Program Files/Unity 2022.3.46f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll[m[41m[m
+[32m+[m[32mRegistered in 0.004876 seconds.[m[41m[m
+[32m+[m[32m- Loaded All Assemblies, in  0.263 seconds[m[41m[m
+ Native extension for WindowsStandalone target not found[m
+ Mono: successfully reloaded assembly[m
+[31m-- Finished resetting the current domain, in  0.182 seconds[m
+[31m-Domain Reload Profiling: 435ms[m
+[31m-	BeginReloadAssembly (83ms)[m
+[32m+[m[32m- Finished resetting the current domain, in  0.208 seconds[m[41m[m
+[32m+[m[32mDomain Reload Profiling: 469ms[m[41m[m
+[32m+[m	[32mBeginReloadAssembly (85ms)[m[41m[m
+ 		ExecutionOrderSort (0ms)[m
+ 		DisableScriptedObjects (0ms)[m
+ 		BackupInstance (0ms)[m
+ 		ReleaseScriptingObjects (0ms)[m
+[31m-		CreateAndSetChildDomain (0ms)[m
+[31m-	RebuildCommonClasses (24ms)[m
+[31m-	RebuildNativeTypeToScriptingClass (7ms)[m
+[31m-	initialDomainReloadingComplete (45ms)[m
+[31m-	LoadAllAssembliesAndSetupDomain (94ms)[m
+[31m-		LoadAssemblies (81ms)[m
+[31m-		RebuildTransferFunctionScriptingTraits (0ms)[m
+[31m-		AnalyzeDomain (93ms)[m
+[31m-			TypeCache.Refresh (92ms)[m
+[31m-				TypeCache.ScanAssembly (82ms)[m
+[31m-			ScanForSourceGeneratedMonoScriptInfo (0ms)[m
+[31m-			ResolveRequiredComponents (0ms)[m
+[31m-	FinalizeReload (182ms)[m
+[31m-		ReleaseScriptCaches (0ms)[m
+[31m-		RebuildScriptCaches (0ms)[m
+[31m-		SetupLoadedEditorAssemblies (149ms)[m
+[31m-			LogAssemblyErrors (0ms)[m
+[31m-			InitializePlatformSupportModulesInManaged (7ms)[m
+[31m-			SetLoadedEditorAssemblies (5ms)[m
+[31m-			RefreshPlugins (0ms)[m
+[31m-			BeforeProcessingInitializeOnLoad (1ms)[m
+[31m-			ProcessInitializeOnLoadAttributes (102ms)[m
+[31m-			ProcessInitializeOnLoadMethodAttributes (33ms)[m
+[31m-			AfterProcessingInitializeOnLoad (0ms)[m
+[31m-			EditorAssembliesLoaded (0ms)[m
+[31m-		ExecutionOrderSort2 (0ms)[m
+[31m-		AwakeInstancesAfterBackupRestoration (0ms)[m
+[31m-========================================================================[m
+[31m-Worker process is ready to serve import requests[m
+[31m-Caller must complete domain reload[m
+[31m-Begin MonoManager ReloadAssembly[m
+[31m-- Loaded All Assemblies, in  0.498 seconds[m
+[31m-Native extension for WindowsStandalone target not found[m
+[31m-Mono: successfully reloaded assembly[m
+[31m-- Finished resetting the current domain, in  0.569 seconds[m
+[31m-Domain Reload Profiling: 1065ms[m
+[31m-	BeginReloadAssembly (107ms)[m
+[31m-		ExecutionOrderSort (0ms)[m
+[31m-		DisableScriptedObjects (3ms)[m
+[31m-		BackupInstance (0ms)[m
+[31m-		ReleaseScriptingObjects (0ms)[m
+[31m-		CreateAndSetChildDomain (14ms)[m
+[31m-	RebuildCommonClasses (22ms)[m
+[31m-	RebuildNativeTypeToScriptingClass (7ms)[m
+[31m-	initialDomainReloadingComplete (30ms)[m
+[31m-	LoadAllAssembliesAndSetupDomain (329ms)[m
+[31m-		LoadAssemblies (245ms)[m
+[31m-		RebuildTransferFunctionScriptingTraits (0ms)[m
+[31m-		AnalyzeDomain (149ms)[m
+[31m-			TypeCache.Refresh (133ms)[m
+[31m-				TypeCache.ScanAssembly (120ms)[m
+[31m-			ScanForSourceGeneratedMonoScriptInfo (12ms)[m
+[31m-			ResolveRequiredComponents (3ms)[m
+[31m-	FinalizeReload (570ms)[m
+[31m-		ReleaseScriptCaches (0ms)[m
+[31m-		RebuildScriptCaches (0ms)[m
+[31m-		SetupLoadedEditorAssemblies (464ms)[m
+[31m-			LogAssemblyErrors (0ms)[m
+[31m-			InitializePlatformSupportModulesInManaged (4ms)[m
+[31m-			SetLoadedEditorAssemblies (3ms)[m
+[31m-			RefreshPlugins (0ms)[m
+[31m-			BeforeProcessingInitializeOnLoad (42ms)[m
+[31m-			ProcessInitializeOnLoadAttributes (390ms)[m
+[31m-			ProcessInitializeOnLoadMethodAttributes (19ms)[m
+[31m-			AfterProcessingInitializeOnLoad (6ms)[m
+[31m-			EditorAssembliesLoaded (0ms)[m
+[31m-		ExecutionOrderSort2 (0ms)[m
+[31m-		AwakeInstancesAfterBackupRestoration (7ms)[m
+[31m-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds[m
+[31m-Refreshing native plugins compatible for Editor in 5.50 ms, found 3 plugins.[m
+[31m-Preloading 0 native plugins for Editor in 0.00 ms.[m
+[31m-Unloading 3760 Unused Serialized files (Serialized files now loaded: 0)[m
+[31m-Unloading 25 unused Assets / (54.6 KB). Loaded Objects now: 4233.[m
+[31m-Memory consumption went from 134.3 MB to 134.3 MB.[m
+[31m-Total: 2.923500 ms (FindLiveObjects: 0.193400 ms CreateObjectMapping: 0.059500 ms MarkObjects: 2.589700 ms  DeleteObjects: 0.079800 ms)[m
+[31m-[m
+[31m-AssetImportParameters requested are different than current active one (requested -> active):[m
+[31m-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> [m
+[31m-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> [m
+[31m-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> [m
+[31m-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> [m
+[31m-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> [m
+[31m-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> [m
+[31m-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> [m
+[31m-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> [m
+[31m-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> [m
+[31m-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> [m
+[31m-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> [m
+[31m-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> [m
+[31m-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> [m
+[31m-========================================================================[m
+[31m-Received Import Request.[m
+[31m-  Time since last request: 89575.554326 seconds.[m
+[31m-  path: Assets/Prefabs/Fantasy Map.prefab[m
+[31m-  artifactKey: Guid(e279c5a213d5fac46a9e10360635182d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)[m
+[31m-Start importing Assets/Prefabs/Fantasy Map.prefab using Guid(e279c5a213d5fac46a9e10360635182d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m-[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m- -> (artifact id: '13f045b8e9da671975566ce018839d01') in 0.108091 seconds[m
+[31m-Number of updated asset objects reloaded before import = 0[m
+[31m-Number of asset objects unloaded after import = 150[m
+[31m-========================================================================[m
+[31m-Received Import Request.[m
+[31m-  Time since last request: 0.000017 seconds.[m
+[31m-  path: Assets/Prefabs/Knight1.prefab[m
+[31m-  artifactKey: Guid(b18052cc9c3a55a41be380ecf5e815b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)[m
+[31m-Start importing Assets/Prefabs/Knight1.prefab using Guid(b18052cc9c3a55a41be380ecf5e815b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m-[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m- -> (artifact id: '582e9b8b1b5af829b3fbe22e9cd92707') in 0.022576 seconds[m
+[31m-Number of updated asset objects reloaded before import = 0[m
+[31m-Number of asset objects unloaded after import = 143[m
+[31m-========================================================================[m
+[31m-Received Import Request.[m
+[31m-  Time since last request: 0.000014 seconds.[m
+[31m-  path: Assets/Prefabs/Apocalypse Map.prefab[m
+[31m-  artifactKey: Guid(45b407f552ceee644ba6bc453777cd2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)[m
+[31m-Start importing Assets/Prefabs/Apocalypse Map.prefab using Guid(45b407f552ceee644ba6bc453777cd2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m-[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m- -> (artifact id: 'ff3d10ca6e8d8ae3fa6dfe9d4f74e395') in 0.025917 seconds[m
+[31m-Number of updated asset objects reloaded before import = 0[m
+[31m-Number of asset objects unloaded after import = 150[m
+[31m-========================================================================[m
+[31m-Received Import Request.[m
+[31m-  Time since last request: 0.000019 seconds.[m
+[31m-  path: Assets/Prefabs/MonkCPU.prefab[m
+[31m-  artifactKey: Guid(4f20c53ae9c4c324a91065c33f5d4452) Importer(815301076,1909f56bfc062723c751e8b465ee728b)[m
+[31m-Start importing Assets/Prefabs/MonkCPU.prefab using Guid(4f20c53ae9c4c324a91065c33f5d4452) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m-[PhysX] Initialized MultithreadedTaskDispatcher with 24 workers.[m
+[31m- -> (artifact id: '528b8a5c83fcc1df44b18b134436f51a') in 0.061209 seconds[m
+[31m-Number of updated asset objects reloaded before import = 0[m
+[31m-Number of asset objects unloaded after import = 310[m
+[31m-========================================================================[m
+[31m-Received Import Request.[m
+[31m-  Time since last request: 486.058884 seconds.[m
+[31m-  path: Assets/Sprites/Huntress/Huntress[m
+[31m-  artifactKey: Guid(3cb1ad0006a42ae4b

@@ -30,10 +30,14 @@ public class CPUController : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask playerLayer; // Target layer (player)
-    public int attackDamage = 20;
+    
+    [Header("Attack Damage")]
+    public int attack1Damage = 7;  // E key
+    public int attack2Damage = 10; // R key
+    public int attack3Damage = 13; // T key
 
     [Header("Health")]
-    public int maxHealth = 3;
+    public int maxHealth = 100;
     private int currentHealth;
     private bool isDead = false;
 
@@ -66,12 +70,41 @@ public class CPUController : MonoBehaviour
         
         Physics2D.IgnoreLayerCollision(player1, cpu, true); // prevents physics push
 
+        // Ensure maxHealth is at least 100 (safeguard against Inspector misconfiguration)
+        if (maxHealth < 100)
+        {
+            maxHealth = 100;
+            Debug.LogWarning($"CPUController: maxHealth was less than 100, setting to 100");
+        }
 
         currentHealth = maxHealth;
     }
 
+    private void Start()
+    {
+        // Ensure PlayerHealth component exists for damage system and health bars
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth == null)
+        {
+            playerHealth = gameObject.AddComponent<PlayerHealth>();
+            Debug.Log($"CPUController: Added PlayerHealth component to {gameObject.name}");
+        }
+        // Always sync maxHealth with PlayerHealth component (do this in Start() after PlayerHealth.Start() may have run)
+        playerHealth.maxHealth = maxHealth;
+        playerHealth.currentHealth = maxHealth;
+        Debug.Log($"CPUController: Initialized health - maxHealth: {maxHealth}, currentHealth: {playerHealth.currentHealth}");
+    }
+
     private void Update()
     {
+        // Check if dead from PlayerHealth component
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth != null && playerHealth.IsDead() && !isDead)
+        {
+            Die();
+            return;
+        }
+        
         if (isDead) return;
 
         CheckGround();
@@ -226,18 +259,54 @@ public class CPUController : MonoBehaviour
         isAttacking = true;
         rb.velocity = new Vector2(0, rb.velocity.y); // Stop horizontal movement
 
-        if (id == 1) animator.SetTrigger("Attack1");
-        else if (id == 2) animator.SetTrigger("Attack2");
-        else animator.SetTrigger("Attack3");
-
-        // Damage detection
-        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
-        foreach (Collider2D hit in hits)
+        int damage = 0;
+        if (id == 1)
         {
-            // hit.GetComponent<PlayerHealth>()?.TakeDamage(attackDamage);
+            animator.SetTrigger("Attack1");
+            damage = attack1Damage;
+        }
+        else if (id == 2)
+        {
+            animator.SetTrigger("Attack2");
+            damage = attack2Damage;
+        }
+        else
+        {
+            animator.SetTrigger("Attack3");
+            damage = attack3Damage;
         }
 
+        // Damage detection - delay slightly to match animation timing
+        StartCoroutine(DealDamageAfterDelay(damage));
+
         StartCoroutine(EndAttackCoroutine());
+    }
+
+    private IEnumerator DealDamageAfterDelay(int damage)
+    {
+        // Wait a bit for the attack animation to reach the hit frame
+        yield return new WaitForSeconds(0.2f);
+        
+        // Damage detection
+        if (attackPoint != null)
+        {
+            Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+            Debug.Log($"CPU Attack: Found {hits.Length} colliders in range");
+            
+            foreach (Collider2D hit in hits)
+            {
+                PlayerHealth enemyHealth = hit.GetComponent<PlayerHealth>();
+                if (enemyHealth != null)
+                {
+                    Debug.Log($"CPU Attack: Dealing {damage} damage to {hit.name}");
+                    enemyHealth.TakeDamage(damage);
+                }
+                else
+                {
+                    Debug.LogWarning($"CPU Attack: Hit {hit.name} but no PlayerHealth component found");
+                }
+            }
+        }
     }
 
     private IEnumerator EndAttackCoroutine()
@@ -252,11 +321,28 @@ public class CPUController : MonoBehaviour
     {
         if (isDead) return;
 
-        currentHealth -= damage;
-        animator.SetTrigger("Hurt");
-
-        if (currentHealth <= 0)
-            Die();
+        // Forward damage to PlayerHealth component (this is the primary health system)
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(damage);
+            // Sync internal health with PlayerHealth for backwards compatibility
+            currentHealth = Mathf.RoundToInt(playerHealth.currentHealth);
+            
+            // Only trigger hurt animation if not dead
+            if (!playerHealth.IsDead())
+            {
+                animator.SetTrigger("Hurt");
+            }
+        }
+        else
+        {
+            // Fallback: use internal health if PlayerHealth doesn't exist
+            currentHealth -= damage;
+            animator.SetTrigger("Hurt");
+            if (currentHealth <= 0)
+                Die();
+        }
     }
 
     private void Die()

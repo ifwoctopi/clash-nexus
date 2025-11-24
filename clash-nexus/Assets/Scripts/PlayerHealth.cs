@@ -11,7 +11,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        // Only initialize health if it hasn't been set yet (allows controllers to set it first)
+        // If currentHealth is 0 or uninitialized, set it to maxHealth
+        if (currentHealth <= 0)
+        {
+            currentHealth = maxHealth;
+        }
         // Health bar will be updated by SimpleHealthBar component
     }
 
