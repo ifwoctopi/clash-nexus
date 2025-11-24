@@ -40,6 +40,24 @@ public class HuntressController : MonoBehaviour
 
     public int attackDamage = 20;
 
+    [Header("Sequential Combo")]
+    public float comboTimeWindow = 1.0f;     // Max time (in seconds) between attacks
+    public float generalChainBonus = 1.15f;  // 15% base bonus for any quick chain (NEW FIELD)
+    // A list to track the sequence of attacks entered
+    private List<string> inputSequence = new List<string>();
+    
+    // Define your sequential combos and their *higher* bonus damage multipliers
+    private readonly Dictionary<string, float> comboDefinitions = new Dictionary<string, float>()
+    {
+        // Define combos as space-separated strings: L=Light, H=Heavy, S=Special
+        {"L L H", 1.35f}, // Light -> Light -> Heavy (Highest bonus)
+        {"L S", 1.50f},   // Light -> Special
+        {"H L", 1.20f}    // Heavy -> Light
+    };
+
+    // Tracking variables
+    private List<float> attackTimestamps = new List<float>();
+
     [Header("Health")]
     public int maxHealth = 3;
     private int currentHealth;
@@ -199,6 +217,11 @@ public class HuntressController : MonoBehaviour
     
     public void Attack()
     {
+        // 1. Check if a combo was active and get the damage multiplier.
+        // 2. Calculate the damage
+        float multiplier = GetComboMultiplier();
+        int modifiedDamage = Mathf.RoundToInt(attackDamage * multiplier);
+
         // Detect enemies in range
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position,
@@ -249,6 +272,7 @@ public class HuntressController : MonoBehaviour
 
         // Disable input
         controls.Disable();
+        
 
         Destroy(gameObject, 2f);
     }

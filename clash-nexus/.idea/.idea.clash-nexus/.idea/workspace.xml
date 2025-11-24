@@ -5,58 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="517c74ce-db13-4f1e-9b55-3c6cb2920aee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.clash-nexus/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.clash-nexus/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Knight1Animations/Knight1Animator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Knight1Animations/Knight1Animator.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Knight1Animations/Knight1CPUAnimator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Knight1Animations/Knight1CPUAnimator.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CPUController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CPUController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Canvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Huntress.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Huntress.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/HuntressCPU.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/HuntressCPU.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Knight1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Knight1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Knight1CPU.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Knight1CPU.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Monk.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Monk.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MonkCPU.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MonkCPU.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/WaterPriest.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/WaterPriest.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/WaterPriestCPU.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/WaterPriestCPU.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ProjectileCPUController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ProjectileCPUController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ProjectileScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ProjectileScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/HuntressController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HuntressController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Knight1Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Knight1Controller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchTimer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MonkController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MonkController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerHealth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/WaterPriestController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/WaterPriestController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker1.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker1.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker10.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker10.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker11.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker11.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker12.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker12.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker13.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker13.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker14.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker14.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker15.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker15.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker16.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker16.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker17.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker17.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker18.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker18.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker19.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker19.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker2.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker2.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker20.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker20.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker3.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker3.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker4.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker4.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker5.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker5.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker6.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker6.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker7.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker7.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker8.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker8.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker9.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker9.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe3.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clash-nexus.sln" beforeDir="false" afterPath="$PROJECT_DIR$/clash-nexus.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +19,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/CPUController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ProjectileCPUScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CPUController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ProjectileCPUController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ProjectileScript.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/40sst/clash-nexus/clash-nexus/Assets/Scripts/HuntressController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/40sst/clash-nexus/clash-nexus/Assets/Scripts/HuntressController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/HuntressController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Knight1Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/40sst/clash-nexus/clash-nexus/Assets/Scripts/Knight1Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/40sst/clash-nexus/clash-nexus/Assets/Scripts/Knight1Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/40sst/clash-nexus/clash-nexus/Assets/Scripts/MonkController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/40sst/clash-nexus/clash-nexus/Assets/Scripts/MonkController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MonkController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerHealth.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerSpawner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UIHealthBarManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/WaterPriestController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -81,7 +47,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Merging main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -148,6 +114,7 @@
       <workItem from="1763940658035" duration="6717000" />
       <workItem from="1763947437171" duration="31000" />
       <workItem from="1764009155361" duration="7254000" />
+      <workItem from="1764017015660" duration="324000" />
     </task>
     <servers />
   </component>
@@ -156,7 +123,6 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
-    <option name="hasUnityReference" value="true" />
     <option name="unityProject" value="true" />
     <option name="unityProjectFolder" value="true" />
   </component>
