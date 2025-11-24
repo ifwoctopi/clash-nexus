@@ -240,6 +240,48 @@ public class HuntressController : MonoBehaviour
             }
         }
     }
+
+    // --- COMBO CALCULATION FUNCTION (Called inside Attack()) ---
+    private float GetComboMultiplier()
+    {
+        float multiplier = 1.0f;
+        
+        // --- 1. CHECK FOR SPECIAL SEQUENTIAL COMBO (Priority 1) ---
+        string currentSequence = string.Join(" ", inputSequence);
+
+        foreach (var combo in comboDefinitions)
+        {
+            string comboKey = combo.Key;
+            
+            // Check if the current input sequence ENDS with a defined combo pattern
+            if (currentSequence.EndsWith(comboKey))
+            {
+                multiplier = combo.Value;
+                Debug.Log($"✅ SEQUENTIAL COMBO SUCCESS: {comboKey}! Multiplier: {multiplier:P0}");
+                
+                // Clear sequence and return the highest multiplier
+                inputSequence.Clear(); 
+                return multiplier;
+            }
+        }
+        
+        // --- 2. CHECK FOR GENERAL CHAIN COMBO (Priority 2) ---
+        // If no specific combo was found, check if a general quick chain occurred.
+        // We look for a chain of at least 2 inputs to qualify as a "chain".
+        if (inputSequence.Count >= 2) 
+        {
+            multiplier = generalChainBonus;
+            Debug.Log($"⚠️ GENERAL CHAIN BONUS: {inputSequence.Count} quick hits. Multiplier: {multiplier:P0}");
+            
+            // Clear the sequence for the next chain, and return the base bonus.
+            inputSequence.Clear();
+            return multiplier;
+        }
+        
+        // --- 3. NO COMBO ---
+        // If neither condition is met, return the base 1.0 multiplier.
+        return 1.0f;
+    }
     
     public void FireProjectile()
     {
