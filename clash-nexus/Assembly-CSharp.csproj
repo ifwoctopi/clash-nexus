@@ -45,24 +45,34 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\HealthBarAttacher.cs" />
     <Compile Include="Assets\CPUController.cs" />
+    <Compile Include="Assets\Scripts\MatchTimer.cs" />
     <Compile Include="Assets\Scripts\CharacterSlot.cs" />
+    <Compile Include="Assets\Scripts\PlayerSpawner.cs" />
     <Compile Include="Assets\Scripts\BackgroundMusicManager.cs" />
     <Compile Include="Assets\Scripts\MonkController.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\ButtonSceneTransition.cs" />
     <Compile Include="Assets\ProjectileCPUController.cs" />
     <Compile Include="Assets\Scripts\HuntressController.cs" />
+    <Compile Include="Assets\Scripts\FloatingHealthBar.cs" />
     <Compile Include="Assets\SamuraiController.cs" />
     <Compile Include="Assets\Scripts\CharacterInputController.cs" />
     <Compile Include="Assets\Scripts\SceneTransitionManager.cs" />
     <Compile Include="Assets\WaterPriestController.cs" />
+    <Compile Include="Assets\Scripts\GameDataManager.cs" />
+    <Compile Include="Assets\Scripts\Player2ControlsSwapper.cs" />
     <Compile Include="Assets\ProjectileScript.cs" />
+    <Compile Include="Assets\Scripts\UIHealthBarManager.cs" />
     <Compile Include="Assets\Scripts\Knight1Controller.cs" />
+    <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectManager.cs" />
     <Compile Include="Assets\Scripts\DraggableCircle.cs" />
+    <Compile Include="Assets\Scripts\ModeSelectionButton.cs" />
     <Compile Include="Assets\Player1Controls.cs" />
     <Compile Include="Assets\Scripts\ButtonSoundPlayer.cs" />
+    <Compile Include="Assets\Scripts\TimerSelectionButton.cs" />
     <None Include="Assets\Sprites\Knight_player_1.4\Knight_player\Read_me.txt" />
     <None Include="Assets\Font.txt" />
     <None Include="Assets\Sprites\Huntress\Huntress\License.txt" />

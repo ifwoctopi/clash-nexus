@@ -6,7 +6,7 @@ public class ProjectileScript : MonoBehaviour
 {
     public float speed = 10f;
     public float lifetime = 2f;
-    public int damage = 5;
+    public int damage = 10;
     public Vector2 direction;
     public string targetTag = "Player";
 
@@ -33,8 +33,12 @@ public class ProjectileScript : MonoBehaviour
     {
         if (collision.CompareTag(targetTag))
         {
-            // Apply damage to enemy
-            // collision.GetComponent<EnemyHealth>()?.TakeDamage(damage);
+            PlayerHealth health = collision.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+                Debug.Log($"CPU hit {collision.name} for {damage} damage. Current Health: {health.currentHealth}");
+            }
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Ground"))

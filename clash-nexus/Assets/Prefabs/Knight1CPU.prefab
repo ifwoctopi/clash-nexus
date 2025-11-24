@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4495503515767760116}
   - component: {fileID: 8927594479888845726}
   - component: {fileID: -934270202321806373}
+  - component: {fileID: -5197880731628154070}
   m_Layer: 8
   m_Name: Knight1CPU
   m_TagString: Knight1CPU
@@ -187,6 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 10
+  blockChance: 0.25
+  blockDuration: 0.5
   player1: 3
   cpu: 8
   groundCheck: {fileID: 1388728459908106807}
@@ -202,7 +205,7 @@ MonoBehaviour:
   attackDamage: 20
   maxHealth: 3
   player: {fileID: 0}
-  decisionRate: 0.2
+  decisionRate: 0.5
   attackDistance: 1.5
   retreatChance: 0.25
   retreatDurationRange: {x: 0.5, y: 1.2}
@@ -210,6 +213,21 @@ MonoBehaviour:
   minDistanceToPlayer: 0.6
   animator: {fileID: 4766354587121204564}
   sr: {fileID: 6964469948740321370}
+--- !u!114 &-5197880731628154070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110596663189382487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8409010923a09564b8ff8931adfe649d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4766354587121204564}
+  maxHealth: 100
+  currentHealth: 100
 --- !u!1 &4130475314924947045
 GameObject:
   m_ObjectHideFlags: 0

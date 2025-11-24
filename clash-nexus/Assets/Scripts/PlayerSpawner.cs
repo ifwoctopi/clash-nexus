@@ -138,6 +138,7 @@ public class PlayerSpawner : MonoBehaviour
                 }
                 Debug.Log($"PlayerSpawner: Spawning CPU prefab for Player 2: {cpuCharId}");
                 SpawnPlayer(2, cpuCharId, player2SpawnPoint, true);
+                
             }
         }
     }
@@ -183,6 +184,23 @@ public class PlayerSpawner : MonoBehaviour
         else if (playerNumber == 2)
         {
             spawnedPlayer2 = spawnedCharacter;
+            
+            // Assign Player1's transform to CPUController if it's CPU mode
+            if (isCPU)
+            {
+                CPUController cpuController = spawnedCharacter.GetComponent<CPUController>();
+                if (cpuController != null && spawnedPlayer1 != null)
+                {
+                    cpuController.player = spawnedPlayer1.transform;
+                    Debug.Log("CPUController: Target set to Player 1");
+                }
+                else if (cpuController == null && spawnedPlayer1 != null)
+                {
+                    ProjectileCPUController projectileCPUController = spawnedCharacter.GetComponent<ProjectileCPUController>();
+                    projectileCPUController.player = spawnedPlayer1.transform;
+                    Debug.Log("CPUController: Target set to Player 1");
+                }
+            }
             
             // If it's 2-player mode (not CPU), add Player2ControlsSwapper to use arrow keys
             if (!isCPU && GameDataManager.Instance.IsTwoPlayerMode())

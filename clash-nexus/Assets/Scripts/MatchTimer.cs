@@ -154,5 +154,22 @@ public class MatchTimer : MonoBehaviour
     {
         return isUnlimited;
     }
+    
+    /// <summary>
+    /// Called when a player dies. Can be used to stop the timer or trigger match-end logic.
+    /// </summary>
+    public void OnPlayerDied()
+    {
+        // Example: Stop the timer
+        isTimerActive = false;
+
+        Debug.Log("MatchTimer: A player died - timer stopped.");
+
+        // Optional: End match immediately
+        if (endMatchOnTimeout)
+        {
+            EndMatch();
+        }
+    }
 }
 

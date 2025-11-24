@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public Animator animator; // assign CPU or Player animator in Inspector
+    
     [Header("Health")]
     public float maxHealth = 100f; // Default 100 health
     public float currentHealth; // Public so MatchTimer can access it
@@ -23,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         if (isDead) return;
 
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        animator.SetTrigger("Hurt");
         
         // Health bar will be updated automatically by SimpleHealthBar component
 
@@ -80,7 +83,7 @@ public class PlayerHealth : MonoBehaviour
         MatchTimer matchTimer = FindObjectOfType<MatchTimer>();
         if (matchTimer != null)
         {
-            matchTimer.OnPlayerDied(playerNumber);
+            matchTimer.OnPlayerDied(); //playerNumber
         }
         
         // Try to call Die() on any controller component

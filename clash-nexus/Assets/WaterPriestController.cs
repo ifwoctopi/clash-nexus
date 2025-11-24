@@ -167,26 +167,15 @@ public class WaterPriestController : MonoBehaviour
         // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
-           //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+            PlayerHealth health = enemy.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(attackDamage);
+                Debug.Log($"CPU hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+            }
         }
     }
     
-    public void TakeDamage(int damage)
-    {
-        if (isDead) return; // ignore damage if already dead
-
-        currentHealth -= damage;
-        Debug.Log($"Knight 1 took {damage} damage! Current health: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-        else
-        {
-            animator.SetTrigger("Hurt");
-        }
-    }
     private void Die()
     {
         isDead = true;
@@ -209,7 +198,7 @@ public class WaterPriestController : MonoBehaviour
         controls.Disable();
 
         // Optional: destroy object after animation ends
-        // Destroy(gameObject, 2f);
+        Destroy(gameObject, 2f);
     }
 
     

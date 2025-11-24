@@ -234,7 +234,12 @@ public class CPUController : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
         foreach (Collider2D hit in hits)
         {
-            // hit.GetComponent<PlayerHealth>()?.TakeDamage(attackDamage);
+            PlayerHealth health = hit.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(attackDamage);
+                Debug.Log($"CPU hit {hit.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+            }
         }
 
         StartCoroutine(EndAttackCoroutine());
@@ -248,23 +253,16 @@ public class CPUController : MonoBehaviour
     }
 
     // ------------------- Health -------------------
-    public void TakeDamage(int damage)
-    {
-        if (isDead) return;
-
-        currentHealth -= damage;
-        animator.SetTrigger("Hurt");
-
-        if (currentHealth <= 0)
-            Die();
-    }
 
     private void Die()
     {
         isDead = true;
-        rb.velocity = Vector2.zero;
-        collider2D.enabled = false;
+        //rb.velocity = Vector2.zero;
+        //collider2D.enabled = false;
         animator.SetTrigger("Dead");
+        
+        Destroy(gameObject, 2f);
+        
     }
 
     // ------------------- Debug -------------------
