@@ -155,6 +155,11 @@ public class MatchTimer : MonoBehaviour
             // Determine winner based on health
             DetermineWinner();
         }
+        else
+        {
+            // Even if endMatchOnTimeout is false, still determine winner and show button
+            DetermineWinner();
+        }
     }
     
     /// <summary>
@@ -253,6 +258,7 @@ public class MatchTimer : MonoBehaviour
     /// </summary>
     private void ShowWinMessage(int winner)
     {
+        // Find timer text if not assigned
         if (timerText == null)
         {
             GameObject timerObj = GameObject.Find("TimerText");
@@ -262,6 +268,7 @@ public class MatchTimer : MonoBehaviour
             }
         }
         
+        // Display win message in timer text
         if (timerText != null)
         {
             timerText.gameObject.SetActive(true);
@@ -275,16 +282,25 @@ public class MatchTimer : MonoBehaviour
                 timerText.text = $"Player {winner} Wins!";
             }
             timerText.color = Color.yellow; // Make it stand out
-        }
-        
-        // Show win button
-        if (winButton != null)
-        {
-            winButton.gameObject.SetActive(true);
+            Debug.Log($"MatchTimer: Win message displayed: {timerText.text}");
         }
         else
         {
-            // Try to find it again
+            Debug.LogWarning("MatchTimer: TimerText not found, cannot display win message");
+        }
+        
+        // Show win button - try multiple methods to find it
+        bool buttonFound = false;
+        
+        if (winButton != null)
+        {
+            winButton.gameObject.SetActive(true);
+            buttonFound = true;
+            Debug.Log("MatchTimer: Win button shown (from serialized field)");
+        }
+        else
+        {
+            // Try to find it by name
             GameObject buttonObj = GameObject.Find("WinButton");
             if (buttonObj != null)
             {
@@ -292,11 +308,35 @@ public class MatchTimer : MonoBehaviour
                 if (winButton != null)
                 {
                     winButton.gameObject.SetActive(true);
+                    buttonFound = true;
+                    Debug.Log("MatchTimer: Win button found and shown (by name)");
                 }
             }
         }
         
-        Debug.Log($"MatchTimer: Player {winner} wins!");
+        // If still not found, try finding any button with "Win" in the name
+        if (!buttonFound)
+        {
+            Button[] allButtons = FindObjectsOfType<Button>();
+            foreach (Button btn in allButtons)
+            {
+                if (btn.name.ToLower().Contains("win") || btn.name.ToLower().Contains("menu") || btn.name.ToLower().Contains("next"))
+                {
+                    winButton = btn;
+                    winButton.gameObject.SetActive(true);
+                    buttonFound = true;
+                    Debug.Log($"MatchTimer: Win button found and shown: {btn.name}");
+                    break;
+                }
+            }
+        }
+        
+        if (!buttonFound)
+        {
+            Debug.LogWarning("MatchTimer: Win button not found! Please create a UI Button named 'WinButton' or assign it in the Inspector.");
+        }
+        
+        Debug.Log($"MatchTimer: Player {winner} wins! Button shown: {buttonFound}");
     }
 
     /// <summary>
