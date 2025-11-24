@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,15 +40,13 @@ public class HuntressController : MonoBehaviour
 
     public int attackDamage = 20;
 
-    [Header("Health")]
-    public int maxHealth = 3;
-    private int currentHealth;
     private bool isDead = false;
 
     private CapsuleCollider2D playerCollider; // reference to your main collider
     
     private Rigidbody2D rb;
     private Player1Controls controls;
+    private PlayerHealth health;
     private Vector2 moveInput;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
@@ -57,12 +55,14 @@ public class HuntressController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        health = GetComponent<PlayerHealth>();
+
+        if (health == null)
+            Debug.LogError("⚠️ HuntressController: No PlayerHealth component found!");
+
         Physics2D.IgnoreLayerCollision(player1, cpu, true); // prevents physics push
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerCollider = GetComponent<CapsuleCollider2D>();
-
-        currentHealth = maxHealth;
-
         controls = new Player1Controls();
 
         // Movement
@@ -94,7 +94,14 @@ public class HuntressController : MonoBehaviour
 
     private void Update()
     {
+        // __________________________________________________________________________________________________
         if (isDead) return;
+        // 🔹 TEMP TEST — Press H to simulate taking damage
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log("H key pressed — applying test damage");
+            TakeDamage(10); // Apply 10 damage
+        }
         CheckGround();
 
         // Trigger Jump ONCE on takeoff
@@ -209,7 +216,10 @@ public class HuntressController : MonoBehaviour
         // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
-           //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+            //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+            PlayerHealth enemyHealth = enemy.GetComponent<PlayerHealth>();
+            if (enemyHealth != null)
+                enemyHealth.TakeDamage(attackDamage);
         }
     }
     
@@ -224,21 +234,20 @@ public class HuntressController : MonoBehaviour
         projectileScript.direction = sr.flipX ? Vector2.left : Vector2.right;
         projectileScript.speed = projectileSpeed;
     }
-    
+
     public void TakeDamage(int damage)
     {
-        if (isDead) return; // ignore damage if already dead
+        Debug.Log($"TakeDamage called on {gameObject.name} with {damage} damage");
+        if (isDead) return;
 
-        currentHealth -= damage;
-        Debug.Log($"Knight 1 took {damage} damage! Current health: {currentHealth}");
+        health.TakeDamage(damage);
+        Debug.Log($"Current Health after damage: {health.currentHealth}");
 
-        if (currentHealth <= 0)
+        animator.SetTrigger("Hurt");
+
+        if (health.currentHealth <= 0)
         {
             Die();
-        }
-        else
-        {
-            animator.SetTrigger("Hurt");
         }
     }
     private void Die()

@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|c:\\users\\shart\\documents\\github\\clash-nexus\\clash-nexus\\assets\\scripts\\floatinghealthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\floatinghealthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|c:\\users\\shart\\documents\\github\\clash-nexus\\clash-nexus\\assets\\scripts\\huntresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\huntresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FloatingHealthBar.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\FloatingHealthBar.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\FloatingHealthBar.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\FloatingHealthBar.cs",
+              "RelativeToolTip": "Assets\\Scripts\\FloatingHealthBar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T03:36:37.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HuntressController.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\HuntressController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\HuntressController.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\HuntressController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\HuntressController.cs",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAswOUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T03:32:56.524Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
