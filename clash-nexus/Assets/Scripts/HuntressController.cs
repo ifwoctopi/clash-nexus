@@ -40,6 +40,22 @@ public class HuntressController : MonoBehaviour
 
     public int attackDamage = 20;
 
+    [Header("Sequential Combo")]
+    public float comboTimeWindow = 1.0f;     // Max time (in seconds) between attacks
+    public float generalChainBonus = 1.15f;  // 15% base bonus for any quick chain (NEW FIELD)
+    
+    // Define your sequential combos and their *higher* bonus damage multipliers
+    private readonly Dictionary<string, float> comboDefinitions = new Dictionary<string, float>()
+    {
+        // Define combos as space-separated strings: L=Light, H=Heavy, S=Special
+        {"L L H", 1.35f}, // Light -> Light -> Heavy (Highest bonus)
+        {"L S", 1.50f},   // Light -> Special
+        {"H L", 1.20f}    // Heavy -> Light
+    };
+
+    // Tracking variables
+    private List<float> attackTimestamps = new List<float>();
+
     [Header("Health")]
     public int maxHealth = 3;
     private int currentHealth;
@@ -195,10 +211,16 @@ public class HuntressController : MonoBehaviour
     {
         Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
+        Attack();
     }
     
     public void Attack()
     {
+        // 1. Check if a combo was active and get the damage multiplier.
+        // 2. Calculate the damage
+        float multiplier = GetComboMultiplier();
+        int modifiedDamage = Mathf.RoundToInt(attackDamage * multiplier);
+
         // Detect enemies in range
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position,
@@ -210,6 +232,7 @@ public class HuntressController : MonoBehaviour
         foreach (Collider2D enemy in hits)
         {
            //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+           Debug.Log($"Damage applied: {modifiedDamage} (Base: {attackDamage} * Multiplier: {multiplier:P0})");
         }
     }
     
@@ -240,6 +263,62 @@ public class HuntressController : MonoBehaviour
         {
             animator.SetTrigger("Hurt");
         }
+    }
+
+    // --- COMBO TRACKING FUNCTION (Called on Input) ---
+    private void LogAttackTime()
+    {
+        // 1. Add the current time to the list (on button press)
+        attackTimestamps.Add(Time.time);
+
+        // 2. Remove any old timestamps that are outside the combo window
+        while (attackTimestamps.Count > 0 && 
+               attackTimestamps[0] < Time.time - comboTimeWindow)
+        {
+            attackTimestamps.RemoveAt(0);
+        }
+    }
+
+    // --- COMBO CALCULATION FUNCTION (Called inside Attack()) ---
+    private float GetComboMultiplier()
+    {
+        float multiplier = 1.0f;
+        
+        // --- 1. CHECK FOR SPECIAL SEQUENTIAL COMBO (Priority 1) ---
+        string currentSequence = string.Join(" ", inputSequence);
+
+        foreach (var combo in comboDefinitions)
+        {
+            string comboKey = combo.Key;
+            
+            // Check if the current input sequence ENDS with a defined combo pattern
+            if (currentSequence.EndsWith(comboKey))
+            {
+                multiplier = combo.Value;
+                Debug.Log($"✅ SEQUENTIAL COMBO SUCCESS: {comboKey}! Multiplier: {multiplier:P0}");
+                
+                // Clear sequence and return the highest multiplier
+                inputSequence.Clear(); 
+                return multiplier;
+            }
+        }
+        
+        // --- 2. CHECK FOR GENERAL CHAIN COMBO (Priority 2) ---
+        // If no specific combo was found, check if a general quick chain occurred.
+        // We look for a chain of at least 2 inputs to qualify as a "chain".
+        if (inputSequence.Count >= 2) 
+        {
+            multiplier = generalChainBonus;
+            Debug.Log($"⚠️ GENERAL CHAIN BONUS: {inputSequence.Count} quick hits. Multiplier: {multiplier:P0}");
+            
+            // Clear the sequence for the next chain, and return the base bonus.
+            inputSequence.Clear();
+            return multiplier;
+        }
+        
+        // --- 3. NO COMBO ---
+        // If neither condition is met, return the base 1.0 multiplier.
+        return 1.0f;
     }
     private void Die()
     {
