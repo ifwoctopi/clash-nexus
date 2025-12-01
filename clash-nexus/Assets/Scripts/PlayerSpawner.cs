@@ -35,6 +35,7 @@ public class PlayerSpawner : MonoBehaviour
     private Dictionary<string, GameObject> characterPrefabDict;
     private GameObject spawnedPlayer1;
     private GameObject spawnedPlayer2;
+    [SerializeField] public ProjectileScript projectileScript;
 
     void Awake()
     {
@@ -141,6 +142,12 @@ public class PlayerSpawner : MonoBehaviour
                 
             }
         }
+        
+        // Configure enemyLayers for 2-player mode after both players are spawned
+        if (dataManager.IsTwoPlayerMode())
+        {
+            ConfigureEnemyLayersForTwoPlayerMode();
+        }
     }
 
     /// <summary>
@@ -165,6 +172,20 @@ public class PlayerSpawner : MonoBehaviour
         
         // Rename to match player number
         spawnedCharacter.name = $"Player{playerNumber}_{characterId}";
+        
+        // Set the layer for the player
+        // Layer 3 = Player1, Layer 8 = CPU/Player2
+        if (playerNumber == 1)
+        {
+            spawnedCharacter.layer = 3; // Player1 layer
+        }
+        else if (playerNumber == 2)
+        {
+            spawnedCharacter.layer = 8; // CPU/Player2 layer
+        }
+        
+        // Also set layer for all children (like attack points, etc.)
+        SetLayerRecursively(spawnedCharacter, spawnedCharacter.layer);
 
         // Flip Player 2 to face the opposite direction
         if (playerNumber == 2)
@@ -180,6 +201,7 @@ public class PlayerSpawner : MonoBehaviour
         if (playerNumber == 1)
         {
             spawnedPlayer1 = spawnedCharacter;
+           
         }
         else if (playerNumber == 2)
         {
@@ -197,9 +219,22 @@ public class PlayerSpawner : MonoBehaviour
                 else if (cpuController == null && spawnedPlayer1 != null)
                 {
                     ProjectileCPUController projectileCPUController = spawnedCharacter.GetComponent<ProjectileCPUController>();
-                    projectileCPUController.player = spawnedPlayer1.transform;
+                    projectileCPUController.playerTransform = spawnedPlayer1.transform;
+                    projectileCPUController.player = spawnedPlayer1;
                     Debug.Log("CPUController: Target set to Player 1");
                 }
+            }
+
+            if (spawnedPlayer1 != null && spawnedPlayer1.GetComponent<HuntressController>() != null)
+            {
+                HuntressController huntressController = spawnedPlayer1.GetComponent<HuntressController>();
+                huntressController.enemy = spawnedPlayer2;
+            }
+            
+            if (spawnedPlayer2 != null && spawnedPlayer2.GetComponent<HuntressController>() != null)
+            {
+                HuntressController huntressController = spawnedPlayer2.GetComponent<HuntressController>();
+                huntressController.enemy = spawnedPlayer1;
             }
             
             // If it's 2-player mode (not CPU), add Player2ControlsSwapper to use arrow keys
@@ -209,8 +244,95 @@ public class PlayerSpawner : MonoBehaviour
                 Debug.Log($"PlayerSpawner: Added Player2ControlsSwapper to Player 2 for arrow key controls");
             }
         }
+        
+        
 
         Debug.Log($"PlayerSpawner: Spawned {characterId} for Player {playerNumber} at {spawnPoint.position}");
+    }
+    
+    /// <summary>
+    /// Sets the layer recursively for a GameObject and all its children
+    /// </summary>
+    private void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
+    }
+    
+    /// <summary>
+    /// Configures enemyLayers for 2-player mode so both players can damage each other
+    /// </summary>
+    private void ConfigureEnemyLayersForTwoPlayerMode()
+    {
+        bool isTwoPlayerMode = GameDataManager.Instance.IsTwoPlayerMode();
+        if (!isTwoPlayerMode) return;
+        
+        // Layer 3 = Player1, Layer 8 = CPU/Player2
+        int player1Layer = 3;
+        int player2Layer = 8;
+        LayerMask player1LayerMask = 1 << player1Layer;  // Only Player1 layer (value = 8)
+        LayerMask player2LayerMask = 1 << player2Layer;   // Only Player2 layer (value = 256)
+        
+        // In 2-player mode, both players should be able to damage each other
+        // Player1's enemyLayers should ONLY include Player2 layer (layer 8)
+        // Player2's enemyLayers should ONLY include Player1 layer (layer 3)
+        
+        if (spawnedPlayer1 != null)
+        {
+            Debug.Log($"PlayerSpawner: Configuring Player1 enemyLayers to target Player2 (layer {player2Layer}, mask value {player2LayerMask.value})");
+            ConfigureEnemyLayers(spawnedPlayer1, player2LayerMask);
+        }
+        
+        if (spawnedPlayer2 != null)
+        {
+            Debug.Log($"PlayerSpawner: Configuring Player2 enemyLayers to target Player1 (layer {player1Layer}, mask value {player1LayerMask.value})");
+            ConfigureEnemyLayers(spawnedPlayer2, player1LayerMask);
+        }
+        
+        Debug.Log("PlayerSpawner: Configured enemyLayers for 2-player mode");
+    }
+    
+    /// <summary>
+    /// Configures enemyLayers on a character using reflection to find all controllers with enemyLayers or playerLayer field
+    /// </summary>
+    private void ConfigureEnemyLayers(GameObject character, LayerMask enemyLayerMask)
+    {
+        // Get all MonoBehaviour components
+        MonoBehaviour[] components = character.GetComponents<MonoBehaviour>();
+        
+        bool foundAny = false;
+        foreach (MonoBehaviour component in components)
+        {
+            if (component == null) continue;
+            
+            // Try to find enemyLayers field first
+            System.Reflection.FieldInfo enemyLayersField = component.GetType().GetField("enemyLayers", 
+                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            
+            // If not found, try playerLayer (used by some controllers like CPUController)
+            if (enemyLayersField == null)
+            {
+                enemyLayersField = component.GetType().GetField("playerLayer", 
+                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            }
+            
+            if (enemyLayersField != null && enemyLayersField.FieldType == typeof(LayerMask))
+            {
+                LayerMask oldValue = (LayerMask)enemyLayersField.GetValue(component);
+                enemyLayersField.SetValue(component, enemyLayerMask);
+                foundAny = true;
+                string fieldName = enemyLayersField.Name;
+                Debug.Log($"PlayerSpawner: Set {fieldName} on {component.GetType().Name} from {oldValue.value} to {enemyLayerMask.value}");
+            }
+        }
+        
+        if (!foundAny)
+        {
+            Debug.LogWarning($"PlayerSpawner: No enemyLayers or playerLayer field found on {character.name}. Make sure controllers have a public LayerMask enemyLayers or playerLayer field.");
+        }
     }
 
     /// <summary>

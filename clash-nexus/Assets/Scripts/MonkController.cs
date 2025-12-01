@@ -192,11 +192,17 @@ public class MonkController : MonoBehaviour
         // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
+            // Don't damage ourselves
+            if (enemy.gameObject == gameObject || enemy.transform.IsChildOf(transform))
+            {
+                continue;
+            }
+            
             PlayerHealth health = enemy.GetComponent<PlayerHealth>();
             if (health != null)
             {
                 health.TakeDamage(attackDamage);
-                Debug.Log($"CPU hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+                Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
             }
            
         }

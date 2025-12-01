@@ -32,6 +32,7 @@ public class HuntressController : MonoBehaviour
     public GameObject projectilePrefab; // assign your projectile prefab
     public Transform firePoint;         // position from which projectiles spawn
     public float projectileSpeed = 10f; // optional override
+    public GameObject enemy;
 
     [Header("Combat")]
     public Transform attackPoint;
@@ -232,15 +233,21 @@ public class HuntressController : MonoBehaviour
         // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
+            // Don't damage ourselves
+            if (enemy.gameObject == gameObject || enemy.transform.IsChildOf(transform))
+            {
+                continue;
+            }
+            
             PlayerHealth health = enemy.GetComponent<PlayerHealth>();
             if (health != null)
             {
                 health.TakeDamage(attackDamage);
-                Debug.Log($"CPU hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+                Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
             }
         }
     }
-
+    
     // --- COMBO CALCULATION FUNCTION (Called inside Attack()) ---
     private float GetComboMultiplier()
     {
@@ -289,6 +296,7 @@ public class HuntressController : MonoBehaviour
 
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         ProjectileScript projectileScript = proj.GetComponent<ProjectileScript>();
+        projectileScript.target = enemy;
 
         // Set the direction based on the player's facing
         projectileScript.direction = sr.flipX ? Vector2.left : Vector2.right;

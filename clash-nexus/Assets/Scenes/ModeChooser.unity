@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e869276e9713983409022e7295c5ff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: CharacterSelect
+  targetSceneName: MapChooser
   targetSceneIndex: -1
   loadDelay: 0.4
 --- !u!114 &1521206606
@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e869276e9713983409022e7295c5ff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: CharacterSelect
+  targetSceneName: MapChooser
   targetSceneIndex: -1
   loadDelay: 0.4
 --- !u!114 &1658319103

@@ -1,3 +1,14 @@
+# Ensure Unity YAML files have LF endings
+*.prefab text eol=lf
+*.unity text eol=lf
+*.asset text eol=lf
+
+# Binary files (don’t convert)
+*.png binary
+*.jpg binary
+*.fbx binary
+*.wav binary
+
 *.dylib filter=lfs diff=lfs merge=lfs -text
 Library/ArtifactDB/* filter=lfs diff=lfs merge=lfs -text
 Library/ArtifactDB filter=lfs diff=lfs merge=lfs -text

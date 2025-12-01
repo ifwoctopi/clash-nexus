@@ -8,7 +8,7 @@ public class ProjectileScript : MonoBehaviour
     public float lifetime = 2f;
     public int damage = 10;
     public Vector2 direction;
-    public string targetTag = "Player";
+    public GameObject target;
 
     void Start()
     {
@@ -31,18 +31,15 @@ public class ProjectileScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(targetTag))
+        if (collision.gameObject == target)
         {
+            Debug.Log("Projectile Hit");
             PlayerHealth health = collision.GetComponent<PlayerHealth>();
             if (health != null)
             {
                 health.TakeDamage(damage);
-                Debug.Log($"CPU hit {collision.name} for {damage} damage. Current Health: {health.currentHealth}");
+                Debug.Log($"CPU hit {collision.name} with PROJECTILE for {damage} damage. Current Health: {health.currentHealth}");
             }
-            Destroy(gameObject);
-        }
-        else if (collision.CompareTag("Ground"))
-        {
             Destroy(gameObject);
         }
     }
