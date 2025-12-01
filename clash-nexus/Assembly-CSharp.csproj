@@ -66,11 +66,13 @@
     <Compile Include="Assets\ProjectileScript.cs" />
     <Compile Include="Assets\Scripts\UIHealthBarManager.cs" />
     <Compile Include="Assets\Scripts\Knight1Controller.cs" />
+    <Compile Include="Assets\BackgroundLoader.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectManager.cs" />
     <Compile Include="Assets\Scripts\DraggableCircle.cs" />
     <Compile Include="Assets\Scripts\ModeSelectionButton.cs" />
     <Compile Include="Assets\Player1Controls.cs" />
+    <Compile Include="Assets\BackgroundSelectSystem.cs" />
     <Compile Include="Assets\Scripts\ButtonSoundPlayer.cs" />
     <Compile Include="Assets\Scripts\TimerSelectionButton.cs" />
     <None Include="Assets\Sprites\Knight_player_1.4\Knight_player\Read_me.txt" />

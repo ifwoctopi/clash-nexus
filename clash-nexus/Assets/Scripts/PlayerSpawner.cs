@@ -35,6 +35,7 @@ public class PlayerSpawner : MonoBehaviour
     private Dictionary<string, GameObject> characterPrefabDict;
     private GameObject spawnedPlayer1;
     private GameObject spawnedPlayer2;
+    [SerializeField] public ProjectileScript projectileScript;
 
     void Awake()
     {
@@ -200,6 +201,7 @@ public class PlayerSpawner : MonoBehaviour
         if (playerNumber == 1)
         {
             spawnedPlayer1 = spawnedCharacter;
+           
         }
         else if (playerNumber == 2)
         {
@@ -217,9 +219,22 @@ public class PlayerSpawner : MonoBehaviour
                 else if (cpuController == null && spawnedPlayer1 != null)
                 {
                     ProjectileCPUController projectileCPUController = spawnedCharacter.GetComponent<ProjectileCPUController>();
-                    projectileCPUController.player = spawnedPlayer1.transform;
+                    projectileCPUController.playerTransform = spawnedPlayer1.transform;
+                    projectileCPUController.player = spawnedPlayer1;
                     Debug.Log("CPUController: Target set to Player 1");
                 }
+            }
+
+            if (spawnedPlayer1 != null && spawnedPlayer1.GetComponent<HuntressController>() != null)
+            {
+                HuntressController huntressController = spawnedPlayer1.GetComponent<HuntressController>();
+                huntressController.enemy = spawnedPlayer2;
+            }
+            
+            if (spawnedPlayer2 != null && spawnedPlayer2.GetComponent<HuntressController>() != null)
+            {
+                HuntressController huntressController = spawnedPlayer2.GetComponent<HuntressController>();
+                huntressController.enemy = spawnedPlayer1;
             }
             
             // If it's 2-player mode (not CPU), add Player2ControlsSwapper to use arrow keys
@@ -229,6 +244,8 @@ public class PlayerSpawner : MonoBehaviour
                 Debug.Log($"PlayerSpawner: Added Player2ControlsSwapper to Player 2 for arrow key controls");
             }
         }
+        
+        
 
         Debug.Log($"PlayerSpawner: Spawned {characterId} for Player {playerNumber} at {spawnPoint.position}");
     }

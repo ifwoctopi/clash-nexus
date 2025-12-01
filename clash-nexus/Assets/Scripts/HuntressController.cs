@@ -32,6 +32,7 @@ public class HuntressController : MonoBehaviour
     public GameObject projectilePrefab; // assign your projectile prefab
     public Transform firePoint;         // position from which projectiles spawn
     public float projectileSpeed = 10f; // optional override
+    public GameObject enemy;
 
     [Header("Combat")]
     public Transform attackPoint;
@@ -295,6 +296,7 @@ public class HuntressController : MonoBehaviour
 
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         ProjectileScript projectileScript = proj.GetComponent<ProjectileScript>();
+        projectileScript.target = enemy;
 
         // Set the direction based on the player's facing
         projectileScript.direction = sr.flipX ? Vector2.left : Vector2.right;

@@ -45,7 +45,8 @@ public class ProjectileCPUController: MonoBehaviour
     private bool isDead = false;
 
     [Header("AI Settings")]
-    public Transform player; // Target player
+    public Transform playerTransform; // Target player
+    public GameObject player;
     public float decisionRate = 0.5f;
     public float attackDistance = 1.5f;
     public float retreatChance = 0.25f;
@@ -159,7 +160,7 @@ public class ProjectileCPUController: MonoBehaviour
     {
         if (player == null) return;
 
-        float distance = player.position.x - transform.position.x;
+        float distance = playerTransform.position.x - transform.position.x;
         float absDistance = Mathf.Abs(distance);
         float dir = Mathf.Sign(distance);
 
@@ -263,6 +264,7 @@ public class ProjectileCPUController: MonoBehaviour
 
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         ProjectileScript projectileScript = proj.GetComponent<ProjectileScript>();
+        projectileScript.target= player;
 
         if (projectileScript != null)
         {
