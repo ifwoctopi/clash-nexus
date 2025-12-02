@@ -22,6 +22,8 @@ public class MonkController : MonoBehaviour
     public LayerMask enemyLayers;
 
     public int attackDamage = 20;
+    public float attackCooldownTime = 0.35f;
+    private float nextAttackTime = 0f;
 
     [Header("Sequential Combo")]
     public float comboTimeWindow = 1.0f;     // Max time (in seconds) between attacks
@@ -37,6 +39,9 @@ public class MonkController : MonoBehaviour
         {"L S", 1.50f},   // Light -> Special
         {"H L", 1.20f}    // Heavy -> Light
     };
+
+    //tracking variables
+    private List<float> attackTimestamps = new List<float>();
     
     [Header("Health")]
     public int maxHealth = 3;
@@ -156,23 +161,47 @@ public class MonkController : MonoBehaviour
 
     private void Attack1()
     {
+        if (Time.time < nextAttackTime) return;
+
         Debug.Log("Attack1");
         animator.SetTrigger("Attack1");
         Attack();
+
+        // Set the time the player can attack next
+        nextAttackTime = Time.time + attackCooldownTime;
+
+        // Log the attack type for combo tracking
+        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
+        inputSequence.Add("L");
+        LogAttackTime();
     }
 
     private void Attack2()
     {
+        if (Time.time < nextAttackTime) return;
+
         Debug.Log("Attack2");
         animator.SetTrigger("Attack2");
         Attack();
+
+        // Log the attack type for combo tracking
+        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
+        inputSequence.Add("L");
+        LogAttackTime();
     }
 
     private void Attack3()
     {
+        if (Time.time < nextAttackTime) return;
+
         Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
         Attack();
+
+        // Log the attack type for combo tracking
+        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
+        inputSequence.Add("L");
+        LogAttackTime();
     }
     
     public void Attack()
@@ -205,6 +234,19 @@ public class MonkController : MonoBehaviour
                 Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
             }
            
+        }
+    }
+
+    private void LogAttackTime()
+    {
+        // 1. Add the current time to the list (on button press)
+        attackTimestamps.Add(Time.time);
+
+        // 2. Remove any old timestamps that are outside the combo window
+        while (attackTimestamps.Count > 0 && 
+               attackTimestamps[0] < Time.time - comboTimeWindow)
+        {
+            attackTimestamps.RemoveAt(0);
         }
     }
     
