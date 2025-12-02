@@ -39,6 +39,9 @@ public class MonkController : MonoBehaviour
         {"L S", 1.50f},   // Light -> Special
         {"H L", 1.20f}    // Heavy -> Light
     };
+
+    //tracking variables
+    private List<float> attackTimestamps = new List<float>();
     
     [Header("Health")]
     public int maxHealth = 3;
