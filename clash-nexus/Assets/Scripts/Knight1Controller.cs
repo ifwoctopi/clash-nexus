@@ -231,6 +231,19 @@ public class Knight1Controller : MonoBehaviour
         }
     }
 
+    private void LogAttackTime()
+    {
+        // 1. Add the current time to the list (on button press)
+        attackTimestamps.Add(Time.time);
+
+        // 2. Remove any old timestamps that are outside the combo window
+        while (attackTimestamps.Count > 0 && 
+               attackTimestamps[0] < Time.time - comboTimeWindow)
+        {
+            attackTimestamps.RemoveAt(0);
+        }
+    }
+
     // --- COMBO CALCULATION FUNCTION (Called inside Attack()) ---
     private float GetComboMultiplier()
     {
