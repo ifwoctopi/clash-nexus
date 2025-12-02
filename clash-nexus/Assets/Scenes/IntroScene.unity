@@ -368,6 +368,18 @@ MonoBehaviour:
   - characterTagA: Monk
     characterTagB: Monk
     introVideo: {fileID: 32900000, guid: 5e8eaae7d7a5b6b4db5d695bec9660cb, type: 3}
+  - characterTagA: Huntress
+    characterTagB: Monk
+    introVideo: {fileID: 32900000, guid: 7ad52d38944ae1140939bb10903b6310, type: 3}
+  - characterTagA: Huntress
+    characterTagB: Huntress
+    introVideo: {fileID: 32900000, guid: a0cb6352c3bb458448c1f3126410a4b9, type: 3}
+  - characterTagA: Huntress
+    characterTagB: WaterPriest
+    introVideo: {fileID: 32900000, guid: f36036bae898e244e8317b69610809d3, type: 3}
+  - characterTagA: Huntress
+    characterTagB: Knight1
+    introVideo: {fileID: 32900000, guid: 604f1d7d69873fb4490df141ad851378, type: 3}
   defaultIntro: {fileID: 32900000, guid: 5e8eaae7d7a5b6b4db5d695bec9660cb, type: 3}
   videoPlayer: {fileID: 1465484387}
   nextScene: SampleScene
@@ -418,10 +430,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1574976074}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0025025, y: -0.00052071}
+  m_SizeDelta: {x: 1348.5, y: 774}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1496537695
 MonoBehaviour:
@@ -506,12 +518,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
