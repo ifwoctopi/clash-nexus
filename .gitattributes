@@ -2,6 +2,10 @@
 *.prefab text eol=lf
 *.unity text eol=lf
 *.asset text eol=lf
+*.sh text eol=lf
+*.cs text eol=lf
+*.xml text eol=lf
+*.dwlt text eol=lf
 
 # Binary files (don’t convert)
 *.png binary
