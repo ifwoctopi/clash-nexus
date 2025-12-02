@@ -62,6 +62,8 @@ public class GameDataManager : MonoBehaviour
             player2CharacterId = characterId;
         }
     }
+    
+    
 
     /// <summary>
     /// Gets the selected character ID for a player

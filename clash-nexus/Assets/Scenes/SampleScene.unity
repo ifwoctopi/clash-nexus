@@ -493,6 +493,7 @@ MonoBehaviour:
   - characterId: Knight1CPU
     characterPrefab: {fileID: 110596663189382487, guid: 4f0aaf100edf83f4a98b57f894c95ef2, type: 3}
   projectileScript: {fileID: 1446090191}
+  introManager: {fileID: 0}
 --- !u!4 &560114693
 Transform:
   m_ObjectHideFlags: 0

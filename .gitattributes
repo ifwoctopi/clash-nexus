@@ -2,16 +2,22 @@
 *.prefab text eol=lf
 *.unity text eol=lf
 *.asset text eol=lf
+*.meta text eol=lf
 *.sh text eol=lf
 *.cs text eol=lf
 *.xml text eol=lf
 *.dwlt text eol=lf
-
+*.cs text eol=lf
+*.shader text eol=lf
+*.txt text eol=lf
+*.renderTexture text eol=lf
 # Binary files (don’t convert)
 *.png binary
 *.jpg binary
 *.fbx binary
 *.wav binary
+*.mp4 binary
+*.mp3 binary
 
 *.dylib filter=lfs diff=lfs merge=lfs -text
 Library/ArtifactDB/* filter=lfs diff=lfs merge=lfs -text
