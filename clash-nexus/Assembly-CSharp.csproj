@@ -75,6 +75,7 @@
     <Compile Include="Assets\BackgroundSelectSystem.cs" />
     <Compile Include="Assets\Scripts\ButtonSoundPlayer.cs" />
     <Compile Include="Assets\Scripts\TimerSelectionButton.cs" />
+    <Compile Include="Assets\IntroManager.cs" />
     <None Include="Assets\Sprites\Knight_player_1.4\Knight_player\Read_me.txt" />
     <None Include="Assets\Font.txt" />
     <None Include="Assets\Sprites\Huntress\Huntress\License.txt" />
