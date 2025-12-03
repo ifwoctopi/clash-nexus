@@ -22,6 +22,26 @@ public class Knight1Controller : MonoBehaviour
     public LayerMask enemyLayers;
 
     public int attackDamage = 20;
+    public float attackCooldownTime = 0.35f; 
+    private float nextAttackTime = 0f;
+
+     [Header("Sequential Combo")]
+    public float comboTimeWindow = 1.0f;     // Max time (in seconds) between attacks
+    public float generalChainBonus = 1.15f;  // 15% base bonus for any quick chain (NEW FIELD)
+    // A list to track the sequence of attacks entered
+    private List<string> inputSequence = new List<string>();
+    
+    // Define your sequential combos and their *higher* bonus damage multipliers
+    private readonly Dictionary<string, float> comboDefinitions = new Dictionary<string, float>()
+    {
+        // Define combos as space-separated strings: L=Light, H=Heavy, S=Special
+        {"L L H", 1.35f}, // Light -> Light -> Heavy (Highest bonus)
+        {"L S", 1.50f},   // Light -> Special
+        {"H L", 1.20f}    // Heavy -> Light
+    };
+
+    //tracking variables
+    private List<float> attackTimestamps = new List<float>();
 
     [Header("Health")]
     public int maxHealth = 3;
@@ -136,27 +156,57 @@ public class Knight1Controller : MonoBehaviour
 
     private void Attack1()
     {
+        if (Time.time < nextAttackTime) return;
+
         Debug.Log("Attack1");
         animator.SetTrigger("Attack1");
         Attack();
+
+        // Set the time the player can attack next
+        nextAttackTime = Time.time + attackCooldownTime;
+
+        // Log the attack type for combo tracking
+        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
+        inputSequence.Add("L");
+        LogAttackTime();
     }
 
     private void Attack2()
     {
+        if (Time.time < nextAttackTime) return;
+
         Debug.Log("Attack2");
         animator.SetTrigger("Attack2");
         Attack();
+
+        // Log the attack type for combo tracking
+        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
+        inputSequence.Add("L");
+        LogAttackTime();
     }
 
     private void Attack3()
     {
+        if (Time.time < nextAttackTime) return;
+
         Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
         Attack();
+
+        // Log the attack type for combo tracking
+        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
+        inputSequence.Add("L");
+        LogAttackTime();
     }
     
     public void Attack()
     {
+        
+        // 1. Check if a combo was active and get the damage multiplier.
+        // 2. Calculate the damage
+        float multiplier = GetComboMultiplier();
+        int modifiedDamage = Mathf.RoundToInt(attackDamage * multiplier);
+        
         // Detect enemies in range
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position,
@@ -167,26 +217,78 @@ public class Knight1Controller : MonoBehaviour
         // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
+            // Don't damage ourselves
+            if (enemy.gameObject == gameObject || enemy.transform.IsChildOf(transform))
+            {
+                continue;
+            }
+            
+            PlayerHealth health = enemy.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(attackDamage);
+                Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+            }
            //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+            Debug.Log($"Damage applied: {modifiedDamage} (Base: {attackDamage} * Multiplier: {multiplier:P0})");
         }
+    }
+
+    private void LogAttackTime()
+    {
+        // 1. Add the current time to the list (on button press)
+        attackTimestamps.Add(Time.time);
+
+        // 2. Remove any old timestamps that are outside the combo window
+        while (attackTimestamps.Count > 0 && 
+               attackTimestamps[0] < Time.time - comboTimeWindow)
+        {
+            attackTimestamps.RemoveAt(0);
+        }
+    }
+
+    // --- COMBO CALCULATION FUNCTION (Called inside Attack()) ---
+    private float GetComboMultiplier()
+    {
+        float multiplier = 1.0f;
+        
+        // --- 1. CHECK FOR SPECIAL SEQUENTIAL COMBO (Priority 1) ---
+        string currentSequence = string.Join(" ", inputSequence);
+
+        foreach (var combo in comboDefinitions)
+        {
+            string comboKey = combo.Key;
+            
+            // Check if the current input sequence ENDS with a defined combo pattern
+            if (currentSequence.EndsWith(comboKey))
+            {
+                multiplier = combo.Value;
+                Debug.Log($"✅ SEQUENTIAL COMBO SUCCESS: {comboKey}! Multiplier: {multiplier:P0}");
+                
+                // Clear sequence and return the highest multiplier
+                inputSequence.Clear(); 
+                return multiplier;
+            }
+        }
+        
+        // --- 2. CHECK FOR GENERAL CHAIN COMBO (Priority 2) ---
+        // If no specific combo was found, check if a general quick chain occurred.
+        // We look for a chain of at least 2 inputs to qualify as a "chain".
+        if (inputSequence.Count >= 2) 
+        {
+            multiplier = generalChainBonus;
+            Debug.Log($"⚠️ GENERAL CHAIN BONUS: {inputSequence.Count} quick hits. Multiplier: {multiplier:P0}");
+            
+            // Clear the sequence for the next chain, and return the base bonus.
+            inputSequence.Clear();
+            return multiplier;
+        }
+        
+        // --- 3. NO COMBO ---
+        // If neither condition is met, return the base 1.0 multiplier.
+        return 1.0f;
     }
     
-    public void TakeDamage(int damage)
-    {
-        if (isDead) return; // ignore damage if already dead
-
-        currentHealth -= damage;
-        Debug.Log($"Knight 1 took {damage} damage! Current health: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-        else
-        {
-            animator.SetTrigger("Hurt");
-        }
-    }
     private void Die()
     {
         isDead = true;
@@ -209,7 +311,7 @@ public class Knight1Controller : MonoBehaviour
         controls.Disable();
 
         // Optional: destroy object after animation ends
-        // Destroy(gameObject, 2f);
+        Destroy(gameObject, 2f);
     }
 
     

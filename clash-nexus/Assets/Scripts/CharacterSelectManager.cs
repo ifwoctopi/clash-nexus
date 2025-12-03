@@ -29,6 +29,13 @@ public class CharacterSelectManager : MonoBehaviour
     {
         UpdateReadyButton();
         UpdateStatusText();
+        
+        // Connect ready button to StartGame method
+        // Note: We add our listener without removing all listeners to preserve ButtonSoundPlayer
+        if (readyButton != null)
+        {
+            readyButton.onClick.AddListener(StartGame);
+        }
     }
 
     /// <summary>
@@ -124,6 +131,41 @@ public class CharacterSelectManager : MonoBehaviour
     public bool BothPlayersReady()
     {
         return player1Selected && player2Selected;
+    }
+
+    /// <summary>
+    /// Saves the selected characters to GameDataManager and transitions to the game scene
+    /// </summary>
+    public void StartGame()
+    {
+        if (!BothPlayersReady())
+        {
+            Debug.LogWarning("CharacterSelectManager: Cannot start game - not all players have selected");
+            return;
+        }
+
+        // Save selections to GameDataManager
+        GameDataManager dataManager = GameDataManager.Instance;
+        if (player1Slot != null)
+        {
+            dataManager.SetPlayerCharacter(1, player1Slot.GetCharacterId());
+        }
+        if (player2Slot != null)
+        {
+            dataManager.SetPlayerCharacter(2, player2Slot.GetCharacterId());
+        }
+
+        // Check if practice mode - if so, skip ChallengeSystem and go directly to SampleScene
+        if (dataManager.IsPracticeMode())
+        {
+            Debug.Log("CharacterSelectManager: Practice mode detected - skipping ChallengeSystem");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        }
+        else
+        {
+            // Transition to ChallengeSystem scene first
+            UnityEngine.SceneManagement.SceneManager.LoadScene("ChallengeSystem");
+        }
     }
 }
 

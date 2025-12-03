@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/CharacterSelect.unity
     guid: 5aa967070fd14c84eb3d97c782eed292
   - enabled: 1
+    path: Assets/Scenes/ChallengeSystem.unity
+    guid: 0961673bebf17c04a90ff032afe32c82
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/MapChooser.unity
+    guid: 886371a0851cd3545b13149d2316422d
+  - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: ce41f14b3fac64841a92e2f319fb4780
   m_configObjects: {}

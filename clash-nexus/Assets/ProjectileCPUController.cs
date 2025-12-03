@@ -45,7 +45,8 @@ public class ProjectileCPUController: MonoBehaviour
     private bool isDead = false;
 
     [Header("AI Settings")]
-    public Transform player; // Target player
+    public Transform playerTransform; // Target player
+    public GameObject player;
     public float decisionRate = 0.5f;
     public float attackDistance = 1.5f;
     public float retreatChance = 0.25f;
@@ -159,7 +160,7 @@ public class ProjectileCPUController: MonoBehaviour
     {
         if (player == null) return;
 
-        float distance = player.position.x - transform.position.x;
+        float distance = playerTransform.position.x - transform.position.x;
         float absDistance = Mathf.Abs(distance);
         float dir = Mathf.Sign(distance);
 
@@ -245,7 +246,12 @@ public class ProjectileCPUController: MonoBehaviour
             Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
             foreach (Collider2D hit in hits)
             {
-                // hit.GetComponent<PlayerHealth>()?.TakeDamage(attackDamage);
+                PlayerHealth health = hit.GetComponent<PlayerHealth>();
+                if (health != null)
+                {
+                    health.TakeDamage(attackDamage);
+                    Debug.Log($"CPU hit {hit.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+                }
             }
         }
 
@@ -258,6 +264,7 @@ public class ProjectileCPUController: MonoBehaviour
 
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         ProjectileScript projectileScript = proj.GetComponent<ProjectileScript>();
+        projectileScript.target= player;
 
         if (projectileScript != null)
         {
@@ -275,23 +282,15 @@ public class ProjectileCPUController: MonoBehaviour
     }
 
     // ------------------- Health -------------------
-    public void TakeDamage(int damage)
-    {
-        if (isDead) return;
-
-        currentHealth -= damage;
-        animator.SetTrigger("Hurt");
-
-        if (currentHealth <= 0)
-            Die();
-    }
 
     private void Die()
     {
         isDead = true;
-        rb.velocity = Vector2.zero;
-        collider2D.enabled = false;
+        //rb.velocity = Vector2.zero;
+        //collider2D.enabled = false;
         animator.SetTrigger("Dead");
+        
+        Destroy(gameObject, 2f);
     }
 
     // ------------------- Debug -------------------

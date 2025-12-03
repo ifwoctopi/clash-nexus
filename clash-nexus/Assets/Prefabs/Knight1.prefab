@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4495503515767760116}
   - component: {fileID: 8927594479888845726}
   - component: {fileID: 3396549867782981071}
+  - component: {fileID: -7272984798320243794}
   m_Layer: 3
   m_Name: Knight1
   m_TagString: Knight
@@ -198,9 +199,29 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackDamage: 20
+  attackCooldownTime: 0.35
+  comboTimeWindow: 1
+  generalChainBonus: 1.15
   maxHealth: 3
   animator: {fileID: 4766354587121204564}
   sr: {fileID: 6964469948740321370}
+--- !u!114 &-7272984798320243794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110596663189382487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8409010923a09564b8ff8931adfe649d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4766354587121204564}
+  maxHealth: 100
+  currentHealth: 100
+  punchSound: {fileID: 8300000, guid: feb56be1f9e891e4694cd5f2fd8960ac, type: 3}
+  punchSoundVolume: 1
 --- !u!1 &4130475314924947045
 GameObject:
   m_ObjectHideFlags: 0

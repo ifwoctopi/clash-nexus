@@ -37,6 +37,11 @@ public class ButtonSceneTransition : MonoBehaviour
         if (button != null)
         {
             button.onClick.AddListener(LoadScene);
+            Debug.Log($"ButtonSceneTransition: Added listener to button for scene '{targetSceneName}'");
+        }
+        else
+        {
+            Debug.LogError($"ButtonSceneTransition: Could not find Button component on {gameObject.name} or its parent!");
         }
     }
 
@@ -54,14 +59,54 @@ public class ButtonSceneTransition : MonoBehaviour
         // Wait a moment to allow sound to play
         yield return new WaitForSeconds(loadDelay);
         
+        // If transitioning to MainMenuScreen, reset practice mode right before loading
+        if (targetSceneName == "MainMenuScreen")
+        {
+            GameDataManager dataManager = GameDataManager.Instance;
+            if (dataManager != null)
+            {
+                dataManager.SetPracticeMode(false);
+                Debug.Log("ButtonSceneTransition: Practice mode reset to false when returning to main menu");
+            }
+        }
+        
         // Use scene name if provided, otherwise use build index
         if (!string.IsNullOrEmpty(targetSceneName))
         {
-            SceneManager.LoadScene(targetSceneName);
+            // Check if scene exists in build settings
+            bool sceneExists = false;
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+            {
+                string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+                string sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+                if (sceneName == targetSceneName)
+                {
+                    sceneExists = true;
+                    break;
+                }
+            }
+            
+            if (sceneExists)
+            {
+                SceneManager.LoadScene(targetSceneName);
+            }
+            else
+            {
+                Debug.LogError($"ButtonSceneTransition: Scene '{targetSceneName}' not found in Build Settings! " +
+                    $"Please add it to File > Build Settings > Scenes In Build.");
+            }
         }
         else if (targetSceneIndex >= 0)
         {
-            SceneManager.LoadScene(targetSceneIndex);
+            if (targetSceneIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                SceneManager.LoadScene(targetSceneIndex);
+            }
+            else
+            {
+                Debug.LogError($"ButtonSceneTransition: Scene index {targetSceneIndex} is out of range! " +
+                    $"Build Settings only has {SceneManager.sceneCountInBuildSettings} scenes.");
+            }
         }
         else
         {
