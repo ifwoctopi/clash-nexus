@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|c:\\users\\shart\\documents\\github\\clash-nexus\\clash-nexus\\assets\\scripts\\floatinghealthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\floatinghealthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|c:\\users\\shart\\documents\\github\\clash-nexus\\clash-nexus\\assets\\scripts\\damagepopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\damagepopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|c:\\users\\shart\\documents\\github\\clash-nexus\\clash-nexus\\assets\\scripts\\huntresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\assets\\cpucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\cpucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\assets\\scripts\\metricsdashboardui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\metricsdashboardui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Library\\PackageCache\\com.unity.ugui@1.0.0\\Runtime\\UI\\Core\\GraphicRaycaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.ugui@1.0.0\\Runtime\\UI\\Core\\GraphicRaycaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\assets\\scripts\\huntresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\huntresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\assets\\scripts\\matchstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\matchstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\assets\\scripts\\playerspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\assets\\scripts\\uihealthbarmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uihealthbarmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\assets\\scripts\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\assets\\scripts\\floatinghealthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5058539C-11D4-CEBD-ECAD-EFD79E6C29F4}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\floatinghealthbar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,28 +55,124 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FloatingHealthBar.cs",
-              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\FloatingHealthBar.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\FloatingHealthBar.cs",
-              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\FloatingHealthBar.cs",
-              "RelativeToolTip": "Assets\\Scripts\\FloatingHealthBar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Title": "DamagePopup.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\DamagePopup.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DamagePopup.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\DamagePopup.cs",
+              "RelativeToolTip": "Assets\\Scripts\\DamagePopup.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAuwEAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T03:36:37.725Z",
+              "WhenOpened": "2025-12-03T19:38:40.61Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MetricsDashboardUI.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\MetricsDashboardUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MetricsDashboardUI.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\MetricsDashboardUI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MetricsDashboardUI.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T19:24:31.28Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerSpawner.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\PlayerSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerSpawner.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\PlayerSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerSpawner.cs",
+              "ViewState": "AgIAAHUBAAAAAAAAAAAAAIABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T07:34:41.22Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CPUController.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\CPUController.cs",
+              "RelativeDocumentMoniker": "Assets\\CPUController.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\CPUController.cs",
+              "RelativeToolTip": "Assets\\CPUController.cs",
+              "ViewState": "AgIAAMQAAAAAAAAAAAAewOMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T04:37:05.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "HuntressController.cs",
               "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\HuntressController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\HuntressController.cs",
               "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\HuntressController.cs",
               "RelativeToolTip": "Assets\\Scripts\\HuntressController.cs",
-              "ViewState": "AgIAAM8AAAAAAAAAAAAswOUAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAIcBAAAAAAAAAAAAAIcBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T03:32:56.524Z",
+              "WhenOpened": "2025-11-24T03:32:56.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GraphicRaycaster.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Library\\PackageCache\\com.unity.ugui@1.0.0\\Runtime\\UI\\Core\\GraphicRaycaster.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ugui@1.0.0\\Runtime\\UI\\Core\\GraphicRaycaster.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Library\\PackageCache\\com.unity.ugui@1.0.0\\Runtime\\UI\\Core\\GraphicRaycaster.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.ugui@1.0.0\\Runtime\\UI\\Core\\GraphicRaycaster.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T04:20:12.066Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MatchStats.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\MatchStats.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MatchStats.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\MatchStats.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MatchStats.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T04:24:34.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UIHealthBarManager.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\UIHealthBarManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UIHealthBarManager.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\UIHealthBarManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UIHealthBarManager.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAQwHAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T04:19:49.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PlayerHealth.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\PlayerHealth.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerHealth.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\PlayerHealth.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerHealth.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAwA4AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T03:37:43.082Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FloatingHealthBar.cs",
+              "DocumentMoniker": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\FloatingHealthBar.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\FloatingHealthBar.cs",
+              "ToolTip": "C:\\Users\\shart\\Documents\\GitHub\\clash-nexus\\clash-nexus\\Assets\\Scripts\\FloatingHealthBar.cs",
+              "RelativeToolTip": "Assets\\Scripts\\FloatingHealthBar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T03:36:37.725Z"
             }
           ]
         }

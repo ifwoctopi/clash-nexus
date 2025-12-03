@@ -190,6 +190,7 @@ public class HuntressController : MonoBehaviour
 
         // play dash animation if you have one
         animator.SetTrigger("Dash");
+        MatchStats.Instance.RegisterBlock();
     }
 
 
@@ -203,6 +204,7 @@ public class HuntressController : MonoBehaviour
         if (Time.time < nextAttackTime) return;
         
         Debug.Log("Attack1");
+        MatchStats.Instance.RegisterAttackThrown();
         animator.SetTrigger("Attack1");
         Attack();
 
@@ -220,6 +222,7 @@ public class HuntressController : MonoBehaviour
         if (Time.time < nextAttackTime) return;
 
         Debug.Log("Attack2");
+        MatchStats.Instance.RegisterAttackThrown();
         animator.SetTrigger("Attack2");
         Attack();
 
@@ -237,6 +240,7 @@ public class HuntressController : MonoBehaviour
         if (Time.time < nextAttackTime) return;
 
         Debug.Log("Attack3");
+        MatchStats.Instance.RegisterAttackThrown();
         animator.SetTrigger("Attack3");
         Attack();
 
@@ -276,7 +280,18 @@ public class HuntressController : MonoBehaviour
             if (health != null)
             {
                 health.TakeDamage(attackDamage);
+                MatchStats.Instance.RegisterHit(attackDamage);
+
                 Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+
+                if (DamagePopupManager.Instance != null)
+                {
+                    DamagePopupManager.Instance.ShowDamagePopup(
+                        enemy.transform.position + Vector3.up * 1.5f,   // above the target
+                        attackDamage,
+                        Color.yellow                                    // player dealing damage
+                    );
+                }
             }
         }
     }
@@ -348,6 +363,8 @@ public class HuntressController : MonoBehaviour
         projectileScript.direction = sr.flipX ? Vector2.left : Vector2.right;
         projectileScript.speed = projectileSpeed;
     }
+
+
     private void Die()
     {
         isDead = true;
@@ -371,9 +388,11 @@ public class HuntressController : MonoBehaviour
         
 
         Destroy(gameObject, 2f);
+        FindObjectOfType<MetricsDashboardUI>(true).gameObject.SetActive(true);
+
     }
 
-    
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
