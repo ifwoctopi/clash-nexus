@@ -155,8 +155,17 @@ public class CharacterSelectManager : MonoBehaviour
             dataManager.SetPlayerCharacter(2, player2Slot.GetCharacterId());
         }
 
-        // Transition to ChallengeSystem scene first
-        UnityEngine.SceneManagement.SceneManager.LoadScene("ChallengeSystem");
+        // Check if practice mode - if so, skip ChallengeSystem and go directly to SampleScene
+        if (dataManager.IsPracticeMode())
+        {
+            Debug.Log("CharacterSelectManager: Practice mode detected - skipping ChallengeSystem");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        }
+        else
+        {
+            // Transition to ChallengeSystem scene first
+            UnityEngine.SceneManagement.SceneManager.LoadScene("ChallengeSystem");
+        }
     }
 }
 

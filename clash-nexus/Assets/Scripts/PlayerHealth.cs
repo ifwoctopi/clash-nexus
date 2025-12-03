@@ -18,6 +18,12 @@ public class PlayerHealth : MonoBehaviour
     
     private bool isDead = false;
     private AudioSource audioSource;
+    
+    // Practice mode health regeneration
+    private bool isPracticeDummy = false;
+    private float lastDamageTime = 0f;
+    private float healthRegenDelay = 5f; // Regenerate after 5 seconds of no damage
+    private float healthRegenRate = 50f; // Health per second when regenerating (faster for practice mode)
 
     private void Start()
     {
@@ -30,6 +36,37 @@ public class PlayerHealth : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
+        }
+        
+        // Check if this is Player 2 in practice mode
+        CheckIfPracticeDummy();
+    }
+    
+    private void Update()
+    {
+        // Handle health regeneration for practice dummy
+        if (isPracticeDummy && currentHealth < maxHealth)
+        {
+            if (Time.time - lastDamageTime >= healthRegenDelay)
+            {
+                // Regenerate health
+                currentHealth = Mathf.Min(currentHealth + healthRegenRate * Time.deltaTime, maxHealth);
+            }
+        }
+    }
+    
+    private void CheckIfPracticeDummy()
+    {
+        GameDataManager dataManager = GameDataManager.Instance;
+        if (dataManager != null && dataManager.IsPracticeMode())
+        {
+            // Check if this is Player 2
+            string name = gameObject.name;
+            if (name.StartsWith("Player2") || name.Contains("Player2_"))
+            {
+                isPracticeDummy = true;
+                Debug.Log($"PlayerHealth: {gameObject.name} is a practice dummy - will regenerate health");
+            }
         }
     }
 
@@ -49,11 +86,24 @@ public class PlayerHealth : MonoBehaviour
             audioSource.PlayOneShot(punchSound, punchSoundVolume);
         }
         
+        // Update last damage time for practice dummy regeneration
+        if (isPracticeDummy)
+        {
+            lastDamageTime = Time.time;
+        }
+        
         // Health bar will be updated automatically by SimpleHealthBar component
 
-        if (currentHealth <= 0)
+        // Practice dummy never dies
+        if (currentHealth <= 0 && !isPracticeDummy)
         {
             Die();
+        }
+        else if (currentHealth <= 0 && isPracticeDummy)
+        {
+            // For practice dummy, just keep health at 0 visually but don't die
+            currentHealth = 0;
+            Debug.Log($"{gameObject.name} (practice dummy) health at 0 but not dying");
         }
     }
 

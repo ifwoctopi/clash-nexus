@@ -275,6 +275,17 @@ public class MatchTimer : MonoBehaviour
     /// </summary>
     private void ShowWinMessage(int winner)
     {
+        // Check if we're in practice mode
+        GameDataManager dataManager = GameDataManager.Instance;
+        bool isPracticeMode = dataManager != null && dataManager.IsPracticeMode();
+        
+        // In practice mode, don't show win message or play sound at all (P2 is a dummy)
+        if (isPracticeMode)
+        {
+            Debug.Log("MatchTimer: Practice mode - not showing win message or playing sound");
+            return;
+        }
+        
         // Find timer text if not assigned
         if (timerText == null)
         {
@@ -285,8 +296,8 @@ public class MatchTimer : MonoBehaviour
             }
         }
         
-        // Play game finish sound
-        if (gameFinishSound != null && audioSource != null)
+        // Play game finish sound (only if not in practice mode)
+        if (!isPracticeMode && gameFinishSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(gameFinishSound, gameFinishSoundVolume);
             Debug.Log("MatchTimer: Game finish sound played");

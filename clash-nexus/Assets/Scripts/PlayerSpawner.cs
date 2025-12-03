@@ -118,11 +118,16 @@ public class PlayerSpawner : MonoBehaviour
         // Spawn Player 2 - check game mode to determine if CPU or human player
         if (player2SpawnPoint != null && !string.IsNullOrEmpty(player2CharId))
         {
+            bool isPracticeMode = dataManager.IsPracticeMode();
             bool isTwoPlayerMode = dataManager.IsTwoPlayerMode();
             
-            Debug.Log($"PlayerSpawner: Game mode is {(isTwoPlayerMode ? "2 Player" : "1 Player vs CPU")}");
-            
-            if (isTwoPlayerMode == true)
+            if (isPracticeMode)
+            {
+                // Practice mode: spawn regular character (not CPU) but disable all AI/controls
+                Debug.Log($"PlayerSpawner: Practice mode - spawning Player 2 as dummy: {player2CharId}");
+                SpawnPlayer(2, player2CharId, player2SpawnPoint, false, true);
+            }
+            else if (isTwoPlayerMode == true)
             {
                 // 2-player mode: spawn regular player prefab (not CPU)
                 Debug.Log($"PlayerSpawner: Spawning regular player prefab for Player 2: {player2CharId}");
@@ -153,7 +158,7 @@ public class PlayerSpawner : MonoBehaviour
     /// <summary>
     /// Spawns a character for a specific player
     /// </summary>
-    private void SpawnPlayer(int playerNumber, string characterId, Transform spawnPoint, bool isCPU = false)
+    private void SpawnPlayer(int playerNumber, string characterId, Transform spawnPoint, bool isCPU = false, bool isPracticeDummy = false)
     {
         if (!characterPrefabDict.TryGetValue(characterId, out GameObject prefab))
         {
@@ -207,8 +212,14 @@ public class PlayerSpawner : MonoBehaviour
         {
             spawnedPlayer2 = spawnedCharacter;
             
+            // Practice mode: disable all controllers/AI on Player 2
+            if (isPracticeDummy)
+            {
+                DisableAllControllers(spawnedCharacter);
+                Debug.Log("PlayerSpawner: Disabled all controllers on Player 2 (practice dummy)");
+            }
             // Assign Player1's transform to CPUController if it's CPU mode
-            if (isCPU)
+            else if (isCPU)
             {
                 CPUController cpuController = spawnedCharacter.GetComponent<CPUController>();
                 if (cpuController != null && spawnedPlayer1 != null)
@@ -237,8 +248,8 @@ public class PlayerSpawner : MonoBehaviour
                 huntressController.enemy = spawnedPlayer1;
             }
             
-            // If it's 2-player mode (not CPU), add Player2ControlsSwapper to use arrow keys
-            if (!isCPU && GameDataManager.Instance.IsTwoPlayerMode())
+            // If it's 2-player mode (not CPU, not practice), add Player2ControlsSwapper to use arrow keys
+            if (!isCPU && !isPracticeDummy && GameDataManager.Instance.IsTwoPlayerMode())
             {
                 spawnedCharacter.AddComponent<Player2ControlsSwapper>();
                 Debug.Log($"PlayerSpawner: Added Player2ControlsSwapper to Player 2 for arrow key controls");
@@ -332,6 +343,26 @@ public class PlayerSpawner : MonoBehaviour
         if (!foundAny)
         {
             Debug.LogWarning($"PlayerSpawner: No enemyLayers or playerLayer field found on {character.name}. Make sure controllers have a public LayerMask enemyLayers or playerLayer field.");
+        }
+    }
+
+    /// <summary>
+    /// Disables all controller components on a character (for practice dummy)
+    /// </summary>
+    private void DisableAllControllers(GameObject character)
+    {
+        MonoBehaviour[] components = character.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour component in components)
+        {
+            if (component == null) continue;
+            
+            string typeName = component.GetType().Name;
+            // Disable all controller components except PlayerHealth
+            if (typeName.Contains("Controller") && !typeName.Contains("Health"))
+            {
+                component.enabled = false;
+                Debug.Log($"PlayerSpawner: Disabled {typeName} on {character.name}");
+            }
         }
     }
 

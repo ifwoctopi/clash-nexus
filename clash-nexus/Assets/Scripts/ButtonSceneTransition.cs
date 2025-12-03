@@ -59,6 +59,17 @@ public class ButtonSceneTransition : MonoBehaviour
         // Wait a moment to allow sound to play
         yield return new WaitForSeconds(loadDelay);
         
+        // If transitioning to MainMenuScreen, reset practice mode right before loading
+        if (targetSceneName == "MainMenuScreen")
+        {
+            GameDataManager dataManager = GameDataManager.Instance;
+            if (dataManager != null)
+            {
+                dataManager.SetPracticeMode(false);
+                Debug.Log("ButtonSceneTransition: Practice mode reset to false when returning to main menu");
+            }
+        }
+        
         // Use scene name if provided, otherwise use build index
         if (!string.IsNullOrEmpty(targetSceneName))
         {

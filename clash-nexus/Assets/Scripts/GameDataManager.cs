@@ -14,6 +14,7 @@ public class GameDataManager : MonoBehaviour
 
     [Header("Game Mode")]
     private bool isTwoPlayerMode = false; // false = 1 player (vs CPU), true = 2 players
+    private bool isPracticeMode = false; // true = practice mode
 
     [Header("Match Timer")]
     // Timer options: -1 = unlimited, 30 = 30 seconds, 60 = 60 seconds, etc.
@@ -129,6 +130,23 @@ public class GameDataManager : MonoBehaviour
     public bool IsTimerUnlimited()
     {
         return matchTimerSeconds < 0f;
+    }
+
+    /// <summary>
+    /// Sets whether the game is in practice mode
+    /// </summary>
+    public void SetPracticeMode(bool practiceMode)
+    {
+        isPracticeMode = practiceMode;
+        Debug.Log($"GameDataManager: Practice mode set to {practiceMode}");
+    }
+
+    /// <summary>
+    /// Gets whether the game is in practice mode
+    /// </summary>
+    public bool IsPracticeMode()
+    {
+        return isPracticeMode;
     }
 }
 
