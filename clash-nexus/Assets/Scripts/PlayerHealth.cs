@@ -8,13 +8,29 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 100f; // Default 100 health
     public float currentHealth; // Public so MatchTimer can access it
 
+    [Header("Audio")]
+    [Tooltip("Sound to play when taking damage")]
+    public AudioClip punchSound;
+    
+    [Range(0f, 1f)]
+    [Tooltip("Volume of the punch sound")]
+    public float punchSoundVolume = 1f;
     
     private bool isDead = false;
+    private AudioSource audioSource;
 
     private void Start()
     {
         currentHealth = maxHealth;
         // Health bar will be updated by SimpleHealthBar component
+        
+        // Get or create AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
     }
 
     /// <summary>
@@ -26,6 +42,12 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         animator.SetTrigger("Hurt");
+        
+        // Play punch sound when taking damage
+        if (punchSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(punchSound, punchSoundVolume);
+        }
         
         // Health bar will be updated automatically by SimpleHealthBar component
 

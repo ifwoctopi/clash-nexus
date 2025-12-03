@@ -19,16 +19,33 @@ public class MatchTimer : MonoBehaviour
     [Tooltip("What happens when timer reaches 0")]
     [SerializeField] private bool endMatchOnTimeout = true;
 
+    [Header("Audio")]
+    [Tooltip("Sound to play when a game finishes and winner is declared")]
+    [SerializeField] private AudioClip gameFinishSound;
+    
+    [Range(0f, 1f)]
+    [Tooltip("Volume of the game finish sound")]
+    [SerializeField] private float gameFinishSoundVolume = 1f;
+
     private float currentTime;
     private bool isTimerActive = false;
     private bool isUnlimited = false;
     private bool matchEnded = false;
     private PlayerSpawner playerSpawner;
+    private AudioSource audioSource;
 
     void Start()
     {
         // Find PlayerSpawner to access players
         playerSpawner = FindObjectOfType<PlayerSpawner>();
+        
+        // Get or create AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
         
         // Find win button if not assigned
         if (winButton == null)
@@ -266,6 +283,13 @@ public class MatchTimer : MonoBehaviour
             {
                 timerText = timerObj.GetComponent<Text>();
             }
+        }
+        
+        // Play game finish sound
+        if (gameFinishSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(gameFinishSound, gameFinishSoundVolume);
+            Debug.Log("MatchTimer: Game finish sound played");
         }
         
         // Display win message in timer text

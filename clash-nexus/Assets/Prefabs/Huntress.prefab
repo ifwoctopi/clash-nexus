@@ -202,12 +202,16 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1139610908247666567, guid: 53b571dcd2c443e4081956974a9cbd4e, type: 3}
   firePoint: {fileID: 1063135625623861756}
   projectileSpeed: 10
+  enemy: {fileID: 0}
   attackPoint: {fileID: 919442435591560718}
   attackRange: 2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
   attackDamage: 20
+  attackCooldownTime: 0.35
+  comboTimeWindow: 1
+  generalChainBonus: 1.15
   maxHealth: 3
   animator: {fileID: 4766354587121204564}
   sr: {fileID: 6964469948740321370}
@@ -226,6 +230,8 @@ MonoBehaviour:
   animator: {fileID: 4766354587121204564}
   maxHealth: 100
   currentHealth: 100
+  punchSound: {fileID: 8300000, guid: feb56be1f9e891e4694cd5f2fd8960ac, type: 3}
+  punchSoundVolume: 1
 --- !u!1 &4130475314924947045
 GameObject:
   m_ObjectHideFlags: 0
