@@ -237,7 +237,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void StartInteractiveRebind()
         {
-            m_Action.action.Disable();
             if (!ResolveActionAndBinding(out var action, out var bindingIndex))
                 return;
 
@@ -269,6 +268,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             // Configure the rebind.
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
+            .WithControlsExcluding("Mouse") // Exclude mouse movement to prevent accidental binds
+            .WithControlsExcluding("<Keyboard>/escape") // Common practice to allow escape to cancel
+            .WithControlsExcluding("<Keyboard>/space")
                 .OnCancel(
                     operation =>
                     {
