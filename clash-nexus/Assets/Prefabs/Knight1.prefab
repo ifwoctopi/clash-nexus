@@ -221,7 +221,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   punchSound: {fileID: 8300000, guid: feb56be1f9e891e4694cd5f2fd8960ac, type: 3}
-  punchSoundVolume: 1
+  punchSoundVolume: 0.5
 --- !u!1 &4130475314924947045
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     
     [Range(0f, 1f)]
     [Tooltip("Volume of the punch sound")]
-    public float punchSoundVolume = 1f;
+    public float punchSoundVolume = 0.5f;
     
     private bool isDead = false;
     private AudioSource audioSource;
@@ -37,6 +37,8 @@ public class PlayerHealth : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
         }
+        // Ensure AudioSource volume is at 1.0 so PlayOneShot volume parameter works correctly
+        audioSource.volume = 1f;
         
         // Check if this is Player 2 in practice mode
         CheckIfPracticeDummy();

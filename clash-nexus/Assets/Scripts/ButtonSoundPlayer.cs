@@ -14,7 +14,7 @@ public class ButtonSoundPlayer : MonoBehaviour
     
     [Tooltip("Volume of the button click sound (0.0 to 1.0)")]
     [Range(0f, 1f)]
-    [SerializeField] private float volume = 1f;
+    [SerializeField] private float volume = 0.01f;
 
     private Button button;
     private AudioSource audioSource;
@@ -29,12 +29,19 @@ public class ButtonSoundPlayer : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
-            audioSource.volume = volume;
         }
+        // Ensure AudioSource volume is at 1.0 so PlayOneShot volume parameter works correctly
+        audioSource.volume = 1f;
     }
 
     void Start()
     {
+        // Ensure AudioSource volume is at 1.0 (in case it was changed elsewhere)
+        if (audioSource != null)
+        {
+            audioSource.volume = 1f;
+        }
+        
         // Subscribe to the button's onClick event
         if (button != null)
         {
@@ -50,6 +57,9 @@ public class ButtonSoundPlayer : MonoBehaviour
         // Play the sound if we have one assigned
         if (clickSound != null && audioSource != null)
         {
+            // Ensure AudioSource volume is at 1.0 right before playing
+            // This ensures the PlayOneShot volume parameter works correctly
+            audioSource.volume = 1f;
             audioSource.PlayOneShot(clickSound, volume);
         }
     }

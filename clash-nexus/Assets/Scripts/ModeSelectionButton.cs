@@ -44,8 +44,12 @@ public class ModeSelectionButton : MonoBehaviour
         // Set the game mode in GameDataManager
         GameDataManager dataManager = GameDataManager.Instance;
         dataManager.SetGameMode(isTwoPlayerMode);
+        
+        // Reset practice mode when selecting a regular game mode (not practice mode)
+        // This ensures practice mode doesn't persist if user went back and selected a new mode
+        dataManager.SetPracticeMode(false);
 
-        Debug.Log($"ModeSelectionButton: Game mode set to {(isTwoPlayerMode ? "2 Player" : "1 Player vs CPU")}");
+        Debug.Log($"ModeSelectionButton: Game mode set to {(isTwoPlayerMode ? "2 Player" : "1 Player vs CPU")}, practice mode reset to false");
     }
 
     void OnDestroy()

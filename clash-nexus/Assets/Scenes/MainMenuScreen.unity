@@ -621,7 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMusic: {fileID: 8300000, guid: 39b6d77ac4aaa8042b4da40263411fa8, type: 3}
   sceneMusic: []
-  volume: 0.5
+  volume: 0.3
   loopMusic: 1
   fadeTime: 1
 --- !u!4 &1707277481
