@@ -391,6 +391,14 @@ public class MatchTimer : MonoBehaviour
     }
     
     /// <summary>
+    /// Checks if the match has ended
+    /// </summary>
+    public bool IsMatchEnded()
+    {
+        return matchEnded;
+    }
+    
+    /// <summary>
     /// Called when a player dies. Can be used to stop the timer or trigger match-end logic.
     /// </summary>
     public void OnPlayerDied()

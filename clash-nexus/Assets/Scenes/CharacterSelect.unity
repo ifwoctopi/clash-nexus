@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: ChallengeSystem
   targetSceneIndex: -1
-  loadDelay: 0.4
+  loadDelay: 1
 --- !u!114 &1557022290
 MonoBehaviour:
   m_ObjectHideFlags: 0

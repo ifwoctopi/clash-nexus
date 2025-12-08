@@ -43,13 +43,40 @@ public class ModeSelectionButton : MonoBehaviour
     {
         // Set the game mode in GameDataManager
         GameDataManager dataManager = GameDataManager.Instance;
-        dataManager.SetGameMode(isTwoPlayerMode);
+        if (dataManager == null) return;
         
-        // Reset practice mode when selecting a regular game mode (not practice mode)
-        // This ensures practice mode doesn't persist if user went back and selected a new mode
-        dataManager.SetPracticeMode(false);
-
-        Debug.Log($"ModeSelectionButton: Game mode set to {(isTwoPlayerMode ? "2 Player" : "1 Player vs CPU")}, practice mode reset to false");
+        // Check current scene - only change game mode if we're in ModeChooser
+        // This prevents accidentally resetting game mode when navigating from other scenes
+        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        bool isModeChooserScene = currentScene == "ModeChooser";
+        
+        // Check if we're already in practice mode - if so, don't reset it
+        // This prevents practice mode from being reset when navigating back to CharacterSelect
+        bool wasInPracticeMode = dataManager.IsPracticeMode();
+        
+        // Only change game mode if we're actually in ModeChooser (selecting a mode)
+        // Otherwise, preserve the current game mode (for navigation buttons)
+        if (isModeChooserScene)
+        {
+            dataManager.SetGameMode(isTwoPlayerMode);
+            Debug.Log($"ModeSelectionButton: Mode selection - game mode set to {(isTwoPlayerMode ? "2 Player" : "1 Player vs CPU")}");
+        }
+        else
+        {
+            // Preserve current game mode - don't change it
+            Debug.Log($"ModeSelectionButton: Navigation button detected (scene: {currentScene}) - preserving current game mode");
+        }
+        
+        // Only reset practice mode if we weren't already in practice mode and we're selecting a mode
+        if (!wasInPracticeMode && isModeChooserScene)
+        {
+            dataManager.SetPracticeMode(false);
+            Debug.Log($"ModeSelectionButton: Practice mode reset to false");
+        }
+        else if (wasInPracticeMode)
+        {
+            Debug.Log($"ModeSelectionButton: Practice mode detected - preserving practice mode");
+        }
     }
 
     void OnDestroy()
