@@ -171,19 +171,12 @@ public class SamuraiController : MonoBehaviour
             if (health != null)
             {
                 PlayerStatsManager.Instance.GetStats(id.playerNumber).RegisterDamageDealt(attackDamage);
-
-                health.TakeDamage(attackDamage);
+                Vector2 knockDir = (transform.position - enemy.transform.position).normalized;
+                health.TakeDamage(attackDamage, knockDir);
 
                 Debug.Log($"Samurai hit {enemy.name} for {attackDamage} damage.");
             }
         }
-    }
-
-    // ------------------- HEALTH -------------------
-
-    public void TakeDamage(float damage)
-    {
-        GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
     private void OnDrawGizmosSelected()

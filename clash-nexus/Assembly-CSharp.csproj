@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\HealthBarAttacher.cs" />
+    <Compile Include="Assets\Scripts\FadeAndFloat.cs" />
     <Compile Include="Assets\CPUController.cs" />
     <Compile Include="Assets\Scripts\MatchTimer.cs" />
     <Compile Include="Assets\Scripts\CharacterSlot.cs" />
@@ -71,8 +72,10 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\Scripts\PlayerStatsManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
+    <Compile Include="Assets\Scripts\MatchStatsUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\FloatingHealthBar.cs" />
     <Compile Include="Assets\SamuraiController.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\DamagePopupManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\GameDataManager.cs" />
@@ -108,15 +112,18 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectManager.cs" />
     <Compile Include="Assets\Scripts\DraggableCircle.cs" />
+    <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\ModeSelectionButton.cs" />
     <Compile Include="Assets\Player1Controls.cs" />
     <Compile Include="Assets\BackgroundSelectSystem.cs" />
     <Compile Include="Assets\Scripts\ButtonSoundPlayer.cs" />
+    <Compile Include="Assets\Scripts\DamagePopupEffect.cs" />
     <Compile Include="Assets\Scripts\TimerSelectionButton.cs" />
     <Compile Include="Assets\Samples\Input System\1.7.0\Rebinding UI\RebindActionUI.cs" />
     <Compile Include="Assets\IntroManager.cs" />
     <Compile Include="Assets\Scripts\BackButton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\Scripts\PlayerIdentity.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Sprites\Knight_player_1.4\Knight_player\Read_me.txt" />
