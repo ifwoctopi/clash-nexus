@@ -10,6 +10,7 @@
 *.cs text eol=lf
 *.shader text eol=lf
 *.txt text eol=lf
+*.mat text eol=lf
 *.renderTexture text eol=lf
 # Binary files (don’t convert)
 *.png binary

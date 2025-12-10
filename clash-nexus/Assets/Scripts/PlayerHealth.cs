@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,8 +18,23 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("Volume of the punch sound")]
     public float punchSoundVolume = 0.5f;
     
+    [Header("Damage UI")]
+    public SpriteRenderer sr;
+    private Color originalColor;
+    public Material flashMaterial; // assign WhiteFlashMaterial in Inspector
+    private Material originalMaterial; // store the original material
+    
+    [Header("Knockback")]
+    public float knockbackForce = 20f;
+    public Rigidbody2D rb;
+    public bool isKnockedback = false;
+    private Vector2 knockbackVelocity;
+    private float knockbackDuration = 0.2f;
+    private float knockbackTimer = 0f;
+    
     private bool isDead = false;
     private AudioSource audioSource;
+    
     
     // Practice mode health regeneration
     private bool isPracticeDummy = false;
@@ -25,6 +42,11 @@ public class PlayerHealth : MonoBehaviour
     private float healthRegenDelay = 5f; // Regenerate after 5 seconds of no damage
     private float healthRegenRate = 50f; // Health per second when regenerating (faster for practice mode)
 
+    private void Awake()
+    {
+        originalColor = sr.color; // save the original color
+        originalMaterial = sr.material; // save original material
+    }
     private void Start()
     {
         currentHealth = maxHealth;
@@ -56,7 +78,20 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        if (isKnockedback)
+        {
+            rb.velocity = knockbackVelocity;
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0)
+            {
+                isKnockedback = false;
+            }
+        }
+    }
+
     private void CheckIfPracticeDummy()
     {
         GameDataManager dataManager = GameDataManager.Instance;
@@ -75,12 +110,15 @@ public class PlayerHealth : MonoBehaviour
     /// <summary>
     /// Takes damage (accepts both float and int for compatibility)
     /// </summary>
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector2 hitDirection)
     {
         if (isDead) return;
 
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         animator.SetTrigger("Hurt");
+        
+        FlashWhite(.1f);
+        Knockback(hitDirection, knockbackForce);
         
         // Play punch sound when taking damage
         if (punchSound != null && audioSource != null)
@@ -112,9 +150,9 @@ public class PlayerHealth : MonoBehaviour
     /// <summary>
     /// Takes damage (int overload for compatibility with existing code)
     /// </summary>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 hitDirection)
     {
-        TakeDamage((float)damage);
+        TakeDamage((float)damage, hitDirection);
     }
 
     public void Heal(float healAmount)
@@ -175,6 +213,39 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
+    
+    public void FlashWhite(float duration)
+    {
+        StartCoroutine(FlashCoroutine(duration));
+    }
+
+    private IEnumerator FlashCoroutine(float duration)
+    {
+        sr.material = flashMaterial; // switch to white flash material
+        yield return new WaitForSeconds(duration); // wait
+        sr.material = originalMaterial; // revert to original material
+    }
+    
+    public void Knockback(Vector2 direction, float force, float duration = 0.2f)
+    {
+        // Try to get any component that implements IKnockbackable
+        IKnockbackable knockbackable = GetComponent<IKnockbackable>();
+        if (knockbackable != null)
+        {
+            knockbackable.StartKnockback(direction.normalized * force, duration);
+        }
+        else
+        {
+            // fallback: apply direct AddForce if Rigidbody2D exists
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+            }
+        }
+    }
+
 
     /// <summary>
     /// Checks if the player is dead

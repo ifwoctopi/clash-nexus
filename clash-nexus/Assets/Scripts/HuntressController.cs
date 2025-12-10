@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HuntressController : MonoBehaviour
+public class HuntressController : MonoBehaviour, IKnockbackable
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -38,10 +38,12 @@ public class HuntressController : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
-
     public int attackDamage = 20;
     public float attackCooldownTime = 0.35f;
     private float nextAttackTime = 0f;
+    private bool isKnockedback = false;
+    private Vector2 knockbackVelocity;
+    private float knockbackTimer = 0f;
 
     [Header("Sequential Combo")]
     public float comboTimeWindow = 1.0f;     // Max time (in seconds) between attacks
@@ -149,20 +151,29 @@ public class HuntressController : MonoBehaviour
     {
         if (isDead) return;
 
-        // DASH OVERRIDES NORMAL MOVEMENT
+        // --- Handle knockback ---
+        if (isKnockedback)
+        {
+            GetComponent<Rigidbody2D>().velocity = knockbackVelocity;
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f)
+                isKnockedback = false;
+            return; // skip normal movement while knockback is active
+        }
+
+        // --- Handle dash ---
         if (isDashing)
         {
-            float dir = sr.flipX ? -1f : 1f; // dash in facing direction
+            float dir = sr.flipX ? -1f : 1f;
             rb.velocity = new Vector2(dir * dashSpeed, rb.velocity.y);
 
-            // End dash when duration is over
             if (Time.time >= dashEndTime)
                 isDashing = false;
 
             return; // skip normal movement while dashing
         }
 
-        // Normal movement
+        // --- Normal movement ---
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
     }
 
@@ -275,7 +286,8 @@ public class HuntressController : MonoBehaviour
             PlayerHealth health = enemy.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamage(attackDamage);
+                Vector2 knockDir = (enemy.transform.position - transform.position).normalized;
+                health.TakeDamage(attackDamage,knockDir);
                 Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
             }
         }
@@ -348,6 +360,15 @@ public class HuntressController : MonoBehaviour
         projectileScript.direction = sr.flipX ? Vector2.left : Vector2.right;
         projectileScript.speed = projectileSpeed;
     }
+    
+    // Call this from PlayerHealth or any other damage system
+    public void StartKnockback(Vector2 velocity, float duration)
+    {
+        isKnockedback = true;
+        knockbackVelocity = velocity;
+        knockbackTimer = duration;
+    }
+    
     private void Die()
     {
         isDead = true;
@@ -372,7 +393,6 @@ public class HuntressController : MonoBehaviour
 
         Destroy(gameObject, 2f);
     }
-
     
     private void OnDrawGizmosSelected()
     {
@@ -381,4 +401,7 @@ public class HuntressController : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+    
+   
+
 }

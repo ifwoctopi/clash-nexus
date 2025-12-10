@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knight1Controller : MonoBehaviour
+public class Knight1Controller : MonoBehaviour, IKnockbackable
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -22,25 +22,19 @@ public class Knight1Controller : MonoBehaviour
     public LayerMask enemyLayers;
 
     public int attackDamage = 20;
-    public float attackCooldownTime = 0.35f; 
+    public float attackCooldownTime = 0.35f;
     private float nextAttackTime = 0f;
 
-     [Header("Sequential Combo")]
-    public float comboTimeWindow = 1.0f;     // Max time (in seconds) between attacks
-    public float generalChainBonus = 1.15f;  // 15% base bonus for any quick chain (NEW FIELD)
-    // A list to track the sequence of attacks entered
+    [Header("Sequential Combo")]
+    public float comboTimeWindow = 1.0f;
+    public float generalChainBonus = 1.15f;
     private List<string> inputSequence = new List<string>();
-    
-    // Define your sequential combos and their *higher* bonus damage multipliers
     private readonly Dictionary<string, float> comboDefinitions = new Dictionary<string, float>()
     {
-        // Define combos as space-separated strings: L=Light, H=Heavy, S=Special
-        {"L L H", 1.35f}, // Light -> Light -> Heavy (Highest bonus)
-        {"L S", 1.50f},   // Light -> Special
-        {"H L", 1.20f}    // Heavy -> Light
+        {"L L H", 1.35f},
+        {"L S", 1.50f},
+        {"H L", 1.20f}
     };
-
-    //tracking variables
     private List<float> attackTimestamps = new List<float>();
 
     [Header("Health")]
@@ -48,13 +42,21 @@ public class Knight1Controller : MonoBehaviour
     private int currentHealth;
     private bool isDead = false;
 
-    private CapsuleCollider2D playerCollider; // reference to your main collider
-    
+    [Header("Layers")]
+    public int player1;
+    public int cpu;
+
+    private CapsuleCollider2D playerCollider;
     private Rigidbody2D rb;
     private Player1Controls controls;
     private Vector2 moveInput;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
+
+    // --- Knockback fields ---
+    private bool isKnockedback = false;
+    private Vector2 knockbackVelocity;
+    private float knockbackTimer = 0f;
 
     private void Awake()
     {
@@ -67,86 +69,62 @@ public class Knight1Controller : MonoBehaviour
 
         controls = new Player1Controls();
 
-        // Movement
         controls.Player1.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player1.Move.canceled += ctx => moveInput = Vector2.zero;
 
-        // Jump
         controls.Player1.Jump.performed += ctx => Jump();
 
-        // Attacks
         controls.Player1.Attack1.performed += ctx => Attack1();
         controls.Player1.Attack2.performed += ctx => Attack2();
         controls.Player1.Attack3.performed += ctx => Attack3();
 
-        // Defense
         controls.Player1.Defend.performed += ctx => isDefending = true;
         controls.Player1.Defend.canceled += ctx => isDefending = false;
+
+        Physics2D.IgnoreLayerCollision(player1, cpu, true);
     }
 
-
-    private void OnEnable()
-    {
-        controls.Player1.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Player1.Disable();
-    }
+    private void OnEnable() => controls.Player1.Enable();
+    private void OnDisable() => controls.Player1.Disable();
 
     private void Update()
     {
         if (isDead) return;
+
         CheckGround();
-        if(isDefending)
-        {
-            animator.SetBool("isDefending", true);
-        }
-        else
-        {
-            animator.SetBool("isDefending", false);
-        }
+        animator.SetBool("isDefending", isDefending);
 
-        // Trigger Jump ONCE on takeoff
-        if (wasGrounded && !isGrounded)
-        {
-            animator.SetTrigger("Jump");
-        }
+        if (wasGrounded && !isGrounded) animator.SetTrigger("Jump");
+        if (!wasGrounded && isGrounded) animator.SetTrigger("Land");
 
-        // Landing trigger (optional)
-        if (!wasGrounded && isGrounded)
-        {
-            animator.SetTrigger("Land");
-        }
-
-        // Run animation
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("yVelocity", rb.velocity.y);
-        animator.SetBool("isFalling", rb.velocity.y < -.1);
+        animator.SetBool("isFalling", rb.velocity.y < -0.1f);
         wasGrounded = isGrounded;
 
-        // Run animation
         animator.SetBool("isRunning", moveInput.x != 0);
-
-        // Flip sprite
-        if (moveInput.x > 0)
-            sr.flipX = false;
-        else if (moveInput.x < 0)
-            sr.flipX = true;
+        sr.flipX = moveInput.x < 0;
     }
+
     private void FixedUpdate()
     {
         if (isDead) return;
+
+        // --- Handle knockback ---
+        if (isKnockedback)
+        {
+            rb.velocity = knockbackVelocity;
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f) isKnockedback = false;
+            return;
+        }
+
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
     }
 
     private void Jump()
     {
-        if (isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+        if (isGrounded) rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
     private void CheckGround()
@@ -157,16 +135,9 @@ public class Knight1Controller : MonoBehaviour
     private void Attack1()
     {
         if (Time.time < nextAttackTime) return;
-
-        Debug.Log("Attack1");
         animator.SetTrigger("Attack1");
         Attack();
-
-        // Set the time the player can attack next
         nextAttackTime = Time.time + attackCooldownTime;
-
-        // Log the attack type for combo tracking
-        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
         inputSequence.Add("L");
         LogAttackTime();
     }
@@ -174,13 +145,8 @@ public class Knight1Controller : MonoBehaviour
     private void Attack2()
     {
         if (Time.time < nextAttackTime) return;
-
-        Debug.Log("Attack2");
         animator.SetTrigger("Attack2");
         Attack();
-
-        // Log the attack type for combo tracking
-        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
         inputSequence.Add("L");
         LogAttackTime();
     }
@@ -188,142 +154,83 @@ public class Knight1Controller : MonoBehaviour
     private void Attack3()
     {
         if (Time.time < nextAttackTime) return;
-
-        Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
         Attack();
-
-        // Log the attack type for combo tracking
-        // (Assuming 'L' for Attack1, 'H' for Attack2, 'S' for Attack3 based on combo definitions)
         inputSequence.Add("L");
         LogAttackTime();
     }
-    
+
     public void Attack()
     {
-        
-        // 1. Check if a combo was active and get the damage multiplier.
-        // 2. Calculate the damage
         float multiplier = GetComboMultiplier();
         int modifiedDamage = Mathf.RoundToInt(attackDamage * multiplier);
-        
-        // Detect enemies in range
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            attackPoint.position,
-            attackRange,
-            enemyLayers
-        );
 
-        // Damage each enemy hit
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hits)
         {
-            // Don't damage ourselves
-            if (enemy.gameObject == gameObject || enemy.transform.IsChildOf(transform))
-            {
-                continue;
-            }
-            
+            if (enemy.gameObject == gameObject || enemy.transform.IsChildOf(transform)) continue;
+
             PlayerHealth health = enemy.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamage(attackDamage);
+                Vector2 knockDir = (transform.position - enemy.transform.position).normalized;
+                health.TakeDamage(attackDamage, knockDir);
                 Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
             }
-           //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+
             Debug.Log($"Damage applied: {modifiedDamage} (Base: {attackDamage} * Multiplier: {multiplier:P0})");
         }
     }
 
     private void LogAttackTime()
     {
-        // 1. Add the current time to the list (on button press)
         attackTimestamps.Add(Time.time);
-
-        // 2. Remove any old timestamps that are outside the combo window
-        while (attackTimestamps.Count > 0 && 
-               attackTimestamps[0] < Time.time - comboTimeWindow)
-        {
+        while (attackTimestamps.Count > 0 && attackTimestamps[0] < Time.time - comboTimeWindow)
             attackTimestamps.RemoveAt(0);
-        }
     }
 
-    // --- COMBO CALCULATION FUNCTION (Called inside Attack()) ---
     private float GetComboMultiplier()
     {
-        float multiplier = 1.0f;
-        
-        // --- 1. CHECK FOR SPECIAL SEQUENTIAL COMBO (Priority 1) ---
         string currentSequence = string.Join(" ", inputSequence);
-
         foreach (var combo in comboDefinitions)
         {
-            string comboKey = combo.Key;
-            
-            // Check if the current input sequence ENDS with a defined combo pattern
-            if (currentSequence.EndsWith(comboKey))
+            if (currentSequence.EndsWith(combo.Key))
             {
-                multiplier = combo.Value;
-                Debug.Log($"✅ SEQUENTIAL COMBO SUCCESS: {comboKey}! Multiplier: {multiplier:P0}");
-                
-                // Clear sequence and return the highest multiplier
-                inputSequence.Clear(); 
-                return multiplier;
+                inputSequence.Clear();
+                return combo.Value;
             }
         }
-        
-        // --- 2. CHECK FOR GENERAL CHAIN COMBO (Priority 2) ---
-        // If no specific combo was found, check if a general quick chain occurred.
-        // We look for a chain of at least 2 inputs to qualify as a "chain".
-        if (inputSequence.Count >= 2) 
+        if (inputSequence.Count >= 2)
         {
-            multiplier = generalChainBonus;
-            Debug.Log($"⚠️ GENERAL CHAIN BONUS: {inputSequence.Count} quick hits. Multiplier: {multiplier:P0}");
-            
-            // Clear the sequence for the next chain, and return the base bonus.
             inputSequence.Clear();
-            return multiplier;
+            return generalChainBonus;
         }
-        
-        // --- 3. NO COMBO ---
-        // If neither condition is met, return the base 1.0 multiplier.
-        return 1.0f;
+        return 1f;
     }
-    
+
+    // --- Knockback interface method ---
+    public void StartKnockback(Vector2 velocity, float duration)
+    {
+        isKnockedback = true;
+        knockbackVelocity = velocity;
+        knockbackTimer = duration;
+    }
+
     private void Die()
     {
         isDead = true;
-        Debug.Log("Knight 1 Died!");
-
-        // Stop movement
         moveInput = Vector2.zero;
         rb.velocity = Vector2.zero;
-
-        // Disable collider so sprite doesn't float
         playerCollider.enabled = false;
-
-        // Optional: disable Rigidbody gravity if desired
         rb.simulated = false;
-
-        // Trigger death animation
         animator.SetTrigger("Dead");
-
-        // Disable input
         controls.Disable();
-
-        // Optional: destroy object after animation ends
         Destroy(gameObject, 2f);
     }
 
-    
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-            return;
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        if (attackPoint != null)
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
-
-
-
-

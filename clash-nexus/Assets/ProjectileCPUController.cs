@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileCPUController: MonoBehaviour
+public class ProjectileCPUController : MonoBehaviour, IKnockbackable
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
 
     [Header("Layers")]
-    public int player1; // e.g., Layer number for Player
-    public int cpu;    // e.g., Layer number for CPU
-    
+    public int player1;
+    public int cpu;
+
     [Header("Ground Check")]
     public Transform groundCheck;
     public float checkRadius = 0.2f;
@@ -22,14 +22,14 @@ public class ProjectileCPUController: MonoBehaviour
     [Header("Combat")]
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public LayerMask playerLayer; // Target layer (player)
+    public LayerMask playerLayer;
     public int attackDamage = 20;
-    
+
     [Header("Projectiles")]
-    public GameObject projectilePrefab; // assign the projectile prefab
-    public Transform firePoint;         // position from which projectiles spawn
+    public GameObject projectilePrefab;
+    public Transform firePoint;
     public float projectileSpeed = 10f;
-    
+
     [Header("Dash")]
     public float dashSpeed = 12f;
     public float dashDuration = 0.15f;
@@ -38,14 +38,13 @@ public class ProjectileCPUController: MonoBehaviour
     private float dashEndTime;
     private float nextDashTime;
 
-
     [Header("Health")]
     public int maxHealth = 3;
     private int currentHealth;
     private bool isDead = false;
 
     [Header("AI Settings")]
-    public Transform playerTransform; // Target player
+    public Transform playerTransform;
     public GameObject player;
     public float decisionRate = 0.5f;
     public float attackDistance = 1.5f;
@@ -66,14 +65,18 @@ public class ProjectileCPUController: MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
 
+    // --- Knockback fields ---
+    private bool isKnockedback = false;
+    private Vector2 knockbackVelocity;
+    private float knockbackTimer = 0f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<CapsuleCollider2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        
-        Physics2D.IgnoreLayerCollision(player1, cpu, true); // prevents physics push
 
+        Physics2D.IgnoreLayerCollision(player1, cpu, true);
 
         currentHealth = maxHealth;
     }
@@ -101,6 +104,15 @@ public class ProjectileCPUController: MonoBehaviour
     private void FixedUpdate()
     {
         if (isDead) return;
+
+        // --- Handle knockback ---
+        if (isKnockedback)
+        {
+            rb.velocity = knockbackVelocity;
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f) isKnockedback = false;
+            return;
+        }
 
         // DASH OVERRIDES MOVEMENT
         if (isDashing)
@@ -139,13 +151,10 @@ public class ProjectileCPUController: MonoBehaviour
             animator.SetTrigger("Jump");
         }
     }
-    
+
     private void TryDash()
     {
-        // Must be running to dash
         if (!animator.GetBool("isRunning")) return;
-
-        // Cooldown
         if (Time.time < nextDashTime) return;
 
         isDashing = true;
@@ -155,7 +164,6 @@ public class ProjectileCPUController: MonoBehaviour
         animator.SetTrigger("Dash");
     }
 
-    // ------------------- AI Logic -------------------
     private void AIUpdate()
     {
         if (player == null) return;
@@ -164,22 +172,19 @@ public class ProjectileCPUController: MonoBehaviour
         float absDistance = Mathf.Abs(distance);
         float dir = Mathf.Sign(distance);
 
-        // Periodic decisions
         if (Time.time > nextDecisionTime)
         {
             nextDecisionTime = Time.time + decisionRate;
-            
-            // CPU dash decision (random small chance)
+
             if (animator.GetBool("isRunning") && !isAttacking && !isRetreating && isGrounded)
             {
-                if (Random.value < 0.10f) // 10% chance every decision tick
+                if (Random.value < 0.10f)
                 {
                     TryDash();
                     return;
                 }
             }
 
-            // Attack / Retreat
             if (absDistance < attackDistance)
             {
                 if (!isRetreating && Random.value < retreatChance)
@@ -194,7 +199,6 @@ public class ProjectileCPUController: MonoBehaviour
                 return;
             }
 
-            // Jump logic
             if (absDistance < jumpDistanceThreshold && absDistance > minDistanceToPlayer && isGrounded && !isAttacking && !isRetreating)
             {
                 if (Random.value < 0.03f)
@@ -202,7 +206,6 @@ public class ProjectileCPUController: MonoBehaviour
             }
         }
 
-        // Movement
         if (isRetreating)
         {
             rb.velocity = new Vector2(-dir * moveSpeed, rb.velocity.y);
@@ -216,7 +219,6 @@ public class ProjectileCPUController: MonoBehaviour
         }
     }
 
-    // ------------------- Actions -------------------
     private void Jump()
     {
         if (isGrounded)
@@ -231,17 +233,14 @@ public class ProjectileCPUController: MonoBehaviour
         if (isAttacking) return;
 
         isAttacking = true;
-        rb.velocity = new Vector2(0, rb.velocity.y); // Stop horizontal movement
+        rb.velocity = new Vector2(0, rb.velocity.y);
 
         if (id == 1) animator.SetTrigger("Attack1");
         else if (id == 2) animator.SetTrigger("Attack2");
-        else if (id == 3)
-        {
-            animator.SetTrigger("Attack3");
-        }
+        else if (id == 3) animator.SetTrigger("Attack3");
 
         // Damage detection for melee
-        if (id != 3) // optional: projectiles might handle damage separately
+        if (id != 3)
         {
             Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
             foreach (Collider2D hit in hits)
@@ -249,7 +248,8 @@ public class ProjectileCPUController: MonoBehaviour
                 PlayerHealth health = hit.GetComponent<PlayerHealth>();
                 if (health != null)
                 {
-                    health.TakeDamage(attackDamage);
+                    Vector2 knockDir = (transform.position - hit.transform.position).normalized;
+                    health.TakeDamage(attackDamage, knockDir);
                     Debug.Log($"CPU hit {hit.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
                 }
             }
@@ -264,7 +264,7 @@ public class ProjectileCPUController: MonoBehaviour
 
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         ProjectileScript projectileScript = proj.GetComponent<ProjectileScript>();
-        projectileScript.target= player;
+        projectileScript.target = player;
 
         if (projectileScript != null)
         {
@@ -273,27 +273,27 @@ public class ProjectileCPUController: MonoBehaviour
         }
     }
 
-
     private IEnumerator EndAttackCoroutine()
     {
-        // Wait for animation to finish (approximate)
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
 
-    // ------------------- Health -------------------
+    // --- Knockback interface method ---
+    public void StartKnockback(Vector2 velocity, float duration)
+    {
+        isKnockedback = true;
+        knockbackVelocity = velocity;
+        knockbackTimer = duration;
+    }
 
     private void Die()
     {
         isDead = true;
-        //rb.velocity = Vector2.zero;
-        //collider2D.enabled = false;
         animator.SetTrigger("Dead");
-        
         Destroy(gameObject, 2f);
     }
 
-    // ------------------- Debug -------------------
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;

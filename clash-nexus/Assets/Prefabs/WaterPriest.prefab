@@ -200,6 +200,8 @@ MonoBehaviour:
     m_Bits: 256
   attackDamage: 20
   maxHealth: 3
+  player1: 0
+  cpu: 0
   animator: {fileID: 4766354587121204564}
   sr: {fileID: 6964469948740321370}
 --- !u!114 &-8190694358672867024
@@ -219,6 +221,11 @@ MonoBehaviour:
   currentHealth: 100
   punchSound: {fileID: 8300000, guid: feb56be1f9e891e4694cd5f2fd8960ac, type: 3}
   punchSoundVolume: 0.5
+  sr: {fileID: 6964469948740321370}
+  flashMaterial: {fileID: 2100000, guid: d38d88df0a5c6b3419399633cf782c9e, type: 2}
+  knockbackForce: 20
+  rb: {fileID: 4495503515767760116}
+  isKnockedback: 0
 --- !u!1 &4130475314924947045
 GameObject:
   m_ObjectHideFlags: 0

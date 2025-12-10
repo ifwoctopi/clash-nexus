@@ -37,7 +37,8 @@ public class ProjectileScript : MonoBehaviour
             PlayerHealth health = collision.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamage(damage);
+                Vector2 knockDir = (transform.position - collision.transform.position).normalized;
+                health.TakeDamage(damage, knockDir);
                 Debug.Log($"CPU hit {collision.name} with PROJECTILE for {damage} damage. Current Health: {health.currentHealth}");
             }
             Destroy(gameObject);

@@ -2,22 +2,21 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
-public class CPUController : MonoBehaviour
+public class CPUController : MonoBehaviour, IKnockbackable
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     
     [Header("Blocking")]
-    public float blockChance = 0.25f;       // % chance to block when threatened
-    public float blockDuration = 0.5f;      // how long CPU blocks
+    public float blockChance = 0.25f;
+    public float blockDuration = 0.5f;
     private float blockEndTime;
 
     [Header("Layers")]
-    public int player1; // e.g., Layer number for Player
-    public int cpu;    // e.g., Layer number for CPU
-    
+    public int player1;
+    public int cpu;
+
     [Header("Ground Check")]
     public Transform groundCheck;
     public float checkRadius = 0.2f;
@@ -29,7 +28,7 @@ public class CPUController : MonoBehaviour
     private bool isDefending;
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public LayerMask playerLayer; // Target layer (player)
+    public LayerMask playerLayer;
     public int attackDamage = 20;
 
     [Header("Health")]
@@ -38,7 +37,7 @@ public class CPUController : MonoBehaviour
     private bool isDead = false;
 
     [Header("AI Settings")]
-    public Transform player; // Target player
+    public Transform player;
     public float decisionRate = 0.5f;
     public float attackDistance = 1.5f;
     public float retreatChance = 0.25f;
@@ -58,14 +57,18 @@ public class CPUController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
 
+    // --- Knockback fields ---
+    private bool isKnockedback = false;
+    private Vector2 knockbackVelocity;
+    private float knockbackTimer = 0f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         collider2D = GetComponent<CapsuleCollider2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        
-        Physics2D.IgnoreLayerCollision(player1, cpu, true); // prevents physics push
 
+        Physics2D.IgnoreLayerCollision(player1, cpu, true);
 
         currentHealth = maxHealth;
     }
@@ -75,14 +78,14 @@ public class CPUController : MonoBehaviour
         if (isDead) return;
 
         CheckGround();
-        
-        // If blocking, check expiration
+
+        // Expire block
         if (isDefending && Time.time >= blockEndTime)
         {
             isDefending = false;
             animator.SetBool("isDefending", false);
         }
-        
+
         AIUpdate();
 
         // Animations
@@ -102,6 +105,15 @@ public class CPUController : MonoBehaviour
     private void FixedUpdate()
     {
         if (isDead) return;
+
+        // --- Handle knockback ---
+        if (isKnockedback)
+        {
+            rb.velocity = knockbackVelocity;
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f) isKnockedback = false;
+            return;
+        }
 
         // Stop horizontal movement during attack
         if (isAttacking)
@@ -137,23 +149,17 @@ public class CPUController : MonoBehaviour
         float distance = player.position.x - transform.position.x;
         float absDistance = Mathf.Abs(distance);
         float dir = Mathf.Sign(distance);
-        
-        
 
-        // Periodic decisions
         if (Time.time > nextDecisionTime)
         {
             nextDecisionTime = Time.time + decisionRate;
-            
-            // If blocking, CPU stops moving and does nothing
+
             if (isDefending)
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
                 return;
             }
-            
-            // CPU BLOCK DECISION
-            // If the player is close, block randomly
+
             if (!isDefending && !isAttacking && absDistance < attackDistance)
             {
                 if (Random.value < blockChance)
@@ -162,7 +168,7 @@ public class CPUController : MonoBehaviour
                     return;
                 }
             }
-            // Attack / Retreat
+
             if (absDistance < attackDistance)
             {
                 if (!isRetreating && Random.value < retreatChance)
@@ -177,7 +183,6 @@ public class CPUController : MonoBehaviour
                 return;
             }
 
-            // Jump logic
             if (absDistance < jumpDistanceThreshold && absDistance > minDistanceToPlayer && isGrounded && !isAttacking && !isRetreating)
             {
                 if (Random.value < 0.03f)
@@ -185,7 +190,6 @@ public class CPUController : MonoBehaviour
             }
         }
 
-        // Movement
         if (isRetreating)
         {
             rb.velocity = new Vector2(-dir * moveSpeed, rb.velocity.y);
@@ -208,14 +212,13 @@ public class CPUController : MonoBehaviour
             isJumping = true;
         }
     }
-    
+
     private void StartBlock()
     {
         if (isDefending || isAttacking || isRetreating) return;
 
         isDefending = true;
         blockEndTime = Time.time + blockDuration;
-
         animator.SetBool("isDefending", true);
     }
 
@@ -224,20 +227,20 @@ public class CPUController : MonoBehaviour
         if (isAttacking) return;
 
         isAttacking = true;
-        rb.velocity = new Vector2(0, rb.velocity.y); // Stop horizontal movement
+        rb.velocity = new Vector2(0, rb.velocity.y);
 
         if (id == 1) animator.SetTrigger("Attack1");
         else if (id == 2) animator.SetTrigger("Attack2");
         else animator.SetTrigger("Attack3");
 
-        // Damage detection
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
         foreach (Collider2D hit in hits)
         {
             PlayerHealth health = hit.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamage(attackDamage);
+                Vector2 knockDir = (transform.position - hit.transform.position).normalized;
+                health.TakeDamage(attackDamage, knockDir);
                 Debug.Log($"CPU hit {hit.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
             }
         }
@@ -247,29 +250,28 @@ public class CPUController : MonoBehaviour
 
     private IEnumerator EndAttackCoroutine()
     {
-        // Wait for animation to finish (approximate)
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
 
-    // ------------------- Health -------------------
+    // --- Knockback interface method ---
+    public void StartKnockback(Vector2 velocity, float duration)
+    {
+        isKnockedback = true;
+        knockbackVelocity = velocity;
+        knockbackTimer = duration;
+    }
 
     private void Die()
     {
         isDead = true;
-        //rb.velocity = Vector2.zero;
-        //collider2D.enabled = false;
         animator.SetTrigger("Dead");
-        
         Destroy(gameObject, 2f);
-        
     }
 
-    // ------------------- Debug -------------------
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
-
