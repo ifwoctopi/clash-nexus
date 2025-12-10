@@ -22,19 +22,24 @@ public class SamuraiController : MonoBehaviour
     public LayerMask enemyLayers;
 
     public int attackDamage = 20;
+    public float attackCooldownTime = 0.35f;
+    private float nextAttackTime = 0f;
 
     [Header("Health")]
     public int maxHealth = 3;
     private int currentHealth;
     private bool isDead = false;
 
-    private CapsuleCollider2D playerCollider; // reference to your main collider
-    
+    private CapsuleCollider2D playerCollider;
+
     private Rigidbody2D rb;
     private Player1Controls controls;
     private Vector2 moveInput;
+
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
+
+    private PlayerIdentity id;
 
     private void Awake()
     {
@@ -45,76 +50,56 @@ public class SamuraiController : MonoBehaviour
 
         currentHealth = maxHealth;
 
+        id = GetComponent<PlayerIdentity>();
+        if (id == null)
+        {
+            id = gameObject.AddComponent<PlayerIdentity>();
+            id.playerNumber = 1;
+        }
+
         controls = new Player1Controls();
 
-        // Movement
         controls.Player1.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player1.Move.canceled += ctx => moveInput = Vector2.zero;
 
-        // Jump
         controls.Player1.Jump.performed += ctx => Jump();
 
-        // Attacks
         controls.Player1.Attack1.performed += ctx => Attack1();
         controls.Player1.Attack2.performed += ctx => Attack2();
         controls.Player1.Attack3.performed += ctx => Attack3();
 
-        // Defense
         controls.Player1.Defend.performed += ctx => isDefending = true;
         controls.Player1.Defend.canceled += ctx => isDefending = false;
     }
 
-
-    private void OnEnable()
-    {
-        controls.Player1.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Player1.Disable();
-    }
+    private void OnEnable() => controls.Player1.Enable();
+    private void OnDisable() => controls.Player1.Disable();
 
     private void Update()
     {
         if (isDead) return;
+
         CheckGround();
-        if(isDefending)
-        {
-            animator.SetBool("isDefending", true);
-        }
-        else
-        {
-            animator.SetBool("isDefending", false);
-        }
 
-        // Trigger Jump ONCE on takeoff
+        animator.SetBool("isDefending", isDefending);
+
         if (wasGrounded && !isGrounded)
-        {
             animator.SetTrigger("Jump");
-        }
 
-        // Landing trigger (optional)
         if (!wasGrounded && isGrounded)
-        {
             animator.SetTrigger("Land");
-        }
 
-        // Run animation
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("yVelocity", rb.velocity.y);
-        animator.SetBool("isFalling", rb.velocity.y < -.1);
-        wasGrounded = isGrounded;
-
-        // Run animation
+        animator.SetBool("isFalling", rb.velocity.y < -0.1f);
         animator.SetBool("isRunning", moveInput.x != 0);
 
-        // Flip sprite
-        if (moveInput.x > 0)
-            sr.flipX = false;
-        else if (moveInput.x < 0)
-            sr.flipX = true;
+        if (moveInput.x > 0) sr.flipX = false;
+        else if (moveInput.x < 0) sr.flipX = true;
+
+        wasGrounded = isGrounded;
     }
+
     private void FixedUpdate()
     {
         if (isDead) return;
@@ -124,9 +109,7 @@ public class SamuraiController : MonoBehaviour
     private void Jump()
     {
         if (isGrounded)
-        {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
     }
 
     private void CheckGround()
@@ -134,90 +117,86 @@ public class SamuraiController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
+    // ------------------- COMBAT -------------------
+
     private void Attack1()
     {
-        Debug.Log("Attack1");
+        if (Time.time < nextAttackTime) return;
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+
         animator.SetTrigger("Attack1");
         Attack();
+
+        nextAttackTime = Time.time + attackCooldownTime;
     }
 
     private void Attack2()
     {
-        Debug.Log("Attack2");
+        if (Time.time < nextAttackTime) return;
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+
         animator.SetTrigger("Attack2");
         Attack();
+
+        nextAttackTime = Time.time + attackCooldownTime;
     }
 
     private void Attack3()
     {
-        Debug.Log("Attack3");
+        if (Time.time < nextAttackTime) return;
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+
         animator.SetTrigger("Attack3");
         Attack();
+
+        nextAttackTime = Time.time + attackCooldownTime;
     }
-    
-    public void Attack()
+
+    private void Attack()
     {
-        // Detect enemies in range
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position,
             attackRange,
             enemyLayers
         );
 
-        // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
-           //enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+            if (enemy.gameObject == gameObject ||
+                enemy.transform.IsChildOf(transform))
+                continue;
+
+            PlayerHealth health = enemy.GetComponent<PlayerHealth>();
+
+            if (health != null)
+            {
+                PlayerStatsManager.Instance.GetStats(id.playerNumber).RegisterDamageDealt(attackDamage);
+
+                health.TakeDamage(attackDamage);
+
+                Debug.Log($"Samurai hit {enemy.name} for {attackDamage} damage.");
+            }
         }
     }
-    
-    public void TakeDamage(int damage)
+
+    // ------------------- HEALTH -------------------
+
+    public void TakeDamage(float damage)
     {
-        if (isDead) return; // ignore damage if already dead
-
-        currentHealth -= damage;
-        Debug.Log($"Knight 1 took {damage} damage! Current health: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-        else
-        {
-            animator.SetTrigger("Hurt");
-        }
-    }
-    private void Die()
-    {
-        isDead = true;
-        Debug.Log("Knight 1 Died!");
-
-        // Stop movement
-        moveInput = Vector2.zero;
-        rb.velocity = Vector2.zero;
-
-        // Disable collider so sprite doesn't float
-        playerCollider.enabled = false;
-
-        // Optional: disable Rigidbody gravity if desired
-        rb.simulated = false;
-
-        // Trigger death animation
-        animator.SetTrigger("Dead");
-
-        // Disable input
-        controls.Disable();
-
-        // Optional: destroy object after animation ends
-        // Destroy(gameObject, 2f);
+        GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
-    
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-            return;
+        if (attackPoint == null) return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+    private void OnDestroy()
+    {
+        if (controls != null)
+            controls.Dispose();
+    }
+
 }
+

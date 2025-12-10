@@ -198,7 +198,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
-  attackDamage: 20
+  attackDamage: 8
   attackCooldownTime: 0.35
   comboTimeWindow: 1
   generalChainBonus: 1.15

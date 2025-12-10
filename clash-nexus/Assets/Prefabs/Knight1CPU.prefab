@@ -202,7 +202,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 20
+  attackDamage: 8
   maxHealth: 3
   player: {fileID: 0}
   decisionRate: 0.5
