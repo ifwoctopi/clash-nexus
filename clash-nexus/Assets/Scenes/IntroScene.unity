@@ -380,6 +380,15 @@ MonoBehaviour:
   - characterTagA: Huntress
     characterTagB: Knight1
     introVideo: {fileID: 32900000, guid: 604f1d7d69873fb4490df141ad851378, type: 3}
+  - characterTagA: Knight1
+    characterTagB: Knight1
+    introVideo: {fileID: 32900000, guid: 5d88e83d8f4dbe244abf45386acc3bcd, type: 3}
+  - characterTagA: Knight1
+    characterTagB: WaterPriest
+    introVideo: {fileID: 32900000, guid: ed90a653bfd39d5488e7dc0a3383e8cb, type: 3}
+  - characterTagA: WaterPriest
+    characterTagB: WaterPriest
+    introVideo: {fileID: 32900000, guid: ba0446406f369c04b871cdfd0d91f8f5, type: 3}
   defaultIntro: {fileID: 32900000, guid: 5e8eaae7d7a5b6b4db5d695bec9660cb, type: 3}
   videoPlayer: {fileID: 1465484387}
   nextScene: SampleScene
