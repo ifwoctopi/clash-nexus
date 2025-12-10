@@ -19,6 +19,9 @@ public class GameDataManager : MonoBehaviour
     [Header("Match Timer")]
     // Timer options: -1 = unlimited, 30 = 30 seconds, 60 = 60 seconds, etc.
     private float matchTimerSeconds = -1f; // Default to unlimited
+    
+    [Header("Selected Background")]
+    private string selectedBackgroundId = "";
 
     void Awake()
     {
@@ -147,6 +150,20 @@ public class GameDataManager : MonoBehaviour
     public bool IsPracticeMode()
     {
         return isPracticeMode;
+    }
+    public void SetSelectedBackground(string backgroundId)
+    {
+        selectedBackgroundId = backgroundId;
+    }
+
+    public string GetSelectedBackground()
+    {
+        return selectedBackgroundId;
+    }
+
+    public void ClearBackgroundSelection()
+    {
+        selectedBackgroundId = "";
     }
 }
 

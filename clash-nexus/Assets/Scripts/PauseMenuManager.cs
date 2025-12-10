@@ -212,6 +212,7 @@ public class PauseMenuManager : MonoBehaviour
         if (dataManager != null)
         {
             dataManager.SetPracticeMode(false);
+            dataManager.ClearBackgroundSelection();
         }
 
         Debug.Log("PauseMenuManager: Quitting to main menu");
