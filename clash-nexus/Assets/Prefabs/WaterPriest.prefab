@@ -198,7 +198,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
-  attackDamage: 20
+  attackDamage: 8
+  attackCooldownTime: 0.35
   maxHealth: 3
   animator: {fileID: 4766354587121204564}
   sr: {fileID: 6964469948740321370}

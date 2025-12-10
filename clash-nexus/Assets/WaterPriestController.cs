@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaterPriestController : MonoBehaviour
 {
-     [Header("Movement")]
+    [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
 
@@ -22,17 +22,21 @@ public class WaterPriestController : MonoBehaviour
     public LayerMask enemyLayers;
 
     public int attackDamage = 20;
+    public float attackCooldownTime = 0.35f;
+    private float nextAttackTime = 0f;
 
     [Header("Health")]
     public int maxHealth = 3;
     private int currentHealth;
     private bool isDead = false;
 
-    private CapsuleCollider2D playerCollider; // reference to your main collider
-    
+    private CapsuleCollider2D playerCollider;
     private Rigidbody2D rb;
     private Player1Controls controls;
     private Vector2 moveInput;
+
+    private PlayerIdentity id;
+
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
 
@@ -44,6 +48,14 @@ public class WaterPriestController : MonoBehaviour
         playerCollider = GetComponent<CapsuleCollider2D>();
 
         currentHealth = maxHealth;
+
+        // Player identity check
+        id = GetComponent<PlayerIdentity>();
+        if (id == null)
+        {
+            id = gameObject.AddComponent<PlayerIdentity>();
+            id.playerNumber = 1; // default P1 (Spawner overrides)
+        }
 
         controls = new Player1Controls();
 
@@ -64,60 +76,40 @@ public class WaterPriestController : MonoBehaviour
         controls.Player1.Defend.canceled += ctx => isDefending = false;
     }
 
-
-    private void OnEnable()
-    {
-        controls.Player1.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Player1.Disable();
-    }
+    private void OnEnable() => controls.Player1.Enable();
+    private void OnDisable() => controls.Player1.Disable();
 
     private void Update()
     {
         if (isDead) return;
+
         CheckGround();
-        if(isDefending)
-        {
-            animator.SetBool("isDefending", true);
-        }
-        else
-        {
-            animator.SetBool("isDefending", false);
-        }
 
-        // Trigger Jump ONCE on takeoff
-        if (wasGrounded && !isGrounded)
-        {
-            animator.SetTrigger("Jump");
-        }
-
-        // Landing trigger (optional)
-        if (!wasGrounded && isGrounded)
-        {
-            animator.SetTrigger("Land");
-        }
-
-        // Run animation
+        animator.SetBool("isDefending", isDefending);
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("yVelocity", rb.velocity.y);
-        animator.SetBool("isFalling", rb.velocity.y < -.1);
-        wasGrounded = isGrounded;
-
-        // Run animation
+        animator.SetBool("isFalling", rb.velocity.y < -0.1f);
         animator.SetBool("isRunning", moveInput.x != 0);
 
+        // Jump trigger
+        if (wasGrounded && !isGrounded)
+            animator.SetTrigger("Jump");
+
+        // Land trigger
+        if (!wasGrounded && isGrounded)
+            animator.SetTrigger("Land");
+
         // Flip sprite
-        if (moveInput.x > 0)
-            sr.flipX = false;
-        else if (moveInput.x < 0)
-            sr.flipX = true;
+        if (moveInput.x > 0) sr.flipX = false;
+        else if (moveInput.x < 0) sr.flipX = true;
+
+        wasGrounded = isGrounded;
     }
+
     private void FixedUpdate()
     {
         if (isDead) return;
+
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
     }
 
@@ -134,85 +126,89 @@ public class WaterPriestController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
+    // --------------------- COMBAT ----------------------
+
     private void Attack1()
     {
-        Debug.Log("Attack1");
+        if (Time.time < nextAttackTime) return;
+
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
         animator.SetTrigger("Attack1");
+
         Attack();
+
+        nextAttackTime = Time.time + attackCooldownTime;
     }
 
     private void Attack2()
     {
-        Debug.Log("Attack2");
+        if (Time.time < nextAttackTime) return;
+
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
         animator.SetTrigger("Attack2");
+
         Attack();
+
+        nextAttackTime = Time.time + attackCooldownTime;
     }
 
     private void Attack3()
     {
-        Debug.Log("Attack3");
+        if (Time.time < nextAttackTime) return;
+
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
         animator.SetTrigger("Attack3");
+
         Attack();
+
+        nextAttackTime = Time.time + attackCooldownTime;
     }
-    
-    public void Attack()
+
+    private void Attack()
     {
-        // Detect enemies in range
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position,
             attackRange,
             enemyLayers
         );
 
-        // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
-            // Don't damage ourselves
-            if (enemy.gameObject == gameObject || enemy.transform.IsChildOf(transform))
-            {
+            if (enemy.gameObject == gameObject ||
+                enemy.transform.IsChildOf(transform))
                 continue;
-            }
-            
+
             PlayerHealth health = enemy.GetComponent<PlayerHealth>();
+
             if (health != null)
             {
+                // Register stats
+                PlayerStatsManager.Instance.GetStats(id.playerNumber).RegisterDamageDealt(attackDamage);
+
+                // This triggers popups, scaling, logs, death checks
                 health.TakeDamage(attackDamage);
-                Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+
+                Debug.Log($"Water Priest hit {enemy.name} for {attackDamage}.");
             }
         }
     }
-    
-    private void Die()
+
+    // ------------------- DAMAGE HANDLING -------------------
+
+    public void TakeDamage(float damage)
     {
-        isDead = true;
-        Debug.Log("Knight 1 Died!");
-
-        // Stop movement
-        moveInput = Vector2.zero;
-        rb.velocity = Vector2.zero;
-
-        // Disable collider so sprite doesn't float
-        playerCollider.enabled = false;
-
-        // Optional: disable Rigidbody gravity if desired
-        rb.simulated = false;
-
-        // Trigger death animation
-        animator.SetTrigger("Dead");
-
-        // Disable input
-        controls.Disable();
-
-        // Optional: destroy object after animation ends
-        Destroy(gameObject, 2f);
+        GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
-    
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-            return;
-
+        if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+    private void OnDestroy()
+    {
+        if (controls != null)
+            controls.Dispose();
+    }
+
 }

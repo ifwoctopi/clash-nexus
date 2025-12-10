@@ -18,7 +18,9 @@ public class PlayerHealth : MonoBehaviour
     
     private bool isDead = false;
     private AudioSource audioSource;
-    
+    private PlayerIdentity id;
+
+
     // Practice mode health regeneration
     private bool isPracticeDummy = false;
     private float lastDamageTime = 0f;
@@ -42,8 +44,10 @@ public class PlayerHealth : MonoBehaviour
         
         // Check if this is Player 2 in practice mode
         CheckIfPracticeDummy();
+        id = GetComponent<PlayerIdentity>();
+
     }
-    
+
     private void Update()
     {
         // Handle health regeneration for practice dummy
@@ -77,38 +81,67 @@ public class PlayerHealth : MonoBehaviour
     /// </summary>
     public void TakeDamage(float damage)
     {
+        Debug.Log($"{gameObject.name} TOOK DAMAGE CALL: {damage}");
+
         if (isDead) return;
 
-        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
-        animator.SetTrigger("Hurt");
-        
-        // Play punch sound when taking damage
-        if (punchSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(punchSound, punchSoundVolume);
-        }
-        
-        // Update last damage time for practice dummy regeneration
-        if (isPracticeDummy)
-        {
-            lastDamageTime = Time.time;
-        }
-        
-        // Health bar will be updated automatically by SimpleHealthBar component
+        int dmg = Mathf.RoundToInt(damage);
 
-        // Practice dummy never dies
+        Debug.Log($"[Damage] {gameObject.name} is taking {dmg} raw damage.");
+
+        // Show popup
+        Debug.Log($"[Popup] Showing popup for {dmg} damage at {transform.position + Vector3.up * 1.5f}");
+        DamagePopupManager.Instance?.ShowDamage(
+            dmg,
+            transform.position + Vector3.up * 1.5f,
+            id.playerNumber
+        );
+
+        // Register stats
+        if (id.playerNumber == 1)
+        {
+            Debug.Log($"[Stats] Player1: Took {dmg}, Player2: Dealt {dmg}");
+            PlayerStatsManager.Instance.GetStats(1).RegisterDamageTaken(dmg);
+            PlayerStatsManager.Instance.GetStats(2).RegisterDamageDealt(dmg);
+        }
+        else
+        {
+            Debug.Log($"[Stats] Player2: Took {dmg}, Player1: Dealt {dmg}");
+            PlayerStatsManager.Instance.GetStats(2).RegisterDamageTaken(dmg);
+            PlayerStatsManager.Instance.GetStats(1).RegisterDamageDealt(dmg);
+        }
+        var s1 = PlayerStatsManager.Instance.GetStats(1);
+        var s2 = PlayerStatsManager.Instance.GetStats(2);
+
+        Debug.Log($"[STATS SUMMARY] P1: Dealt={s1.totalDamageDealt}, Taken={s1.totalDamageTaken}, " +
+                  $"HitsLanded={s1.hitsLanded}, HitsReceived={s1.hitsReceived}, Attempts={s1.attackAttempts}");
+
+        Debug.Log($"[STATS SUMMARY] P2: Dealt={s2.totalDamageDealt}, Taken={s2.totalDamageTaken}, " +
+                  $"HitsLanded={s2.hitsLanded}, HitsReceived={s2.hitsReceived}, Attempts={s2.attackAttempts}");
+
+      
+        // Softer damage
+        float scaledDamage = damage * 0.65f;
+        Debug.Log($"[Damage Scaling] Raw Damage: {damage}, Scaled Damage: {scaledDamage}");
+
+        currentHealth = Mathf.Clamp(currentHealth - scaledDamage, 0, maxHealth);
+
+        Debug.Log($"[Health] {gameObject.name} current health after damage: {currentHealth}/{maxHealth}");
+
+        animator.SetTrigger("Hurt");
+
+        // Death check
         if (currentHealth <= 0 && !isPracticeDummy)
         {
+            Debug.Log($"[Death] {gameObject.name} has died.");
             Die();
         }
         else if (currentHealth <= 0 && isPracticeDummy)
         {
-            // For practice dummy, just keep health at 0 visually but don't die
+            Debug.Log($"[Death Prevented] Practice dummy reached 0 health but does NOT die.");
             currentHealth = 0;
-            Debug.Log($"{gameObject.name} (practice dummy) health at 0 but not dying");
         }
     }
-
     /// <summary>
     /// Takes damage (int overload for compatibility with existing code)
     /// </summary>
@@ -120,6 +153,8 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(float healAmount)
     {
         currentHealth = Mathf.Clamp(currentHealth + healAmount, 0, maxHealth);
+        Debug.Log($"{gameObject.name} NEW HEALTH = {currentHealth}");
+
         // Health bar will be updated automatically by SimpleHealthBar component
     }
 

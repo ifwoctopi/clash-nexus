@@ -323,7 +323,18 @@ public class MatchTimer : MonoBehaviour
         {
             Debug.LogWarning("MatchTimer: TimerText not found, cannot display win message");
         }
-        
+
+        if (MatchStatsUI.Instance != null)
+        {
+            MatchStatsUI.Instance.gameObject.SetActive(true);
+            MatchStatsUI.Instance.UpdateStats();
+            Debug.Log("MATCH STATS OPENED");
+        }
+        else
+        {
+            Debug.LogWarning("MatchStatsUI.Instance is NULL!");
+        }
+
         // Show win button - try multiple methods to find it
         bool buttonFound = false;
         
@@ -372,6 +383,8 @@ public class MatchTimer : MonoBehaviour
         }
         
         Debug.Log($"MatchTimer: Player {winner} wins! Button shown: {buttonFound}");
+
+        FindObjectOfType<MatchStatsUI>()?.gameObject.SetActive(true);
     }
 
     /// <summary>

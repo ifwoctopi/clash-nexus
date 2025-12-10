@@ -58,6 +58,8 @@ public class CPUController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
 
+    private PlayerIdentity id;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -68,6 +70,14 @@ public class CPUController : MonoBehaviour
 
 
         currentHealth = maxHealth;
+        id = GetComponent<PlayerIdentity>();
+        if (id == null)
+        {
+            id = gameObject.AddComponent<PlayerIdentity>();
+            id.playerNumber = 2; // CPU always player 2
+            Debug.Log($"[CPU] Added PlayerIdentity automatically to {name}");
+        }
+
     }
 
     private void Update()
@@ -219,15 +229,15 @@ public class CPUController : MonoBehaviour
         animator.SetBool("isDefending", true);
     }
 
-    private void TriggerAttack(int id)
+    private void TriggerAttack(int attackId)
     {
         if (isAttacking) return;
 
         isAttacking = true;
         rb.velocity = new Vector2(0, rb.velocity.y); // Stop horizontal movement
 
-        if (id == 1) animator.SetTrigger("Attack1");
-        else if (id == 2) animator.SetTrigger("Attack2");
+        if (attackId == 1) animator.SetTrigger("Attack1");
+        else if (attackId  == 2) animator.SetTrigger("Attack2");
         else animator.SetTrigger("Attack3");
 
         // Damage detection
@@ -237,7 +247,15 @@ public class CPUController : MonoBehaviour
             PlayerHealth health = hit.GetComponent<PlayerHealth>();
             if (health != null)
             {
+                // Register CPU attack attempt
+                PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+
+                // CPU deals damage (stats)
+                PlayerStatsManager.Instance.GetStats(id.playerNumber).RegisterDamageDealt(attackDamage);
+
+                // Actual damage + popups + logs
                 health.TakeDamage(attackDamage);
+
                 Debug.Log($"CPU hit {hit.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
             }
         }

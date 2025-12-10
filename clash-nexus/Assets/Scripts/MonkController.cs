@@ -59,6 +59,7 @@ public class MonkController : MonoBehaviour
     private Vector2 moveInput;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
+    private PlayerIdentity id;
 
     private void Awake()
     {
@@ -87,6 +88,8 @@ public class MonkController : MonoBehaviour
         // Defense
         controls.Player1.Defend.performed += ctx => isDefending = true;
         controls.Player1.Defend.canceled += ctx => isDefending = false;
+        id = GetComponent<PlayerIdentity>();
+
     }
 
 
@@ -162,6 +165,7 @@ public class MonkController : MonoBehaviour
     private void Attack1()
     {
         if (Time.time < nextAttackTime) return;
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
 
         Debug.Log("Attack1");
         animator.SetTrigger("Attack1");
@@ -179,6 +183,7 @@ public class MonkController : MonoBehaviour
     private void Attack2()
     {
         if (Time.time < nextAttackTime) return;
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
 
         Debug.Log("Attack2");
         animator.SetTrigger("Attack2");
@@ -193,6 +198,7 @@ public class MonkController : MonoBehaviour
     private void Attack3()
     {
         if (Time.time < nextAttackTime) return;
+        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
 
         Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
@@ -325,6 +331,11 @@ public class MonkController : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-    
-    
+    private void OnDestroy()
+    {
+        if (controls != null)
+            controls.Dispose();
+    }
+
+
 }

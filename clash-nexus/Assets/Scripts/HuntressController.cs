@@ -74,6 +74,18 @@ public class HuntressController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
 
+    private PlayerIdentity id;
+
+    private void Start()
+    {
+        id = GetComponent<PlayerIdentity>();
+        if (id == null)
+        {
+            Debug.LogError($"HuntressController on {name} could not find PlayerIdentity. " +
+                           "Stats + popups won’t know which player this is.");
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,6 +112,7 @@ public class HuntressController : MonoBehaviour
 
         // Defense
         controls.Player1.Defend.performed += ctx => TryDash();
+
     }
 
 
@@ -201,7 +214,12 @@ public class HuntressController : MonoBehaviour
     private void Attack1()
     {
         if (Time.time < nextAttackTime) return;
-        
+
+        if (id != null && PlayerStatsManager.Instance != null)
+        {
+            PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+        }
+
         Debug.Log("Attack1");
         animator.SetTrigger("Attack1");
         Attack();
@@ -218,6 +236,11 @@ public class HuntressController : MonoBehaviour
     private void Attack2()
     {
         if (Time.time < nextAttackTime) return;
+
+        if (id != null && PlayerStatsManager.Instance != null)
+        {
+            PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+        }
 
         Debug.Log("Attack2");
         animator.SetTrigger("Attack2");
@@ -236,6 +259,11 @@ public class HuntressController : MonoBehaviour
     {
         if (Time.time < nextAttackTime) return;
 
+        if (id != null && PlayerStatsManager.Instance != null)
+        {
+            PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+        }
+
         Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
         Attack();
@@ -248,7 +276,7 @@ public class HuntressController : MonoBehaviour
         inputSequence.Add("L");
         LogAttackTime();
     }
-    
+
     public void Attack()
     {
         // 1. Check if a combo was active and get the damage multiplier.
@@ -263,23 +291,45 @@ public class HuntressController : MonoBehaviour
             enemyLayers
         );
 
+        int attackerPlayerNum = 0;
+        if (id == null) id = GetComponent<PlayerIdentity>();
+        if (id != null) attackerPlayerNum = id.playerNumber;
+
         // Damage each enemy hit
         foreach (Collider2D enemy in hits)
         {
-            // Don't damage ourselves
+            // Don’t hit ourselves / our children
             if (enemy.gameObject == gameObject || enemy.transform.IsChildOf(transform))
-            {
                 continue;
-            }
-            
+
             PlayerHealth health = enemy.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.TakeDamage(attackDamage);
-                Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
+                // Actually apply damage using the scaled value
+                health.TakeDamage(modifiedDamage);
+                Debug.Log($"{gameObject.name} hit {enemy.name} for {modifiedDamage} damage. " +
+                          $"(base {attackDamage}, mult {multiplier})");
+
+
+                // Stats: hits landed + damage dealt
+                if (id != null && PlayerStatsManager.Instance != null)
+                {
+                    var stats = PlayerStatsManager.Instance.GetStats(id.playerNumber);
+                    stats.hitsLanded++;
+                    stats.totalDamageDealt += modifiedDamage;
+                }
+
+                // Damage popup
+                if (DamagePopupManager.Instance != null)
+                {
+                    Vector3 popupPos = enemy.transform.position + new Vector3(0f, 1.5f, 0f);
+                    int playerNum = (id != null) ? id.playerNumber : 0;
+                    DamagePopupManager.Instance.ShowDamage(modifiedDamage, popupPos, playerNum);
+                }
             }
         }
     }
+ 
     
     // --- COMBO CALCULATION FUNCTION (Called inside Attack()) ---
     private float GetComboMultiplier()
@@ -381,4 +431,10 @@ public class HuntressController : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+    private void OnDestroy()
+    {
+        if (controls != null)
+            controls.Dispose();
+    }
+
 }

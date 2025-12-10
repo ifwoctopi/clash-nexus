@@ -174,7 +174,9 @@ public class PlayerSpawner : MonoBehaviour
 
         // Instantiate the character
         GameObject spawnedCharacter = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
-        
+        PlayerIdentity identity = spawnedCharacter.AddComponent<PlayerIdentity>();
+        identity.playerNumber = playerNumber;
+
         // Rename to match player number
         spawnedCharacter.name = $"Player{playerNumber}_{characterId}";
         
@@ -254,9 +256,13 @@ public class PlayerSpawner : MonoBehaviour
                 spawnedCharacter.AddComponent<Player2ControlsSwapper>();
                 Debug.Log($"PlayerSpawner: Added Player2ControlsSwapper to Player 2 for arrow key controls");
             }
+            
+            PlayerIdentity id = spawnedCharacter.AddComponent<PlayerIdentity>();
+            id.playerNumber = playerNumber; // 1 or 2
+
         }
-        
-        
+
+
 
         Debug.Log($"PlayerSpawner: Spawned {characterId} for Player {playerNumber} at {spawnPoint.position}");
     }

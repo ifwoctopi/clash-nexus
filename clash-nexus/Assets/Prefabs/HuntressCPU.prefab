@@ -201,7 +201,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 20
+  attackDamage: 8
   projectilePrefab: {fileID: 1139610908247666567, guid: 53b571dcd2c443e4081956974a9cbd4e, type: 3}
   firePoint: {fileID: 1073878213451328548}
   projectileSpeed: 10
