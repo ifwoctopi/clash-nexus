@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterPriestController : MonoBehaviour
+public class WaterPriestController : MonoBehaviour, IKnockbackable
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -20,25 +20,28 @@ public class WaterPriestController : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
-
     public int attackDamage = 20;
-    public float attackCooldownTime = 0.35f;
-    private float nextAttackTime = 0f;
 
     [Header("Health")]
     public int maxHealth = 3;
     private int currentHealth;
     private bool isDead = false;
 
+    [Header("Layers")]
+    public int player1;
+    public int cpu;
+
     private CapsuleCollider2D playerCollider;
     private Rigidbody2D rb;
     private Player1Controls controls;
     private Vector2 moveInput;
-
-    private PlayerIdentity id;
-
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
+
+    // --- Knockback fields ---
+    private bool isKnockedback = false;
+    private Vector2 knockbackVelocity;
+    private float knockbackTimer = 0f;
 
     private void Awake()
     {
@@ -49,29 +52,17 @@ public class WaterPriestController : MonoBehaviour
 
         currentHealth = maxHealth;
 
-        // Player identity check
-        id = GetComponent<PlayerIdentity>();
-        if (id == null)
-        {
-            id = gameObject.AddComponent<PlayerIdentity>();
-            id.playerNumber = 1; // default P1 (Spawner overrides)
-        }
-
         controls = new Player1Controls();
 
-        // Movement
         controls.Player1.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player1.Move.canceled += ctx => moveInput = Vector2.zero;
 
-        // Jump
         controls.Player1.Jump.performed += ctx => Jump();
 
-        // Attacks
         controls.Player1.Attack1.performed += ctx => Attack1();
         controls.Player1.Attack2.performed += ctx => Attack2();
         controls.Player1.Attack3.performed += ctx => Attack3();
 
-        // Defense
         controls.Player1.Defend.performed += ctx => isDefending = true;
         controls.Player1.Defend.canceled += ctx => isDefending = false;
     }
@@ -84,41 +75,40 @@ public class WaterPriestController : MonoBehaviour
         if (isDead) return;
 
         CheckGround();
-
         animator.SetBool("isDefending", isDefending);
+
+        if (wasGrounded && !isGrounded) animator.SetTrigger("Jump");
+        if (!wasGrounded && isGrounded) animator.SetTrigger("Land");
+
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("yVelocity", rb.velocity.y);
         animator.SetBool("isFalling", rb.velocity.y < -0.1f);
-        animator.SetBool("isRunning", moveInput.x != 0);
-
-        // Jump trigger
-        if (wasGrounded && !isGrounded)
-            animator.SetTrigger("Jump");
-
-        // Land trigger
-        if (!wasGrounded && isGrounded)
-            animator.SetTrigger("Land");
-
-        // Flip sprite
-        if (moveInput.x > 0) sr.flipX = false;
-        else if (moveInput.x < 0) sr.flipX = true;
-
         wasGrounded = isGrounded;
+
+        animator.SetBool("isRunning", moveInput.x != 0);
+        sr.flipX = moveInput.x < 0;
     }
 
     private void FixedUpdate()
     {
         if (isDead) return;
 
+        // --- Handle knockback ---
+        if (isKnockedback)
+        {
+            rb.velocity = knockbackVelocity;
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f) isKnockedback = false;
+            return; // skip normal movement while knockback is active
+        }
+
+        // --- Normal movement ---
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
     }
 
     private void Jump()
     {
-        if (isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
+        if (isGrounded) rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
     private void CheckGround()
@@ -126,89 +116,68 @@ public class WaterPriestController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
-    // --------------------- COMBAT ----------------------
-
     private void Attack1()
     {
-        if (Time.time < nextAttackTime) return;
-
-        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+        Debug.Log("Attack1");
         animator.SetTrigger("Attack1");
-
         Attack();
-
-        nextAttackTime = Time.time + attackCooldownTime;
     }
 
     private void Attack2()
     {
-        if (Time.time < nextAttackTime) return;
-
-        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+        Debug.Log("Attack2");
         animator.SetTrigger("Attack2");
-
         Attack();
-
-        nextAttackTime = Time.time + attackCooldownTime;
     }
 
     private void Attack3()
     {
-        if (Time.time < nextAttackTime) return;
-
-        PlayerStatsManager.Instance.GetStats(id.playerNumber).attackAttempts++;
+        Debug.Log("Attack3");
         animator.SetTrigger("Attack3");
-
         Attack();
-
-        nextAttackTime = Time.time + attackCooldownTime;
     }
 
-    private void Attack()
+    public void Attack()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            attackPoint.position,
-            attackRange,
-            enemyLayers
-        );
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hits)
         {
-            if (enemy.gameObject == gameObject ||
-                enemy.transform.IsChildOf(transform))
-                continue;
+            if (enemy.gameObject == gameObject || enemy.transform.IsChildOf(transform)) continue;
 
             PlayerHealth health = enemy.GetComponent<PlayerHealth>();
-
             if (health != null)
             {
-                // Register stats
-                PlayerStatsManager.Instance.GetStats(id.playerNumber).RegisterDamageDealt(attackDamage);
-
-                // This triggers popups, scaling, logs, death checks
-                health.TakeDamage(attackDamage);
-
-                Debug.Log($"Water Priest hit {enemy.name} for {attackDamage}.");
+                Vector2 knockDir = (transform.position - enemy.transform.position).normalized;
+                health.TakeDamage(attackDamage, knockDir);
+                Debug.Log($"{gameObject.name} hit {enemy.name} for {attackDamage} damage. Current Health: {health.currentHealth}");
             }
         }
     }
 
-    // ------------------- DAMAGE HANDLING -------------------
-
-    public void TakeDamage(float damage)
+    // --- Knockback interface method ---
+    public void StartKnockback(Vector2 velocity, float duration)
     {
-        GetComponent<PlayerHealth>().TakeDamage(damage);
+        isKnockedback = true;
+        knockbackVelocity = velocity;
+        knockbackTimer = duration;
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        moveInput = Vector2.zero;
+        rb.velocity = Vector2.zero;
+        playerCollider.enabled = false;
+        rb.simulated = false;
+        animator.SetTrigger("Dead");
+        controls.Disable();
+        Destroy(gameObject, 2f);
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null) return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        if (attackPoint != null)
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-    private void OnDestroy()
-    {
-        if (controls != null)
-            controls.Dispose();
-    }
-
 }

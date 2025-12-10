@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,17 +18,35 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("Volume of the punch sound")]
     public float punchSoundVolume = 0.5f;
     
+    [Header("Damage UI")]
+    public SpriteRenderer sr;
+    private Color originalColor;
+    public Material flashMaterial; // assign WhiteFlashMaterial in Inspector
+    private Material originalMaterial; // store the original material
+    
+    [Header("Knockback")]
+    public float knockbackForce = 20f;
+    public Rigidbody2D rb;
+    public bool isKnockedback = false;
+    private Vector2 knockbackVelocity;
+    private float knockbackDuration = 0.2f;
+    private float knockbackTimer = 0f;
+    
     private bool isDead = false;
     private AudioSource audioSource;
-    private PlayerIdentity id;
-
-
+    
+    
     // Practice mode health regeneration
     private bool isPracticeDummy = false;
     private float lastDamageTime = 0f;
     private float healthRegenDelay = 5f; // Regenerate after 5 seconds of no damage
     private float healthRegenRate = 50f; // Health per second when regenerating (faster for practice mode)
 
+    private void Awake()
+    {
+        originalColor = sr.color; // save the original color
+        originalMaterial = sr.material; // save original material
+    }
     private void Start()
     {
         currentHealth = maxHealth;
@@ -44,10 +64,8 @@ public class PlayerHealth : MonoBehaviour
         
         // Check if this is Player 2 in practice mode
         CheckIfPracticeDummy();
-        id = GetComponent<PlayerIdentity>();
-
     }
-
+    
     private void Update()
     {
         // Handle health regeneration for practice dummy
@@ -60,7 +78,20 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        if (isKnockedback)
+        {
+            rb.velocity = knockbackVelocity;
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0)
+            {
+                isKnockedback = false;
+            }
+        }
+    }
+
     private void CheckIfPracticeDummy()
     {
         GameDataManager dataManager = GameDataManager.Instance;
@@ -79,82 +110,54 @@ public class PlayerHealth : MonoBehaviour
     /// <summary>
     /// Takes damage (accepts both float and int for compatibility)
     /// </summary>
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector2 hitDirection)
     {
-        Debug.Log($"{gameObject.name} TOOK DAMAGE CALL: {damage}");
-
         if (isDead) return;
 
-        int dmg = Mathf.RoundToInt(damage);
-
-        Debug.Log($"[Damage] {gameObject.name} is taking {dmg} raw damage.");
-
-        // Show popup
-        Debug.Log($"[Popup] Showing popup for {dmg} damage at {transform.position + Vector3.up * 1.5f}");
-        DamagePopupManager.Instance?.ShowDamage(
-            dmg,
-            transform.position + Vector3.up * 1.5f,
-            id.playerNumber
-        );
-
-        // Register stats
-        if (id.playerNumber == 1)
-        {
-            Debug.Log($"[Stats] Player1: Took {dmg}, Player2: Dealt {dmg}");
-            PlayerStatsManager.Instance.GetStats(1).RegisterDamageTaken(dmg);
-            PlayerStatsManager.Instance.GetStats(2).RegisterDamageDealt(dmg);
-        }
-        else
-        {
-            Debug.Log($"[Stats] Player2: Took {dmg}, Player1: Dealt {dmg}");
-            PlayerStatsManager.Instance.GetStats(2).RegisterDamageTaken(dmg);
-            PlayerStatsManager.Instance.GetStats(1).RegisterDamageDealt(dmg);
-        }
-        var s1 = PlayerStatsManager.Instance.GetStats(1);
-        var s2 = PlayerStatsManager.Instance.GetStats(2);
-
-        Debug.Log($"[STATS SUMMARY] P1: Dealt={s1.totalDamageDealt}, Taken={s1.totalDamageTaken}, " +
-                  $"HitsLanded={s1.hitsLanded}, HitsReceived={s1.hitsReceived}, Attempts={s1.attackAttempts}");
-
-        Debug.Log($"[STATS SUMMARY] P2: Dealt={s2.totalDamageDealt}, Taken={s2.totalDamageTaken}, " +
-                  $"HitsLanded={s2.hitsLanded}, HitsReceived={s2.hitsReceived}, Attempts={s2.attackAttempts}");
-
-      
-        // Softer damage
-        float scaledDamage = damage * 0.65f;
-        Debug.Log($"[Damage Scaling] Raw Damage: {damage}, Scaled Damage: {scaledDamage}");
-
-        currentHealth = Mathf.Clamp(currentHealth - scaledDamage, 0, maxHealth);
-
-        Debug.Log($"[Health] {gameObject.name} current health after damage: {currentHealth}/{maxHealth}");
-
+        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         animator.SetTrigger("Hurt");
+        
+        FlashWhite(.1f);
+        Knockback(hitDirection, knockbackForce);
+        
+        // Play punch sound when taking damage
+        if (punchSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(punchSound, punchSoundVolume);
+        }
+        
+        // Update last damage time for practice dummy regeneration
+        if (isPracticeDummy)
+        {
+            lastDamageTime = Time.time;
+        }
+        
+        // Health bar will be updated automatically by SimpleHealthBar component
 
-        // Death check
+        // Practice dummy never dies
         if (currentHealth <= 0 && !isPracticeDummy)
         {
-            Debug.Log($"[Death] {gameObject.name} has died.");
             Die();
         }
         else if (currentHealth <= 0 && isPracticeDummy)
         {
-            Debug.Log($"[Death Prevented] Practice dummy reached 0 health but does NOT die.");
+            // For practice dummy, just keep health at 0 visually but don't die
             currentHealth = 0;
+            Debug.Log($"{gameObject.name} (practice dummy) health at 0 but not dying");
         }
     }
+
     /// <summary>
     /// Takes damage (int overload for compatibility with existing code)
     /// </summary>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 hitDirection)
     {
-        TakeDamage((float)damage);
+        TakeDamage((float)damage, hitDirection);
     }
 
     public void Heal(float healAmount)
     {
         currentHealth = Mathf.Clamp(currentHealth + healAmount, 0, maxHealth);
-        Debug.Log($"{gameObject.name} NEW HEALTH = {currentHealth}");
-
         // Health bar will be updated automatically by SimpleHealthBar component
     }
 
@@ -210,6 +213,39 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
+    
+    public void FlashWhite(float duration)
+    {
+        StartCoroutine(FlashCoroutine(duration));
+    }
+
+    private IEnumerator FlashCoroutine(float duration)
+    {
+        sr.material = flashMaterial; // switch to white flash material
+        yield return new WaitForSeconds(duration); // wait
+        sr.material = originalMaterial; // revert to original material
+    }
+    
+    public void Knockback(Vector2 direction, float force, float duration = 0.2f)
+    {
+        // Try to get any component that implements IKnockbackable
+        IKnockbackable knockbackable = GetComponent<IKnockbackable>();
+        if (knockbackable != null)
+        {
+            knockbackable.StartKnockback(direction.normalized * force, duration);
+        }
+        else
+        {
+            // fallback: apply direct AddForce if Rigidbody2D exists
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+            }
+        }
+    }
+
 
     /// <summary>
     /// Checks if the player is dead

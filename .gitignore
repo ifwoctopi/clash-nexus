@@ -1,3 +1,87 @@
 clash-nexus/Library/
 clash-nexus/Temp/
 clash-nexus/obj/
+
+############################
+## Unity Generated Folders
+############################
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+MemoryCaptures/
+Recordings/
+
+############################
+## Unity Cache & IDE Stuff
+############################
+/*.csproj
+/*.sln
+/*.user
+/*.unityproj
+/*.pidb
+/*.suo
+/*.booproj
+/*.svd
+/*.pdb
+/*.mdb
+
+############################
+## Rider / JetBrains
+############################
+.idea/
+*.iml
+
+############################
+## VS Code
+############################
+.vscode/
+
+############################
+## Other Generated Files
+############################
+*.apk
+*.aab
+*.unitypackage
+*.prefs
+*.mode
+*.tmp
+*.bak
+*.old
+*.orig
+*.config
+*.log
+*.stacktrace
+
+############################
+## Platform Build Artifacts
+############################
+*.exe
+*.app
+*.xcodeproj
+*.xcworkspace
+DerivedData/
+*.ipa
+*.dsym
+
+############################
+## Lightmap / GI Cache
+############################
+LightingData.asset
+LightmapSnapshot.asset
+*.giparams
+GI/
+
+############################
+## Addressables & Streaming
+############################
+/Assets/AddressableAssetsData/**
+/Assets/StreamingAssets/**
+
+############################
+## Unity Collaborate Cache
+############################
+.collabignore
